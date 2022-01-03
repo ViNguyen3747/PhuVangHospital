@@ -4,12 +4,31 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node -r esm .",
+    "dev": "nodemon -r esm"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "nodemon": "^2.0.15"
+    "@graphql-tools/utils": "^7.10.0",
+    "apollo-server-express": "^3.6.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.1",
+    "consola": "^2.15.3",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.2",
+    "googleapis": "^92.0.0",
+    "graphql": "^15.8.0",
+    "graphql-middleware": "^6.1.13",
+    "graphql-tools": "^8.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.1.4",
+    "nodemailer": "^6.7.2",
+    "nodemon": "^2.0.15",
+    "path": "^0.12.7"
   }
 }
