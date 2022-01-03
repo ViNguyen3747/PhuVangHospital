@@ -25,6 +25,7 @@ const typeDefs = gql`
     createdAt: Date!
     updatedAt: Date!
   }
+
   type Message {
     message: String!
     success: Boolean

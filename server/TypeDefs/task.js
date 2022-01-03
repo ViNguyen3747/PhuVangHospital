@@ -2,7 +2,7 @@ import { gql } from "apollo-server-express";
 
 const typeDefs = gql`
   extend type Query {
-    tasks(department: String!, date: Date!): [Task!]!
+    tasks(department: String, date: Date): [Task!]!
     task(id: ID!): Task!
   }
 

@@ -1,0 +1,30 @@
+server structure 
+
+    Database:
+        - defines models (data collections) to be displayed in the Database
+        - connects server with MongoDB
+    Graphql: supports type-defined data
+        - TypeDefs:
+            - defines types of data (has to be matched with data collections in the Database)
+            - defines all actions to do with data (Query, Mutation)
+            - Query => Read data (without changing data)
+            - Mutation => change data (add, update, delete)
+        - Resolvers:
+            - let the servers know what they have to do with all the queries and mutations
+            - (how the servers would react to every queries and mutations)
+
+
+Difference between Rest API with Graphql
+data: 
+{
+    a: 1
+    b: 2
+    c: 3
+    d: 4
+}
+
+Rest API => when request data => return everything
+Graphql => when request data => return only data we need => avoid overfetching or underfetching data
+
+Rest API => multiple endpoints
+Graphql => all requests are combined into 1 single endpoint
