@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 const Navbar = () => {
@@ -26,28 +27,44 @@ const Navbar = () => {
           >
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               <li className="nav-item">
-                <a
-                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white active:text-turquoise-light hover:opacity-75"
-                  href="/bangchamcong"
+                <NavLink
+                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:text-turquoise-light"
+                  activeClassName="text-turquoise-light"
+                  to="/bangchamcong"
+                  exact
                 >
                   Bảng Chấm Công
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a
-                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white active:text-turquoise-light hover:opacity-75"
-                  href="/nhanvien"
+                <NavLink
+                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white  hover:text-turquoise-light"
+                  activeClassName="text-turquoise-light"
+                  to="/nhanvien"
+                  exact
                 >
                   Nhân Viên
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a
-                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white active:text-turquoise-light hover:opacity-75"
-                  href="/khoa"
+                <NavLink
+                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:text-turquoise-light"
+                  activeClassName="text-turquoise-light"
+                  to="/khoa"
+                  exact
                 >
                   Khoa
-                </a>
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:text-turquoise-light"
+                  activeClassName="text-turquoise-light"
+                  to="/taikhoan"
+                  exact
+                >
+                  Tài Khoản
+                </NavLink>
               </li>
             </ul>
           </div>

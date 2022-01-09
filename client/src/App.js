@@ -6,15 +6,17 @@ import Employees from "./components/Employees";
 import Departments from "./components/Department";
 import Authentication from "./components/Authentication";
 import Tasks from "./components/Tasks";
+import Users from "./components/User";
 function App() {
   return (
     <Router className="App">
       <Navbar />
       <Routes>
         <Route path="/" exact element={<Authentication />} />
-        <Route path="/bangchamcong" exact element={<Tasks />} />
-        <Route path="/nhanvien" exact element={<Employees />} />
-        <Route path="/khoa" exact element={<Departments />} />
+        <Route path="/bangchamcong" element={<Tasks />} />
+        <Route path="/nhanvien" element={<Employees />} />
+        <Route path="/khoa" element={<Departments />} />
+        <Route path="/taikhoan" element={<Users />} />
       </Routes>
     </Router>
   );
