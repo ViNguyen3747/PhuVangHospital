@@ -2,13 +2,9 @@ import mongoose from "mongoose";
 
 const taskSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true },
+    employee: { type: String, required: true },
     date: { type: Date, default: new Date(), required: true },
-    employee: [
-      {
-        type: String,
-      },
-    ],
+    taskName: { type: String, required: true },
     department: { type: String, requried: true },
     createdAt: {
       type: Date,

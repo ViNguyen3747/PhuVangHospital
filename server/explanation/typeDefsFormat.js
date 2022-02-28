@@ -24,8 +24,8 @@ const typeDefs = gql`
   }
 
   extend type Query {
-    query1(input: query1Input): Object!
-    query2: Object!
+    queries(department: String): Object!
+    query(id: ID): Object!
   }
 
   extend type Mutation {

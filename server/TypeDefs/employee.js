@@ -12,8 +12,7 @@ const typeDefs = gql`
   }
 
   input addEmployeeInput {
-    firstName: String!
-    lastName: String!
+    name: String!
     department: String!
     email: String
     phone: String
@@ -21,8 +20,7 @@ const typeDefs = gql`
   }
 
   input updateEmployeeInput {
-    firstName: String
-    lastName: String
+    name: String
     department: String
     email: String
     phone: String
@@ -31,8 +29,7 @@ const typeDefs = gql`
 
   type Employee {
     id: ID!
-    firstName: String!
-    lastName: String!
+    name: String!
     department: String!
     email: String
     phone: String

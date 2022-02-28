@@ -2,9 +2,7 @@ import React from "react";
 
 const Departments = () => {
   return (
-    <div className="md:container md:mx-auto text-slate-600">
-      this is Department pages
-    </div>
+    <div className="place-items-center h-screen ">this is Department pages</div>
   );
 };
 

@@ -11,13 +11,17 @@ function App() {
   return (
     <Router className="App">
       <Navbar />
-      <Routes>
-        <Route path="/" exact element={<Authentication />} />
-        <Route path="/bangchamcong" element={<Tasks />} />
-        <Route path="/nhanvien" element={<Employees />} />
-        <Route path="/khoa" element={<Departments />} />
-        <Route path="/taikhoan" element={<Users />} />
-      </Routes>
+      <div className="flex h-screen">
+        <div className="m-auto">
+          <Routes>
+            <Route path="/" exact element={<Authentication />} />
+            <Route path="/bangchamcong" element={<Tasks />} />
+            <Route path="/nhanvien" element={<Employees />} />
+            <Route path="/khoa" element={<Departments />} />
+            <Route path="/taikhoan" element={<Users />} />
+          </Routes>
+        </div>
+      </div>
     </Router>
   );
 }

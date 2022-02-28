@@ -28,3 +28,5 @@ Graphql => when request data => return only data we need => avoid overfetching o
 
 Rest API => multiple endpoints
 Graphql => all requests are combined into 1 single endpoint
+
+

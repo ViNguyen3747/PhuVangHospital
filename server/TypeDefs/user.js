@@ -12,9 +12,9 @@ const typeDefs = gql`
     updateRole(id: ID!, role: Boolean!): User! @isAuth
   }
   input signupInput {
-    firstName: String!
-    lastName: String!
+    name: String!
     email: String!
+    department: String!
     admin: Boolean!
   }
 
@@ -25,9 +25,9 @@ const typeDefs = gql`
 
   type User {
     id: ID!
-    firstName: String!
-    lastName: String!
+    name: String!
     email: String!
+    department: String!
     admin: Boolean!
     createdAt: Date!
   }
