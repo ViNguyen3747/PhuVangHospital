@@ -1,17 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import {
   CalendarIcon,
-  ChartBarIcon,
-  CursorClickIcon,
   MenuIcon,
-  PhoneIcon,
-  PlayIcon,
-  RefreshIcon,
-  ShieldCheckIcon,
-  ViewGridIcon,
   XIcon,
   UserIcon,
   UserGroupIcon,
@@ -19,45 +12,19 @@ import {
 } from "@heroicons/react/outline";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 
-const solutions = [
+const links = [
   {
-    name: "Analytics",
-    description:
-      "Get a better understanding of where your traffic is coming from.",
-    href: "#",
-    icon: ChartBarIcon,
+    name: "Bảng Chấm Công",
+    href: "/",
+    icon: CalendarIcon,
   },
   {
-    name: "Engagement",
-    description: "Speak directly to your customers in a more meaningful way.",
-    href: "#",
-    icon: CursorClickIcon,
-  },
-  {
-    name: "Security",
-    description: "Your customers' data will be safe and secure.",
-    href: "#",
-    icon: ShieldCheckIcon,
-  },
-  {
-    name: "Integrations",
-    description: "Connect with third-party tools that you're already using.",
-    href: "#",
-    icon: ViewGridIcon,
-  },
-  {
-    name: "Automations",
-    description:
-      "Build strategic funnels that will drive your customers to convert",
-    href: "#",
-    icon: RefreshIcon,
+    name: "Nhân Viên",
+    href: "/nhanvien",
+    icon: UserIcon,
   },
 ];
-const callsToAction = [
-  { name: "Watch Demo", href: "#", icon: PlayIcon },
-  { name: "Contact Sales", href: "#", icon: PhoneIcon },
-];
-const resources = [
+const more = [
   {
     name: "Khoa",
     href: "/khoa",
@@ -69,61 +36,44 @@ const resources = [
     icon: UserGroupIcon,
   },
 ];
-const recentPosts = [
-  { id: 1, name: "Boost your conversion rate", href: "#" },
-  {
-    id: 2,
-    name: "How to use search engine optimization to drive traffic to your site",
-    href: "#",
-  },
-  { id: 3, name: "Improve your customer experience", href: "#" },
-];
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 const Navbar = () => {
   return (
-    <Popover className="relative bg-blue">
+    <Popover className="relative bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center py-6 md:justify-start md:space-x-10">
           <div className="-mr-2 -my-2 md:hidden">
-            <Popover.Button className="rounded-md p-2 inline-flex items-center justify-center text-gray-light hover:text-turquoise-light focus:outline-none">
+            <Popover.Button className="rounded-md p-2 inline-flex items-center justify-center text-turquoise-dark hover:text-turquoise focus:outline-none">
               <span className="sr-only">Open menu</span>
               <MenuIcon className="h-6 w-6" aria-hidden="true" />
             </Popover.Button>
           </div>
           <Popover.Group as="nav" className="hidden md:flex space-x-10">
-            <NavLink
-              to="/bangchamcong"
-              className="-m-3 p-3 flex items-start text-base font-medium text-gray-light hover:text-turquoise-light"
-            >
-              <CalendarIcon className="flex-shrink-0 h-6 w-6" />
-              Bảng Chấm Công
-            </NavLink>
-            <NavLink
-              to="/nhanvien"
-              className="-m-3 p-3 flex items-start text-base font-medium text-gray-light hover:text-turquoise-light"
-            >
-              <UserIcon className="flex-shrink-0 h-6 w-6" />
-              Nhân Viên
-            </NavLink>
+            {links.map((item) => (
+              <NavLink
+                key={item.name}
+                to={item.href}
+                className="-m-3 p-3 flex items-start text-base font-medium text-turquoise-dark hover:text-turquoise"
+              >
+                <item.icon className="flex-shrink-0 h-6 w-6" />
+                {item.name}
+              </NavLink>
+            ))}
             <Popover className="relative">
               {({ open }) => (
                 <>
                   <Popover.Button
                     className={classNames(
-                      open ? "text-turquoise-light" : "text-gray-light",
+                      open ? "text-turquoise" : "text-turquoise-dark",
                       "group bg-white rounded-md inline-flex items-center text-base font-medium focus:outline-none"
                     )}
                   >
                     <span>More</span>
                     <ChevronDownIcon
-                      className={classNames(
-                        open ? "text-gray-600" : "text-gray-400",
-                        "ml-2 h-5 w-5 group-hover:text-gray-500"
-                      )}
+                      className="ml-2 h-5 w-5"
                       aria-hidden="true"
                     />
                   </Popover.Button>
@@ -140,22 +90,22 @@ const Navbar = () => {
                     <Popover.Panel className="absolute z-10 left-1/2 transform -translate-x-1/2 mt-3 px-2 w-screen max-w-md sm:px-0">
                       <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                         <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                          {resources.map((item) => (
-                            <a
+                          {more.map((item) => (
+                            <NavLink
                               key={item.name}
-                              href={item.href}
-                              className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
+                              to={item.href}
+                              className="-m-3 p-3 flex items-start rounded-lg  text-turquoise-dark hover:text-turquoise"
                             >
                               <item.icon
-                                className="flex-shrink-0 h-6 w-6 text-indigo-600"
+                                className="flex-shrink-0 h-6 w-6"
                                 aria-hidden="true"
                               />
                               <div className="ml-4">
-                                <p className="text-base font-medium text-gray-900">
+                                <p className="text-base font-medium">
                                   {item.name}
                                 </p>
                               </div>
-                            </a>
+                            </NavLink>
                           ))}
                         </div>
                       </div>
@@ -166,18 +116,18 @@ const Navbar = () => {
             </Popover>
           </Popover.Group>
           <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            <a
-              href="/"
-              className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
+            <NavLink
+              to="/dangnhap"
+              className="whitespace-nowrap text-base font-medium ease-in-out hover:text-turquoise"
             >
               Sign in
-            </a>
-            <a
-              href="/"
-              className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-turquoise hover:bg-blue"
+            </NavLink>
+            <NavLink
+              to="/dangky"
+              className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-turquoise-dark hover:bg-turquoise ease-out"
             >
               Sign up
-            </a>
+            </NavLink>
           </div>
         </div>
       </div>
@@ -192,9 +142,9 @@ const Navbar = () => {
       >
         <Popover.Panel
           focus
-          className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
+          className="z-10 absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
         >
-          <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
+          <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-turquoise-dark">
             <div className="pt-5 pb-6 px-5">
               <div className="flex items-center justify-end">
                 <div className="-mr-2">
@@ -206,61 +156,57 @@ const Navbar = () => {
               </div>
               <div className="mt-6">
                 <nav className="grid gap-y-8">
-                  {solutions.map((item) => (
-                    <a
+                  {links.map((item) => (
+                    <NavLink
                       key={item.name}
-                      href={item.href}
-                      className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
+                      to={item.href}
+                      className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50 text-turquoise-dark hover:text-turquoise"
                     >
                       <item.icon
-                        className="flex-shrink-0 h-6 w-6 text-indigo-600"
+                        className="flex-shrink-0 h-6 w-6 "
                         aria-hidden="true"
                       />
-                      <span className="ml-3 text-base font-medium text-gray-900">
+                      <span className="ml-3 text-base font-medium ">
                         {item.name}
                       </span>
-                    </a>
+                    </NavLink>
                   ))}
                 </nav>
               </div>
             </div>
             <div className="py-6 px-5 space-y-6">
               <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-                <a
-                  href="#"
-                  className="text-base font-medium text-gray-900 hover:text-gray-700"
-                >
-                  Pricing
-                </a>
-
-                <a
-                  href="#"
-                  className="text-base font-medium text-gray-900 hover:text-gray-700"
-                >
-                  Docs
-                </a>
-                {resources.map((item) => (
-                  <a
+                {more.map((item) => (
+                  <NavLink
                     key={item.name}
-                    href={item.href}
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
+                    to={item.href}
+                    className="flex text-base font-medium text-turquoise-dark hover:text-turquoise"
                   >
-                    {item.name}
-                  </a>
+                    <item.icon
+                      className="flex-shrink-0 h-6 w-6"
+                      aria-hidden="true"
+                    />
+                    <span className="ml-3 text-base font-medium">
+                      {item.name}
+                    </span>
+                  </NavLink>
                 ))}
               </div>
               <div>
-                <a
-                  href="#"
-                  className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                <NavLink
+                  to="/dangky"
+                  className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gradient-to-r from-turquoise to-blue hover:from-blue hover:to-turquoise duration-500 ease-out"
                 >
                   Sign up
-                </a>
-                <p className="mt-6 text-center text-base font-medium text-gray-500">
+                </NavLink>
+                <p className="mt-6 text-center text-base font-medium">
                   Existing customer?{" "}
-                  <a href="#" className="text-indigo-600 hover:text-indigo-500">
+                  <NavLink
+                    to="/dangnhap"
+                    className="hover:text-turquoise ease-in-out"
+                  >
                     Sign in
-                  </a>
+                  </NavLink>
                 </p>
               </div>
             </div>

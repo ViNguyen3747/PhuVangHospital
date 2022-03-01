@@ -7,18 +7,20 @@ import Departments from "./components/Department";
 import Authentication from "./components/Authentication";
 import Tasks from "./components/Tasks";
 import Users from "./components/User";
+import { Signin, SignUp } from "./components/Authentication";
 function App() {
   return (
     <Router className="App">
       <Navbar />
-      <div className="flex h-screen">
-        <div className="m-auto">
+      <div className="flex h-screen z-0">
+        <div className="static m-auto">
           <Routes>
-            <Route path="/" exact element={<Authentication />} />
-            <Route path="/bangchamcong" element={<Tasks />} />
+            <Route path="/" exact element={<Tasks />} />
             <Route path="/nhanvien" element={<Employees />} />
             <Route path="/khoa" element={<Departments />} />
             <Route path="/taikhoan" element={<Users />} />
+            <Route path="/dangnhap" element={<Signin />} />
+            <Route path="/dangky" element={<SignUp />} />
           </Routes>
         </div>
       </div>

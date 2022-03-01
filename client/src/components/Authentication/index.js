@@ -1,11 +1,4 @@
-import React from "react";
+import Signin from "./signin";
+import SignUp from "./signup";
 
-const Authentication = () => {
-  return (
-    <div className="place-items-center h-screen">
-      this is Authentication page
-    </div>
-  );
-};
-
-export default Authentication;
+export { Signin, SignUp };
