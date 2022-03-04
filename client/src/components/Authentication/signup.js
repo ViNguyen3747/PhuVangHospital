@@ -41,6 +41,15 @@ const SignUp = () => {
             <div className="block text-sm font-medium text-blac">
               <div>
                 <input
+                  type="text"
+                  {...register("name")}
+                  required
+                  className="relative block w-full px-3 py-2 mb-2 border-l-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
+                  placeholder="Họ và Tên"
+                />
+              </div>
+              <div>
+                <input
                   type="email"
                   {...register("email")}
                   required
