@@ -26,11 +26,6 @@ const links = [
 ];
 const more = [
   {
-    name: "Khoa",
-    href: "/khoa",
-    icon: IdentificationIcon,
-  },
-  {
     name: "Tài Khoản",
     href: "/taikhoan",
     icon: UserGroupIcon,

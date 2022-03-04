@@ -56,11 +56,11 @@ const Tasks = () => {
           placeholder="Select a date"
         />
       </div>
-      <div className="col-span-6 sm:col-span-3">
-        {" "}
+      <div className="col-span-6 sm:col-span-4">
+        <label className="block text-sm font-medium text-gray-700">Khoa</label>
         <select
-          name="department"
-          className="relative block w-7/12 px-3 py-3 mb-10 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
+          required
+          className="mt-1 relative block w-7/12 px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
         >
           <option>sdgvfsrbg</option>
           <option>sdfbgd </option>

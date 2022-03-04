@@ -61,6 +61,16 @@ const Signin = () => {
               </div>
             </div>
             <div>
+              <p className="mt-6 text-left text-base font-medium">
+                <NavLink
+                  to="/user/forgotpassword"
+                  className="hover:text-turquoise ease-in-out"
+                >
+                  Quên Mật Khẩu?
+                </NavLink>
+              </p>
+            </div>
+            <div>
               <button className="group relative w-full flex justify-center  py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-turquoise to-blue hover:from-blue hover:to-turquoise duration-500 ease-out">
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                   <LockClosedIcon className="h-5 w-5" aria-hidden="true" />

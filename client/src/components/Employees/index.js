@@ -51,17 +51,6 @@ const Employees = () => {
   };
   return (
     <div className="place-items-center h-screen">
-      <div className="col-span-6 sm:col-span-3">
-        {" "}
-        <select
-          name="department"
-          className="relative block w-7/12 px-3 py-3 mb-10 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
-        >
-          <option>sdgvfsrbg</option>
-          <option>sdfbgd </option>
-          <option>sbdggnh</option>
-        </select>
-      </div>
       <div className="flex flex-col">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
