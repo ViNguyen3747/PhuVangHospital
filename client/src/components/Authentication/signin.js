@@ -2,7 +2,9 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { Controller, useForm } from "react-hook-form";
 import { LockClosedIcon } from "@heroicons/react/solid";
-
+import { useMutation } from "@apollo/client";
+import auth from "../../utils/auth";
+import { SIGN_IN } from "../../utils/graphQL/mutation";
 const initialState = {
   email: "",
   password: "",
@@ -21,8 +23,20 @@ const Signin = () => {
     defaultValues: initialState,
   });
 
-  const handleFormSubmit = async (event) => {
-    console.log(event);
+  const [signin] = useMutation(SIGN_IN);
+
+  const handleFormSubmit = async (userData) => {
+    try {
+      const { data } = await signin({
+        variables: { ...userData },
+      });
+      if (data) {
+        auth.login(data.signin.token, data.signin.user.firstName);
+        window.location.assign("/bangchamcong");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <>
@@ -77,7 +91,7 @@ const Signin = () => {
                 </span>
                 Nhập
               </button>
-              <p className="mt-6 text-center text-base font-medium">
+              {/* <p className="mt-6 text-center text-base font-medium">
                 Không có tài khoản?{" "}
                 <NavLink
                   to="/dangky"
@@ -85,7 +99,7 @@ const Signin = () => {
                 >
                   Đăng Ký
                 </NavLink>
-              </p>
+              </p> */}
             </div>
           </form>
         </div>

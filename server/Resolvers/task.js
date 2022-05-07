@@ -1,5 +1,4 @@
 import { ApolloError } from "apollo-server-errors";
-import { valueFromAST } from "graphql";
 import { Task } from "../Database/Models";
 
 const resolvers = {
@@ -28,12 +27,12 @@ const resolvers = {
     addTask: async (_, { input }, { user }) => {
       try {
         let task;
-        if (user.admin) {
-          task = await new Task({
-            ...input,
-            createdAt: new Date().toISOString(),
-          }).save();
-        }
+        // if (user.admin) {
+        task = await new Task({
+          ...input,
+          createdAt: new Date().toISOString(),
+        }).save();
+        // }
 
         if (!task) throw new error("Unathorized Access");
 
@@ -45,13 +44,13 @@ const resolvers = {
     updateTask: async (_, { id, input }, { user }) => {
       try {
         let task;
-        if (user.admin) {
-          task = await Task.findByIdAndUpdate(
-            { _id: id },
-            { ...input },
-            { new: true }
-          );
-        }
+        // if (user.admin) {
+        task = await Task.findByIdAndUpdate(
+          { _id: id },
+          { ...input },
+          { new: true }
+        );
+        // }
         if (!task) throw new error("Unathorized Access");
 
         return task;

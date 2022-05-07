@@ -7,15 +7,16 @@ const typeDefs = gql`
   }
 
   extend type Mutation {
-    signup(newUser: signupInput!): Auth!
+    addUser(newUser: addUserInput!): Auth!
     signin(email: String!, password: String!): Auth!
     updateRole(id: ID!, role: Boolean!): User! @isAuth
   }
-  input signupInput {
-    name: String!
+  input addUserInput {
+    firstName: String!
+    lastName: String!
     email: String!
-    department: String!
     admin: Boolean!
+    password: String!
   }
 
   input signinInput {
@@ -25,10 +26,11 @@ const typeDefs = gql`
 
   type User {
     id: ID!
-    name: String!
+    firstName: String!
+    lastName: String!
     email: String!
-    department: String!
     admin: Boolean!
+    password: String!
     createdAt: Date!
   }
 

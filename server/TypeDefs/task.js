@@ -7,16 +7,15 @@ const typeDefs = gql`
   }
 
   extend type Mutation {
-    addTask(input: addTaskInput): Task! @isAuth
-    updateTask(id: ID!, input: updateTaskInput): Task! @isAuth
-    deleteTask(id: ID!): Message! @isAuth
+    addTask(input: addTaskInput): Task!
+    updateTask(id: ID!, input: updateTaskInput): Task!
+    deleteTask(id: ID!): Message!
   }
 
   input addTaskInput {
     taskName: String!
-    date: Date!
+    date: Date
     employee: String!
-    department: String!
   }
 
   input updateTaskInput {
@@ -30,7 +29,6 @@ const typeDefs = gql`
     taskName: String!
     date: Date!
     employee: String!
-    department: String!
     createdAt: Date!
     updatedAt: Date!
   }

@@ -11,7 +11,7 @@ import {
   IdentificationIcon,
 } from "@heroicons/react/outline";
 import { ChevronDownIcon } from "@heroicons/react/solid";
-
+import auth from "../../utils/auth";
 const links = [
   {
     name: "Bảng Chấm Công",
@@ -47,6 +47,11 @@ const Navbar = () => {
             </Popover.Button>
           </div>
           <Popover.Group as="nav" className="hidden md:flex space-x-10">
+            {auth.loggedIn() && (
+              <div className="-m-3 p-3 flex items-start text-base font-medium text-turquoise-dark hover:text-turquoise">
+                Xin Chào {localStorage.getItem("name")}
+              </div>
+            )}
             {links.map((item) => (
               <NavLink
                 key={item.name}
@@ -111,18 +116,12 @@ const Navbar = () => {
             </Popover>
           </Popover.Group>
           <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            <NavLink
-              to="/dangnhap"
-              className="whitespace-nowrap text-base font-medium ease-in-out hover:text-turquoise"
-            >
-              Sign in
-            </NavLink>
-            <NavLink
-              to="/dangky"
+            <button
+              onClick={() => auth.logout()}
               className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-turquoise-dark hover:bg-turquoise ease-out"
             >
-              Sign up
-            </NavLink>
+              Đăng xuất
+            </button>
           </div>
         </div>
       </div>
@@ -189,20 +188,11 @@ const Navbar = () => {
               </div>
               <div>
                 <NavLink
-                  to="/dangky"
+                  to="/"
                   className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gradient-to-r from-turquoise to-blue hover:from-blue hover:to-turquoise duration-500 ease-out"
                 >
-                  Sign up
+                  Đăng xuất
                 </NavLink>
-                <p className="mt-6 text-center text-base font-medium">
-                  Existing customer?{" "}
-                  <NavLink
-                    to="/dangnhap"
-                    className="hover:text-turquoise ease-in-out"
-                  >
-                    Sign in
-                  </NavLink>
-                </p>
               </div>
             </div>
           </div>

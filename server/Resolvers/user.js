@@ -14,13 +14,14 @@ const resolvers = {
     users: async (_, __, { user }) => {
       let users;
 
-      if (user.admin) {
-        users = await User.find();
-      }
+      // if (user.admin) {
+      users = await User.find();
+      // }
 
       return users;
     },
   },
+
   Mutation: {
     signin: async (_, { email, password }) => {
       try {
@@ -47,25 +48,17 @@ const resolvers = {
         throw new ApolloError(err.message);
       }
     },
-    signup: async (_parent, { newUser }) => {
+    addUser: async (_parent, { newUser }) => {
       try {
-        let { email, username } = newUser;
+        let { email } = newUser;
 
         let user = await User.findOne({
-          username,
-        });
-        if (user) {
-          throw new ApolloError("Username is already taken", "400");
-        }
-
-        user = await User.findOne({
           email,
         });
         if (user) {
           throw new ApolloError("Email is already registred", "400");
         }
         user = new User(newUser);
-
         user.password = await hash(user.password, 12);
         let result = await user.save();
         result = await serializeUser(result);

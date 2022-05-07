@@ -6,9 +6,9 @@ const typeDefs = gql`
     employee(id: ID!): Employee!
   }
   extend type Mutation {
-    addEmployee(input: addEmployeeInput): Employee! @isAuth
-    updateEmployee(id: ID!, input: updateEmployeeInput): Employee! @isAuth
-    deleteEmployee(id: ID!): Message! @isAuth
+    addEmployee(input: addEmployeeInput): Employee!
+    updateEmployee(id: ID!, input: updateEmployeeInput): Employee!
+    deleteEmployee(id: ID!): Message!
   }
 
   input addEmployeeInput {
