@@ -3,50 +3,39 @@ import { Controller, useForm } from "react-hook-form";
 import { animateScroll as scroll } from "react-scroll";
 
 const initialState = {
-  name: "",
-  date: new Date(),
-  employees: "",
+  firstName: "",
+  lastName: "",
+  email: "",
+  admin: false,
+  password: "",
+  reTypedPassword: "",
 };
-const TaskForm = ({ currentSelection, setCurrentSelection }) => {
+export const UserForm = ({ currentUser, setUser }) => {
   const {
     handleSubmit,
-    clearErrors,
     setValue,
     register,
+    clearErrors,
     getValues,
     control,
     reset,
-  } = useForm({ defaultValues: initialState });
+  } = useForm({ initialValues: initialState });
 
-  // const handleFormSubmit = async(taskData) => {
-  //   if(currentSelection) {
-  //     const data = await
-  //   }
-  // }
   useEffect(() => {
     reset();
-    if (currentSelection) {
-      Object.entries(currentSelection).map(([key, value]) =>
-        setValue(
-          key,
-          key === "date" ? new Date(value).toISOString().split("T")[0] : value
-        )
-      );
-
-      console.log(getValues());
+    if (currentUser) {
+      Object.entries(currentUser).map(([key, value]) => setValue(key, value));
     }
-  }, [currentSelection]);
-
-  const handleFormSubmit = (taskData) => {
-    console.log(taskData);
+  }, [currentUser]);
+  const handleFormSubmit = (userData) => {
+    console.log(userData);
   };
   const clear = () => {
-    setCurrentSelection(null);
+    setUser(null);
     clearErrors();
     reset();
     scroll.scrollToTop();
   };
-
   return (
     <div className="md:container md:mx-auto mt-10 border-t-2 border-gray">
       <div className="mt-10 sm:mt-0">
@@ -58,42 +47,76 @@ const TaskForm = ({ currentSelection, setCurrentSelection }) => {
                   <div className="grid grid-cols-6 gap-6">
                     <div className="col-span-6 sm:col-span-4">
                       <label
-                        htmlFor="name"
+                        htmlFor="lastName"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Công Việc
+                        Họ
                       </label>
                       <input
                         type="text"
-                        {...register("name")}
+                        {...register("lastName")}
                         className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
                       />
                     </div>
                     <div className="col-span-6 sm:col-span-4">
                       <label
-                        htmlFor="employees"
+                        htmlFor="firstName"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Nhân Viên
+                        Tên
                       </label>
                       <input
                         type="text"
-                        {...register("employees")}
+                        {...register("firstName")}
                         className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
                       />
                     </div>
                     <div className="col-span-6 sm:col-span-4">
                       <label
-                        htmlFor="date"
+                        htmlFor="email"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Ngày
+                        Email
                       </label>
                       <input
-                        type="date"
-                        {...register("date")}
+                        type="email"
+                        {...register("email")}
                         className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
-                        placeholder="Select a date"
+                      />
+                    </div>
+                    <div className="col-span-6 sm:col-span-4">
+                      <input type="checkbox" {...register("admin")} />
+                      <label
+                        htmlFor="admin"
+                        className=" text-sm font-medium text-gray-800 px-4"
+                      >
+                        Admin
+                      </label>
+                    </div>
+                    <div className="col-span-6 sm:col-span-4">
+                      <label
+                        htmlFor="password"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Mật Khẩu
+                      </label>
+                      <input
+                        type="password"
+                        {...register("password")}
+                        className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
+                      />
+                    </div>
+                    <div className="col-span-6 sm:col-span-4">
+                      <label
+                        htmlFor="reTypedPassword"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Xác Nhận Mật Khẩu
+                      </label>
+                      <input
+                        type="password"
+                        {...register("reTypedPassword")}
+                        className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
                       />
                     </div>
                   </div>
@@ -119,5 +142,3 @@ const TaskForm = ({ currentSelection, setCurrentSelection }) => {
     </div>
   );
 };
-
-export default TaskForm;

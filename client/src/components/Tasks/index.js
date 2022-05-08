@@ -64,7 +64,7 @@ const Tasks = () => {
       <div className="flex flex-col">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-            <div className="shadow overflow-hidden border-b border-gray border-b-4 sm:rounded-lg">
+            <div className="shadow overflow-hidden border-gray border-b-4 sm:rounded-lg">
               <table className="min-w-full divide-y divide-turquoise">
                 <thead className="bg-gray-50">
                   <tr>
