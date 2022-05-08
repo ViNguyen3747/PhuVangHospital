@@ -1,54 +1,84 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Controller, useForm } from "react-hook-form";
 
-const Form = () => {
+const initialState = {
+  name: "",
+  date: new Date(),
+  employees: "",
+};
+const TaskForm = ({ currentSelection, setCurrentSelection }) => {
+  const { handleSubmit, setValue, register, getValues, control, reset } =
+    useForm({ defaultValues: initialState });
+
+  // const handleFormSubmit = async(taskData) => {
+  //   if(currentSelection) {
+  //     const data = await
+  //   }
+  // }
+  useEffect(() => {
+    reset();
+    if (currentSelection) {
+      Object.entries(currentSelection).map(([key, value]) =>
+        setValue(
+          key,
+          key === "date" ? new Date(value).toISOString().split("T")[0] : value
+        )
+      );
+
+      console.log(getValues());
+    }
+  }, [currentSelection]);
+
+  const handleFormSubmit = (taskData) => {
+    console.log(taskData);
+  };
   return (
     <div className="md:container md:mx-auto mt-10 border-t-2 border-gray">
       <div className="mt-10 sm:mt-0">
         <div className="md:grid md:grid-cols-3 md:gap-6">
           <div className="mt-5 md:mt-0 md:col-span-2">
-            <form action="#" method="POST">
+            <form onSubmit={handleSubmit(handleFormSubmit)}>
               <div className=" overflow-hidden sm:rounded-md">
                 <div className="px-4 py-5 bg-white sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
                     <div className="col-span-6 sm:col-span-4">
                       <label
-                        htmlFor="employee"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Nhân Viên
-                      </label>
-                      <input
-                        type="text"
-                        name="employee"
-                        id="employee"
-                        className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
-                      />
-                    </div>
-                    <div className="col-span-6 sm:col-span-4">
-                      <label
-                        htmlFor="first-name"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Ngày
-                      </label>
-                      <input
-                        type="date"
-                        className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
-                        placeholder="Select a date"
-                      />
-                    </div>
-                    <div className="col-span-6 sm:col-span-4">
-                      <label
-                        htmlFor="first-name"
+                        htmlFor="name"
                         className="block text-sm font-medium text-gray-700"
                       >
                         Công Việc
                       </label>
                       <input
                         type="text"
-                        name="task"
-                        id="task"
+                        {...register("name")}
                         className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
+                      />
+                    </div>
+                    <div className="col-span-6 sm:col-span-4">
+                      <label
+                        htmlFor="employees"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Nhân Viên
+                      </label>
+                      <input
+                        type="text"
+                        {...register("employees")}
+                        className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
+                      />
+                    </div>
+                    <div className="col-span-6 sm:col-span-4">
+                      <label
+                        htmlFor="date"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Ngày
+                      </label>
+                      <input
+                        type="date"
+                        {...register("date")}
+                        className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
+                        placeholder="Select a date"
                       />
                     </div>
                   </div>
@@ -67,4 +97,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default TaskForm;

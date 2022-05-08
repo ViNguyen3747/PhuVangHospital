@@ -13,7 +13,6 @@ const typeDefs = gql`
 
   input addEmployeeInput {
     name: String!
-    department: String!
     email: String
     phone: String
     address: String
@@ -21,7 +20,6 @@ const typeDefs = gql`
 
   input updateEmployeeInput {
     name: String
-    department: String
     email: String
     phone: String
     address: String
@@ -30,7 +28,6 @@ const typeDefs = gql`
   type Employee {
     id: ID!
     name: String!
-    department: String!
     email: String
     phone: String
     address: String

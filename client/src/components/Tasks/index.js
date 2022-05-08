@@ -4,50 +4,37 @@ import { ExclamationIcon } from "@heroicons/react/outline";
 
 import { animateScroll as scroll } from "react-scroll";
 
-import Form from "../common/Form";
+import TaskForm from "../common/TaskForm";
 
 const Tasks = () => {
   const [deleteModal, setDelete] = useState(false);
   const deleteButtonRef = useRef(null);
+  const [currentSelection, setCurrentSelection] = useState(null);
   const tasks = [
     {
       name: "ABC",
       date: Date.now(),
-      employees: ["A", "B", "C"],
+      employees: "ABC",
     },
     {
-      name: "ABC",
+      name: "BCD",
       date: Date.now(),
-      employees: ["A", "B", "C"],
+      employees: "BCD",
     },
     {
-      name: "ABC",
+      name: "dfav",
       date: Date.now(),
-      employees: ["A", "B", "C"],
+      employees: "ewhagfjh",
     },
     {
-      name: "ABC",
+      name: "czbfvmnjx",
       date: Date.now(),
-      employees: ["A", "B", "C"],
-    },
-    {
-      name: "ABC",
-      date: Date.now(),
-      employees: ["A", "B", "C"],
-    },
-    {
-      name: "ABC",
-      date: Date.now(),
-      employees: ["A", "B", "C"],
-    },
-    {
-      name: "ABC",
-      date: Date.now(),
-      employees: ["A", "B", "C"],
+      employees: "aejhvnhfhgjk",
     },
   ];
 
-  const update = () => {
+  const update = (task) => {
+    setCurrentSelection(task);
     scroll.scrollToBottom();
   };
   const deleteNoti = () => {
@@ -63,7 +50,7 @@ const Tasks = () => {
           placeholder="Select a date"
         />
       </div>
-      <div className="col-span-6 sm:col-span-4">
+      {/* <div className="col-span-6 sm:col-span-4">
         <label className="block text-sm font-medium text-gray-700">Khoa</label>
         <select
           required
@@ -73,7 +60,7 @@ const Tasks = () => {
           <option>sdfbgd </option>
           <option>sbdggnh</option>
         </select>
-      </div>
+      </div> */}
       <div className="flex flex-col">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -109,8 +96,8 @@ const Tasks = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-turquoise">
-                  {tasks.map((task) => (
-                    <tr key={task.name}>
+                  {tasks.map((task, index) => (
+                    <tr key={index}>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-900">
                           {task.employees}
@@ -126,7 +113,7 @@ const Tasks = () => {
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <div
                           className="text-black hover:text-turquoise cursor-pointer"
-                          onClick={update}
+                          onClick={() => update(task)}
                         >
                           Chỉnh Sửa
                         </div>
@@ -147,7 +134,10 @@ const Tasks = () => {
           </div>
         </div>
       </div>
-      <Form />
+      <TaskForm
+        currentSelection={currentSelection}
+        setCurrentSelection={setCurrentSelection}
+      />
       <Transition.Root show={deleteModal} as={Fragment}>
         <Dialog
           as="div"

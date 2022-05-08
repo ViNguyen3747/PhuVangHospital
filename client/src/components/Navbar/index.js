@@ -15,7 +15,7 @@ import auth from "../../utils/auth";
 const links = [
   {
     name: "Bảng Chấm Công",
-    href: "/",
+    href: "/bangchamcong",
     icon: CalendarIcon,
   },
   {
@@ -48,7 +48,7 @@ const Navbar = () => {
           </div>
           <Popover.Group as="nav" className="hidden md:flex space-x-10">
             {auth.loggedIn() && (
-              <div className="-m-3 p-3 flex items-start text-base font-medium text-turquoise-dark hover:text-turquoise">
+              <div className="-m-3 p-3 flex items-start text-base font-medium text-turquoise-dark">
                 Xin Chào {localStorage.getItem("name")}
               </div>
             )}
@@ -150,6 +150,11 @@ const Navbar = () => {
               </div>
               <div className="mt-6">
                 <nav className="grid gap-y-8">
+                  {auth.loggedIn() && (
+                    <div className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50 text-turquoise-dark">
+                      Xin Chào {localStorage.getItem("name")}
+                    </div>
+                  )}
                   {links.map((item) => (
                     <NavLink
                       key={item.name}
@@ -187,12 +192,12 @@ const Navbar = () => {
                 ))}
               </div>
               <div>
-                <NavLink
-                  to="/"
+                <button
+                  onClick={() => auth.logout()}
                   className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gradient-to-r from-turquoise to-blue hover:from-blue hover:to-turquoise duration-500 ease-out"
                 >
                   Đăng xuất
-                </NavLink>
+                </button>
               </div>
             </div>
           </div>

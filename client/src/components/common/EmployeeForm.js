@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { animateScroll as scroll } from "react-scroll";
 
 const initialState = {
   name: "",
-  department: "",
-  phone: "",
+  // department: "",
   email: "",
+  address: "",
+  phone: "",
 };
 
-const EmployeeForm = () => {
+const EmployeeForm = ({ currentEmployee, setCurrentEmployee }) => {
   const {
     handleSubmit,
     clearErrors,
@@ -20,9 +22,22 @@ const EmployeeForm = () => {
   } = useForm({
     defaultValues: initialState,
   });
-
+  useEffect(() => {
+    reset();
+    if (currentEmployee) {
+      Object.entries(currentEmployee).map(([key, value]) =>
+        setValue(key, value)
+      );
+    }
+  }, [currentEmployee]);
   const handleFormSubmit = async (event) => {
     console.log(event);
+  };
+  const clear = () => {
+    setCurrentEmployee(null);
+    clearErrors();
+    reset();
+    scroll.scrollToTop();
   };
 
   return (
@@ -36,7 +51,7 @@ const EmployeeForm = () => {
                   <div className="grid grid-cols-6 gap-6">
                     <div className="col-span-6 sm:col-span-4">
                       <label
-                        htmlFor="employee"
+                        htmlFor="name"
                         className="block text-sm font-medium text-gray-700"
                       >
                         Họ và Tên
@@ -48,7 +63,7 @@ const EmployeeForm = () => {
                         className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
                       />
                     </div>
-                    <div className="col-span-6 sm:col-span-4">
+                    {/* <div className="col-span-6 sm:col-span-4">
                       <label className="block text-sm font-medium text-gray-700">
                         Khoa
                       </label>
@@ -61,7 +76,7 @@ const EmployeeForm = () => {
                         <option>sdfbgd </option>
                         <option>sbdggnh</option>
                       </select>
-                    </div>
+                    </div> */}
                     <div className="col-span-6 sm:col-span-4">
                       <label className="block text-sm font-medium text-gray-700">
                         SĐT
@@ -84,6 +99,17 @@ const EmployeeForm = () => {
                         className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
                       />
                     </div>
+                    <div className="col-span-6 sm:col-span-4">
+                      <label className="block text-sm font-medium text-gray-700">
+                        Địa chỉ
+                      </label>
+                      <input
+                        type="text"
+                        {...register("address")}
+                        required
+                        className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
+                      />
+                    </div>
                   </div>
                 </div>
                 <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
@@ -93,6 +119,14 @@ const EmployeeForm = () => {
                 </div>
               </div>
             </form>
+            <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+              <button
+                className="group relative w-full flex justify-center  py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-yellow to-brown-light duration-500 ease-out"
+                onClick={clear}
+              >
+                Clear
+              </button>
+            </div>
           </div>
         </div>
       </div>
