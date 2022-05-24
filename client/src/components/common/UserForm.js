@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { animateScroll as scroll } from "react-scroll";
 
 const initialState = {
@@ -16,8 +16,8 @@ export const UserForm = ({ currentUser, setUser }) => {
     setValue,
     register,
     clearErrors,
-    getValues,
-    control,
+    // getValues,
+    // control,
     reset,
   } = useForm({ initialValues: initialState });
 
@@ -26,7 +26,7 @@ export const UserForm = ({ currentUser, setUser }) => {
     if (currentUser) {
       Object.entries(currentUser).map(([key, value]) => setValue(key, value));
     }
-  }, [currentUser]);
+  }, [currentUser, reset, setValue]);
   const handleFormSubmit = (userData) => {
     console.log(userData);
   };

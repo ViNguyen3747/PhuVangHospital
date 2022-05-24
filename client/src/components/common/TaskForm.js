@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { animateScroll as scroll } from "react-scroll";
 
 const initialState = {
@@ -14,7 +14,7 @@ const TaskForm = ({ currentSelection, setCurrentSelection }) => {
     setValue,
     register,
     getValues,
-    control,
+    // control,
     reset,
   } = useForm({ defaultValues: initialState });
 
@@ -35,7 +35,7 @@ const TaskForm = ({ currentSelection, setCurrentSelection }) => {
 
       console.log(getValues());
     }
-  }, [currentSelection]);
+  }, [currentSelection, getValues, reset, setValue]);
 
   const handleFormSubmit = (taskData) => {
     console.log(taskData);

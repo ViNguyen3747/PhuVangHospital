@@ -3,12 +3,10 @@ import { Task } from "../Database/Models";
 
 const resolvers = {
   Query: {
-    tasks: async (_, { department, date }) => {
+    tasks: async (_, { date }) => {
       try {
         let tasks;
-        tasks = await (
-          await Task.find().filter((t) => t.department == department)
-        ).filter((t) => t.date == date);
+        tasks = await await Task.find().filter((t) => (t) => t.date == date);
 
         return tasks;
       } catch (error) {
