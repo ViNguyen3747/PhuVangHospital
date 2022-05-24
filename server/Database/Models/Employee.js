@@ -17,6 +17,16 @@ const employeeSchema = new mongoose.Schema(
     },
     phone: { type: String },
     address: { type: String },
+    createdAt: {
+      type: Date,
+      default: new Date(),
+      required: true,
+    },
+    updatedAt: {
+      type: Date,
+      default: new Date(),
+      required: true,
+    },
   },
   {
     timestamps: true,

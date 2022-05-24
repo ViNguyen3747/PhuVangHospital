@@ -62,11 +62,10 @@ const resolvers = {
         if (user.admin) {
           task = await Task.findByIdAndDelete({
             _id: id,
-            owner: user._id,
           });
         }
         if (!task) {
-          throw new Error("Unathorized Access");
+          throw new ApolloError("Unathorized Access");
         }
         return {
           success: true,

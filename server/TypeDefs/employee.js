@@ -2,7 +2,7 @@ import { gql } from "apollo-server-express";
 
 const typeDefs = gql`
   extend type Query {
-    employees(department: String!): [Employee!]!
+    employees: [Employee!]!
     employee(id: ID!): Employee!
   }
   extend type Mutation {
@@ -12,7 +12,7 @@ const typeDefs = gql`
   }
 
   input addEmployeeInput {
-    name: String!
+    name: String
     email: String
     phone: String
     address: String
@@ -32,6 +32,7 @@ const typeDefs = gql`
     phone: String
     address: String
     createdAt: Date!
+    updatedAt: Date!
   }
   type Message {
     message: String!

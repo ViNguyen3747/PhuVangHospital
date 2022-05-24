@@ -20,6 +20,13 @@ const resolvers = {
 
       return users;
     },
+    user: async (_, { id }, { user }) => {
+      try {
+        return await User.findById(id);
+      } catch (error) {
+        throw new ApolloError(error.message);
+      }
+    },
   },
 
   Mutation: {
@@ -89,6 +96,23 @@ const resolvers = {
         if (!findUser) throw new error("Unathorized Access");
 
         return findUser;
+      } catch (error) {
+        throw new ApolloError(error.message);
+      }
+    },
+    deleteUser: async (_, { id }, { user }) => {
+      try {
+        let currentUser;
+        if (user.admin) {
+          currentUser = User.findByIdAndDelete({ _id: id });
+        }
+        if (!currentUser) {
+          throw new ApolloError("Unathorized Access");
+        }
+        return {
+          success: true,
+          message: "User Deleted Successfully.",
+        };
       } catch (error) {
         throw new ApolloError(error.message);
       }

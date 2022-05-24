@@ -3,13 +3,9 @@ import { Employee } from "../Database/Models";
 
 const resolvers = {
   Query: {
-    employees: async (_, { department }) => {
+    employees: async () => {
       try {
-        let employees;
-        employees = await Employee.find().filter(
-          (e) => e.department === department
-        );
-
+        let employees = await Employee.find();
         return employees;
       } catch (error) {
         throw new ApolloError(error.message);
