@@ -98,7 +98,7 @@ export const UserForm = ({ currentUser, setUser }) => {
                         htmlFor="password"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Mật Khẩu
+                        Mật Khẩu {currentUser && `Mới`}
                       </label>
                       <input
                         type="password"
