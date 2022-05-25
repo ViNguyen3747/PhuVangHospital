@@ -14,7 +14,7 @@ const typeDefs = gql`
 
   input addTaskInput {
     taskName: String!
-    date: Date
+    date: Date!
     employee: String!
   }
 

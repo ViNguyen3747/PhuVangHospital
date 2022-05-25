@@ -4,12 +4,12 @@ import { ExclamationIcon } from "@heroicons/react/outline";
 
 import { animateScroll as scroll } from "react-scroll";
 
-import TaskForm from "../common/TaskForm";
+import TaskForm from "../Forms/TaskForm";
 
 const Tasks = () => {
   const [deleteModal, setDelete] = useState(false);
   const deleteButtonRef = useRef(null);
-  const [currentSelection, setCurrentSelection] = useState(null);
+  const [currentTask, setcurrentTask] = useState(null);
   const tasks = [
     {
       name: "ABC",
@@ -34,7 +34,7 @@ const Tasks = () => {
   ];
 
   const update = (task) => {
-    setCurrentSelection(task);
+    setcurrentTask(task);
     scroll.scrollToBottom();
   };
   const deleteNoti = () => {
@@ -134,10 +134,7 @@ const Tasks = () => {
           </div>
         </div>
       </div>
-      <TaskForm
-        currentSelection={currentSelection}
-        setCurrentSelection={setCurrentSelection}
-      />
+      <TaskForm currentTask={currentTask} setcurrentTask={setcurrentTask} />
       <Transition.Root show={deleteModal} as={Fragment}>
         <Dialog
           as="div"

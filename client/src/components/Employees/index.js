@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { animateScroll as scroll } from "react-scroll";
-import EmployeeForm from "../common/EmployeeForm";
+import EmployeeForm from "../Forms/EmployeeForm";
 
 const employees = [
   {

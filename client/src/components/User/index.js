@@ -2,7 +2,7 @@ import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { animateScroll as scroll } from "react-scroll";
 import { ExclamationIcon } from "@heroicons/react/outline";
-import { UserForm } from "../common/UserForm";
+import { UserForm } from "../Forms/UserForm";
 const users = [
   {
     firstName: "fsdvbs",

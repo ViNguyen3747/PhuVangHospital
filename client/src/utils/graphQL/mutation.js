@@ -14,10 +14,10 @@ export const SIGN_IN = gql`
 `;
 
 export const ADD_TASK = gql`
-  mutation AddTask($taskInput: addTaskInput) {
-    addTask(input: $taskInput) {
+  mutation AddTask($input: addTaskInput) {
+    addTask(input: $input) {
       id
-      updatedAt
+      createdAt
     }
   }
 `;

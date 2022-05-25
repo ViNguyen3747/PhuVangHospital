@@ -1,13 +1,15 @@
+import { useMutation } from "@apollo/client";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { animateScroll as scroll } from "react-scroll";
-
+import Auth from "../../utils/auth";
+import { ADD_TASK } from "../../utils/graphQL/mutation";
 const initialState = {
-  name: "",
+  taskName: "",
   date: new Date(),
-  employees: "",
+  employee: "",
 };
-const TaskForm = ({ currentSelection, setCurrentSelection }) => {
+const TaskForm = ({ currentTask, setcurrentTask }) => {
   const {
     handleSubmit,
     clearErrors,
@@ -17,16 +19,11 @@ const TaskForm = ({ currentSelection, setCurrentSelection }) => {
     // control,
     reset,
   } = useForm({ defaultValues: initialState });
-
-  // const handleFormSubmit = async(taskData) => {
-  //   if(currentSelection) {
-  //     const data = await
-  //   }
-  // }
+  const [addTask] = useMutation(ADD_TASK);
   useEffect(() => {
     reset();
-    if (currentSelection) {
-      Object.entries(currentSelection).map(([key, value]) =>
+    if (currentTask) {
+      Object.entries(currentTask).map(([key, value]) =>
         setValue(
           key,
           key === "date" ? new Date(value).toISOString().split("T")[0] : value
@@ -35,13 +32,33 @@ const TaskForm = ({ currentSelection, setCurrentSelection }) => {
 
       console.log(getValues());
     }
-  }, [currentSelection, getValues, reset, setValue]);
+  }, [currentTask, getValues, reset, setValue]);
 
-  const handleFormSubmit = (taskData) => {
+  const handleFormSubmit = async () => {
+    let taskData = getValues();
     console.log(taskData);
+    try {
+      if (Auth.loggedIn()) {
+        if (currentTask) {
+        } else {
+          const { data } = await addTask({
+            variables: {
+              input: {
+                ...taskData,
+              },
+            },
+          });
+          if (data) {
+            window.location.assign(`/bangchamcong`);
+          }
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   const clear = () => {
-    setCurrentSelection(null);
+    setcurrentTask(null);
     clearErrors();
     reset();
     scroll.scrollToTop();
@@ -58,27 +75,27 @@ const TaskForm = ({ currentSelection, setCurrentSelection }) => {
                   <div className="grid grid-cols-6 gap-6">
                     <div className="col-span-6 sm:col-span-4">
                       <label
-                        htmlFor="name"
+                        htmlFor="taskName"
                         className="block text-sm font-medium text-gray-700"
                       >
                         Công Việc
                       </label>
                       <input
                         type="text"
-                        {...register("name")}
+                        {...register("taskName")}
                         className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
                       />
                     </div>
                     <div className="col-span-6 sm:col-span-4">
                       <label
-                        htmlFor="employees"
+                        htmlFor="employee"
                         className="block text-sm font-medium text-gray-700"
                       >
                         Nhân Viên
                       </label>
                       <input
                         type="text"
-                        {...register("employees")}
+                        {...register("employee")}
                         className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
                       />
                     </div>

@@ -6,9 +6,9 @@ const resolvers = {
     tasks: async (_, { date }) => {
       try {
         let tasks;
-        tasks = await await Task.find().filter((t) => (t) => t.date == date);
+        tasks = await await Task.find();
 
-        return tasks;
+        return date ? tasks.filter((t) => (t) => t.date == date) : tasks;
       } catch (error) {
         throw new ApolloError(error.message);
       }
