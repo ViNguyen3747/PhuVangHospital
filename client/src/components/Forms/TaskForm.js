@@ -17,9 +17,11 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
     setValue,
     register,
     getValues,
-    // control,
+    formState: { errors },
     reset,
-  } = useForm({ defaultValues: initialState });
+  } = useForm({
+    defaultValues: initialState,
+  });
   const [addTask] = useMutation(ADD_TASK);
   const { data } = useQuery(GET_TASK, { variables: { taskId: currentTask } });
 
@@ -39,9 +41,8 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
     }
   }, [data, getValues, reset, setValue, clearErrors]);
 
-  const handleFormSubmit = async () => {
-    let taskData = getValues();
-    console.log(taskData);
+  const handleFormSubmit = async (taskData) => {
+    if (errors) console.log(errors);
     try {
       if (Auth.loggedIn()) {
         if (currentTask) {
@@ -87,10 +88,16 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                       </label>
                       <input
                         type="text"
-                        {...register("taskName")}
-                        required
+                        {...register("taskName", {
+                          required: "Nhập tên công việc",
+                        })}
                         className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
                       />
+                      {errors?.taskName && (
+                        <p className="text-brown-light text-sm font-medium italic">
+                          {errors.taskName.message}
+                        </p>
+                      )}
                     </div>
                     <div className="col-span-6 sm:col-span-4">
                       <label
@@ -101,25 +108,36 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                       </label>
                       <input
                         type="text"
-                        required
-                        {...register("employee")}
+                        {...register("employee", {
+                          required: "Nhập tên nhân viên",
+                        })}
                         className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
                       />
+                      {errors?.employee && (
+                        <p className="text-brown-light text-sm font-medium italic">
+                          {errors.employee.message}
+                        </p>
+                      )}
                     </div>
                     <div className="col-span-6 sm:col-span-4">
                       <label
                         htmlFor="date"
-                        required
                         className="block text-sm font-medium text-gray-700"
                       >
                         Ngày
                       </label>
                       <input
                         type="date"
-                        {...register("date")}
+                        {...register("date", {
+                          required: "Chọn ngày",
+                        })}
                         className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
-                        placeholder="Select a date"
                       />
+                      {errors?.date && (
+                        <p className="text-brown-light text-sm font-medium italic">
+                          {errors.date.message}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
