@@ -10,7 +10,7 @@ export const AUTH_USER = gql`
   }
 `;
 
-export const TASKS = gql`
+export const GET_TASKS = gql`
   query Tasks {
     tasks {
       id
@@ -21,7 +21,7 @@ export const TASKS = gql`
   }
 `;
 
-export const TASK = gql`
+export const GET_TASK = gql`
   query Task($taskId: ID!) {
     task(id: $taskId) {
       id
@@ -32,7 +32,7 @@ export const TASK = gql`
   }
 `;
 
-export const EMPLOYEES = gql`
+export const GET_EMPLOYEES = gql`
   query Employees {
     employees {
       id
@@ -44,7 +44,7 @@ export const EMPLOYEES = gql`
   }
 `;
 
-export const EMPLOYEE = gql`
+export const GET_EMPLOYEE = gql`
   query Employee($employeeId: ID!) {
     employee(id: $employeeId) {
       id
@@ -56,7 +56,7 @@ export const EMPLOYEE = gql`
   }
 `;
 
-export const USERS = gql`
+export const GET_USERS = gql`
   query Employee {
     users {
       id
@@ -69,7 +69,7 @@ export const USERS = gql`
   }
 `;
 
-export const USER = gql`
+export const GET_USER = gql`
   query Employee($userId: ID!) {
     user(id: $userId) {
       id

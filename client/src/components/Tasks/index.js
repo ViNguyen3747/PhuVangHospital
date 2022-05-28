@@ -5,11 +5,14 @@ import { ExclamationIcon } from "@heroicons/react/outline";
 import { animateScroll as scroll } from "react-scroll";
 
 import TaskForm from "../Forms/TaskForm";
-
+import { GET_TASKS } from "../../utils/graphQL/query";
+import { useQuery } from "@apollo/client";
+import formatDate from "../../utils/formatDate";
 const Tasks = () => {
   const [deleteModal, setDelete] = useState(false);
   const deleteButtonRef = useRef(null);
   const [currentTask, setcurrentTask] = useState(null);
+  const { data } = useQuery(GET_TASKS);
   const tasks = [
     {
       name: "ABC",
@@ -96,38 +99,43 @@ const Tasks = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-turquoise">
-                  {tasks.map((task, index) => (
-                    <tr key={index}>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">
-                          {task.employees}
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-500">{task.date}</div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-500">{task.name}</div>
-                      </td>
+                  {data &&
+                    data.tasks.map((task, index) => (
+                      <tr key={index}>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-gray-900">
+                            {task.employee}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-gray-500">
+                            {formatDate(task.date)}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-gray-500">
+                            {task.taskName}
+                          </div>
+                        </td>
 
-                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <div
-                          className="text-black hover:text-turquoise cursor-pointer"
-                          onClick={() => update(task)}
-                        >
-                          Chỉnh Sửa
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <div
-                          className="text-black hover:text-brown-light  cursor-pointer"
-                          onClick={deleteNoti}
-                        >
-                          Xóa
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
+                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                          <div
+                            className="text-black hover:text-turquoise cursor-pointer"
+                            onClick={() => update(task.id)}
+                          >
+                            Chỉnh Sửa
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                          <div
+                            className="text-black hover:text-brown-light  cursor-pointer"
+                            onClick={deleteNoti}
+                          >
+                            Xóa
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
             </div>

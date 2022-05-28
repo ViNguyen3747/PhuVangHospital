@@ -1,9 +1,10 @@
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { animateScroll as scroll } from "react-scroll";
 import Auth from "../../utils/auth";
 import { ADD_TASK } from "../../utils/graphQL/mutation";
+import { GET_TASK } from "../../utils/graphQL/query";
 const initialState = {
   taskName: "",
   date: new Date(),
@@ -20,19 +21,23 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
     reset,
   } = useForm({ defaultValues: initialState });
   const [addTask] = useMutation(ADD_TASK);
+  const { data } = useQuery(GET_TASK, { variables: { taskId: currentTask } });
+
   useEffect(() => {
     reset();
-    if (currentTask) {
-      Object.entries(currentTask).map(([key, value]) =>
+    if (data) {
+      clearErrors();
+      scroll.scrollToBottom();
+      let { createdAt, id, __typename, ...taskInfo } = data.task;
+      Object.entries(taskInfo).map(([key, value]) =>
         setValue(
           key,
           key === "date" ? new Date(value).toISOString().split("T")[0] : value
         )
       );
-
       console.log(getValues());
     }
-  }, [currentTask, getValues, reset, setValue]);
+  }, [data, getValues, reset, setValue, clearErrors]);
 
   const handleFormSubmit = async () => {
     let taskData = getValues();
@@ -83,6 +88,7 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                       <input
                         type="text"
                         {...register("taskName")}
+                        required
                         className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
                       />
                     </div>
@@ -95,6 +101,7 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                       </label>
                       <input
                         type="text"
+                        required
                         {...register("employee")}
                         className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
                       />
@@ -102,6 +109,7 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                     <div className="col-span-6 sm:col-span-4">
                       <label
                         htmlFor="date"
+                        required
                         className="block text-sm font-medium text-gray-700"
                       >
                         Ngày
