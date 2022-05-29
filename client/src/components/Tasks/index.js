@@ -6,53 +6,40 @@ import { animateScroll as scroll } from "react-scroll";
 
 import TaskForm from "../Forms/TaskForm";
 import { GET_TASKS } from "../../utils/graphQL/query";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
+import { DELETE_TASK } from "../../utils/graphQL/mutation";
 import formatDate from "../../utils/formatDate";
 const Tasks = () => {
   const [deleteModal, setDelete] = useState(false);
   const deleteButtonRef = useRef(null);
   const [currentTask, setcurrentTask] = useState(null);
   const { data } = useQuery(GET_TASKS);
-  const tasks = [
-    {
-      name: "ABC",
-      date: Date.now(),
-      employees: "ABC",
-    },
-    {
-      name: "BCD",
-      date: Date.now(),
-      employees: "BCD",
-    },
-    {
-      name: "dfav",
-      date: Date.now(),
-      employees: "ewhagfjh",
-    },
-    {
-      name: "czbfvmnjx",
-      date: Date.now(),
-      employees: "aejhvnhfhgjk",
-    },
-  ];
-
+  const [deleteTask] = useMutation(DELETE_TASK);
   const update = (task) => {
     setcurrentTask(task);
     scroll.scrollToBottom();
   };
-  const deleteNoti = () => {
+  const deleteNoti = (id) => {
+    setcurrentTask(id);
     setDelete(true);
+  };
+  const handleDelete = async () => {
+    const { data } = await deleteTask({
+      variables: { deleteTaskId: currentTask },
+    });
+    setDelete(false);
+    if (data) window.location.assign("/bangchamcong");
   };
   return (
     <div className="place-items-center h-screen">
-      <div className="col-span-6 sm:col-span-3">
+      {/* <div className="col-span-6 sm:col-span-3">
         {" "}
         <input
           type="date"
           className="mt-1 relative block w-7/12 px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
           placeholder="Select a date"
         />
-      </div>
+      </div> */}
       {/* <div className="col-span-6 sm:col-span-4">
         <label className="block text-sm font-medium text-gray-700">Khoa</label>
         <select
@@ -129,7 +116,7 @@ const Tasks = () => {
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                           <div
                             className="text-black hover:text-brown-light  cursor-pointer"
-                            onClick={deleteNoti}
+                            onClick={() => deleteNoti(task.id)}
                           >
                             Xóa
                           </div>
@@ -201,7 +188,7 @@ const Tasks = () => {
                 <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                   <button
                     className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow text-base font-medium text-white focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
-                    onClick={() => setDelete(false)}
+                    onClick={() => handleDelete()}
                   >
                     Xóa
                   </button>

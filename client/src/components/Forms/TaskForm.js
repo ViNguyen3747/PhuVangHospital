@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { animateScroll as scroll } from "react-scroll";
 import Auth from "../../utils/auth";
-import { ADD_TASK } from "../../utils/graphQL/mutation";
+import { ADD_TASK, UPDATE_TASK } from "../../utils/graphQL/mutation";
 import { GET_TASK } from "../../utils/graphQL/query";
 const initialState = {
   taskName: "",
@@ -23,6 +23,7 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
     defaultValues: initialState,
   });
   const [addTask] = useMutation(ADD_TASK);
+  const [updateTask] = useMutation(UPDATE_TASK);
   const { data } = useQuery(GET_TASK, { variables: { taskId: currentTask } });
 
   useEffect(() => {
@@ -46,6 +47,17 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
     try {
       if (Auth.loggedIn()) {
         if (currentTask) {
+          const { data } = await updateTask({
+            variables: {
+              updateTaskId: currentTask,
+              input: {
+                ...taskData,
+              },
+            },
+          });
+          if (data) {
+            window.location.assign(`/bangchamcong`);
+          }
         } else {
           const { data } = await addTask({
             variables: {
@@ -148,9 +160,10 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                 </div>
               </div>
             </form>
+
             <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
               <button
-                className="group relative w-full flex justify-center  py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-yellow to-brown-light duration-500 ease-out"
+                className="group relative w-full flex justify-center  py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-gray-darkest to-gray-light duration-500 ease-out"
                 onClick={clear}
               >
                 Clear
