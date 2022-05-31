@@ -87,6 +87,7 @@ const resolvers = {
       try {
         let findUser;
         if (user.admin) {
+          updatedUser.password = await hash(updatedUser.password, 12);
           findUser = await User.findByIdAndUpdate(
             { _id: id },
             { ...updatedUser },
