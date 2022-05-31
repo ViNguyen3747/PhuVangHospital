@@ -20,8 +20,6 @@ export const UserForm = ({ currentUser, setUser }) => {
     clearErrors,
     setError,
     formState: { errors },
-    // getValues,
-    // control,
     reset,
   } = useForm({ initialValues: initialState });
   const { data } = useQuery(GET_USER, { variables: { userId: currentUser } });
@@ -207,7 +205,7 @@ export const UserForm = ({ currentUser, setUser }) => {
             </form>
             <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
               <button
-                className="group relative w-full flex justify-center  py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-yellow to-brown-light duration-500 ease-out"
+                className="group relative w-full flex justify-center  py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-gray to-gray-darkest duration-500 ease-out"
                 onClick={() => clear()}
               >
                 Clear

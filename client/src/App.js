@@ -12,13 +12,7 @@ import Navbar from "./components/Navbar";
 import Employees from "./components/Employees";
 import Tasks from "./components/Tasks";
 import Users from "./components/User";
-import {
-  Signin,
-  SignUp,
-  ResetPassword,
-  Confirmation,
-  ForgotPassword,
-} from "./components/Authentication";
+import Signin from "./components/Authentication";
 import auth from "./utils/auth";
 const link = new HttpLink({
   uri: "http://localhost:5000/graphql",
@@ -52,12 +46,6 @@ function App() {
               <Route path="/bangchamcong" element={<Tasks />} />
               <Route path="/nhanvien" element={<Employees />} />
               <Route path="/taikhoan" element={<Users />} />
-              <Route
-                path="/user/activate/:activation_token"
-                element={<Confirmation />}
-              />
-              <Route path="/user/reset" element={<ResetPassword />} />
-              <Route path="/user/forgotpassword" element={<ForgotPassword />} />
             </Routes>
           </div>
         </div>

@@ -8,7 +8,6 @@ import {
   XIcon,
   UserIcon,
   UserGroupIcon,
-  IdentificationIcon,
 } from "@heroicons/react/outline";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import auth from "../../utils/auth";
@@ -19,16 +18,16 @@ const links = [
     icon: CalendarIcon,
   },
   {
-    name: "Nhân Viên",
-    href: "/nhanvien",
-    icon: UserIcon,
+    name: "Tài Khoản",
+    href: "/taikhoan",
+    icon: UserGroupIcon,
   },
 ];
 const more = [
   {
-    name: "Tài Khoản",
-    href: "/taikhoan",
-    icon: UserGroupIcon,
+    name: "Nhân Viên",
+    href: "/nhanvien",
+    icon: UserIcon,
   },
 ];
 function classNames(...classes) {

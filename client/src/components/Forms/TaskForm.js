@@ -162,7 +162,7 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
 
             <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
               <button
-                className="group relative w-full flex justify-center  py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-gray-darkest to-gray-light duration-500 ease-out"
+                className="group relative w-full flex justify-center  py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-gray to-gray-darkest duration-500 ease-out"
                 onClick={clear}
               >
                 Clear

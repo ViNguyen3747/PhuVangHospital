@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { animateScroll as scroll } from "react-scroll";
 
 const initialState = {
@@ -11,15 +11,7 @@ const initialState = {
 };
 
 const EmployeeForm = ({ currentEmployee, setCurrentEmployee }) => {
-  const {
-    handleSubmit,
-    clearErrors,
-    register,
-    setValue,
-    getValues,
-    control,
-    reset,
-  } = useForm({
+  const { handleSubmit, clearErrors, register, setValue, reset } = useForm({
     defaultValues: initialState,
   });
   useEffect(() => {
