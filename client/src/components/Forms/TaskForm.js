@@ -43,7 +43,6 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
   }, [data, getValues, reset, setValue, clearErrors]);
 
   const handleFormSubmit = async (taskData) => {
-    if (errors) console.log(errors);
     try {
       if (Auth.loggedIn()) {
         if (currentTask) {

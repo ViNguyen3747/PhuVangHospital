@@ -49,9 +49,9 @@ function App() {
           <div className="static m-auto">
             <Routes>
               <Route path="/" exact element={<Signin />} />
+              <Route path="/bangchamcong" element={<Tasks />} />
               <Route path="/nhanvien" element={<Employees />} />
               <Route path="/taikhoan" element={<Users />} />
-              <Route path="/bangchamcong" element={<Tasks />} />
               <Route
                 path="/user/activate/:activation_token"
                 element={<Confirmation />}

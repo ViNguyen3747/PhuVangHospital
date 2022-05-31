@@ -1,38 +1,19 @@
 import { Fragment, useRef, useState } from "react";
+import { GET_USERS } from "../../utils/graphQL/query";
+import { useQuery } from "@apollo/client";
 import { Dialog, Transition } from "@headlessui/react";
 import { animateScroll as scroll } from "react-scroll";
 import { ExclamationIcon } from "@heroicons/react/outline";
 import { UserForm } from "../Forms/UserForm";
-const users = [
-  {
-    firstName: "fsdvbs",
-    lastName: "nzbfm",
-    email: "kjv",
-    admin: true,
-  },
-  {
-    firstName: "fsdvbs",
-    lastName: "nzbfm",
-    email: "kjv",
-    admin: false,
-  },
-  {
-    firstName: "fsdvbs",
-    lastName: "nzbfm",
-    email: "kjv",
-    admin: true,
-  },
-];
 
 const Users = () => {
   const [currentUser, setUser] = useState(null);
   const [deleteModal, setDelete] = useState(false);
-
   const deleteButtonRef = useRef(null);
-
-  const update = (user) => {
-    setUser(user);
-    scroll.scrollToBottom();
+  const { data } = useQuery(GET_USERS);
+  console.log(data);
+  const update = (userID) => {
+    setUser(userID);
   };
   const deleteNoti = () => {
     setDelete(true);
@@ -74,40 +55,41 @@ const Users = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-turquoise">
-                  {users.map((e, index) => (
-                    <tr key={index}>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">
-                          {e.firstName}
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-500">{e.email}</div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-500">
-                          {e.admin && "Admin"}
-                        </div>
-                      </td>
+                  {data &&
+                    data.users.map((e, index) => (
+                      <tr key={index}>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-gray-900">
+                            {e.lastName} {e.firstName}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-gray-500">{e.email}</div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-gray-500">
+                            {e.admin && "Admin"}
+                          </div>
+                        </td>
 
-                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <div
-                          className="text-black hover:text-turquoise cursor-pointer"
-                          onClick={() => update(e)}
-                        >
-                          Chỉnh sửa
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <div
-                          className="text-black hover:text-brown-light  cursor-pointer"
-                          onClick={deleteNoti}
-                        >
-                          Xóa
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
+                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                          <div
+                            className="text-black hover:text-turquoise cursor-pointer"
+                            onClick={() => update(e.id)}
+                          >
+                            Chỉnh sửa
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                          <div
+                            className="text-black hover:text-brown-light  cursor-pointer"
+                            onClick={deleteNoti}
+                          >
+                            Xóa
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
             </div>
