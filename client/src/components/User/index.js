@@ -1,22 +1,31 @@
 import { Fragment, useRef, useState } from "react";
 import { GET_USERS } from "../../utils/graphQL/query";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { Dialog, Transition } from "@headlessui/react";
-import { animateScroll as scroll } from "react-scroll";
 import { ExclamationIcon } from "@heroicons/react/outline";
 import { UserForm } from "../Forms/UserForm";
+import { DELETE_USER } from "../../utils/graphQL/mutation";
 
 const Users = () => {
   const [currentUser, setUser] = useState(null);
   const [deleteModal, setDelete] = useState(false);
+  const [deleteUser] = useMutation(DELETE_USER);
   const deleteButtonRef = useRef(null);
   const { data } = useQuery(GET_USERS);
   console.log(data);
   const update = (userID) => {
     setUser(userID);
   };
-  const deleteNoti = () => {
+  const deleteNoti = (id) => {
+    setUser(id);
     setDelete(true);
+  };
+  const handleDelete = async () => {
+    const { data } = await deleteUser({
+      variables: { deleteTaskId: currentUser },
+    });
+    setDelete(false);
+    if (data) window.location.assign("/taikhoan");
   };
   return (
     <div className="place-items-center h-screen">
@@ -83,7 +92,7 @@ const Users = () => {
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                           <div
                             className="text-black hover:text-brown-light  cursor-pointer"
-                            onClick={deleteNoti}
+                            onClick={() => deleteNoti(e.id)}
                           >
                             Xóa
                           </div>
@@ -154,7 +163,7 @@ const Users = () => {
                 <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                   <button
                     className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow text-base font-medium text-white focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
-                    onClick={() => setDelete(false)}
+                    onClick={() => handleDelete()}
                   >
                     Xóa
                   </button>

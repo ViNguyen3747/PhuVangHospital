@@ -1,24 +1,36 @@
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationIcon } from "@heroicons/react/outline";
-
-import { animateScroll as scroll } from "react-scroll";
-
+import { CSVLink } from "react-csv";
 import TaskForm from "../Forms/TaskForm";
 import { GET_TASKS } from "../../utils/graphQL/query";
 import { useQuery, useMutation } from "@apollo/client";
 import { DELETE_TASK } from "../../utils/graphQL/mutation";
 import formatDate from "../../utils/formatDate";
+const headers = [
+  { label: "Công Việc", key: "taskName" },
+  { label: "Nhân Viên", key: "employee" },
+  { label: "Ngày", key: "date" },
+];
 const Tasks = () => {
   const [deleteModal, setDelete] = useState(false);
+  const [excelFile, setExcelFile] = useState(null);
   const deleteButtonRef = useRef(null);
   const [currentTask, setcurrentTask] = useState(null);
   const { data } = useQuery(GET_TASKS);
   const [deleteTask] = useMutation(DELETE_TASK);
+  useEffect(() => {
+    if (data) {
+      const tasks = data.tasks.map(
+        ({ id, __typename, ...taskInfos }) => taskInfos
+      );
+      setExcelFile(tasks.map((t) => ({ ...t, date: formatDate(t.date) })));
+    }
+  }, [data]);
   const update = (task) => {
     setcurrentTask(task);
-    scroll.scrollToBottom();
   };
+
   const deleteNoti = (id) => {
     setcurrentTask(id);
     setDelete(true);
@@ -32,14 +44,14 @@ const Tasks = () => {
   };
   return (
     <div className="place-items-center h-screen">
-      {/* <div className="col-span-6 sm:col-span-3">
+      <div className="col-span-6 sm:col-span-3">
         {" "}
         <input
           type="date"
           className="mt-1 relative block w-7/12 px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
           placeholder="Select a date"
         />
-      </div> */}
+      </div>
       {/* <div className="col-span-6 sm:col-span-4">
         <label className="block text-sm font-medium text-gray-700">Khoa</label>
         <select
@@ -51,8 +63,20 @@ const Tasks = () => {
           <option>sbdggnh</option>
         </select>
       </div> */}
+
       <div className="flex flex-col">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+          {excelFile && (
+            <CSVLink
+              data={excelFile}
+              headers={headers}
+              filename="bangchamcong.csv"
+              className="whitespace-nowrap inline-flex px-1 py-1 m-4 rounded-md shadow-sm font-small text-white bg-gray-dark hover:bg-gray hover:text-gray-dark ease-in-out"
+              targe="_blank"
+            >
+              Export File
+            </CSVLink>
+          )}
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div className="shadow overflow-hidden border-gray border-b-4 sm:rounded-lg">
               <table className="min-w-full divide-y divide-turquoise">
