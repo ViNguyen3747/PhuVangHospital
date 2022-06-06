@@ -1,6 +1,5 @@
 import { ApolloError, AuthenticationError } from "apollo-server-express";
 import dotenv from "dotenv";
-import { hash, compare } from "bcryptjs";
 import {
   serializeUser,
   createActivationToken,
@@ -39,10 +38,9 @@ const resolvers = {
           throw new AuthenticationError("Email không tồn tại trong hệ thống");
         }
 
-        const isMatch = await compare(password, user.password);
-
         user = await serializeUser(user);
-        if (!isMatch) {
+
+        if (user.password !== password) {
           throw new AuthenticationError("Vui lòng nhập lại mật khẩu");
         } else {
           let token = await createActivationToken(user);
@@ -68,7 +66,7 @@ const resolvers = {
             throw new ApolloError("Email is already registred", "400");
           }
           user = new User(newUser);
-          user.password = await hash(user.password, 12);
+
           result = await user.save();
           result = await serializeUser(result);
         }
@@ -87,7 +85,6 @@ const resolvers = {
       try {
         let findUser;
         if (user.admin) {
-          updatedUser.password = await hash(updatedUser.password, 12);
           findUser = await User.findByIdAndUpdate(
             { _id: id },
             { ...updatedUser },
