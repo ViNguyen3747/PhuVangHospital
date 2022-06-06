@@ -5,7 +5,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationIcon } from "@heroicons/react/outline";
 import { UserForm } from "../Forms/UserForm";
 import { DELETE_USER } from "../../utils/graphQL/mutation";
-
+import auth from "../../utils/auth";
 const Users = () => {
   const [currentUser, setUser] = useState(null);
   const [deleteModal, setDelete] = useState(false);
