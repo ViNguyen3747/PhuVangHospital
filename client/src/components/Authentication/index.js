@@ -53,7 +53,6 @@ const Signin = () => {
                       type="email"
                       {...register("email")}
                       required
-                      autocomplete="off"
                       className="relative block w-full px-3 py-2 mb-2 border-l-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
                       placeholder="Email"
                     />
@@ -67,16 +66,6 @@ const Signin = () => {
                       placeholder="Password"
                     />
                   </div>
-                </div>
-                <div>
-                  <p className="mt-6 text-left text-base font-medium">
-                    <NavLink
-                      to="/user/forgotpassword"
-                      className="hover:text-turquoise ease-in-out"
-                    >
-                      Quên Mật Khẩu?
-                    </NavLink>
-                  </p>
                 </div>
                 <div>
                   <button className="group relative w-full flex justify-center  py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-turquoise to-blue hover:from-blue hover:to-turquoise duration-500 ease-out">

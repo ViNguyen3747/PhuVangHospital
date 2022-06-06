@@ -14,9 +14,8 @@ export const GET_TASKS = gql`
   query Tasks {
     tasks {
       id
-      taskName
-      date
       employee
+      task
     }
   }
 `;
@@ -24,10 +23,8 @@ export const GET_TASKS = gql`
 export const GET_TASK = gql`
   query Task($taskId: ID!) {
     task(id: $taskId) {
-      id
-      taskName
-      date
       employee
+      task
     }
   }
 `;

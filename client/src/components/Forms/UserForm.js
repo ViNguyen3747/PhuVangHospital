@@ -99,6 +99,7 @@ export const UserForm = ({ currentUser, setUser }) => {
                         {...register("lastName", {
                           required: "Nhập Họ",
                         })}
+                        autoComplete="false"
                         className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
                       />
                       {errors?.lastName && (
@@ -116,6 +117,7 @@ export const UserForm = ({ currentUser, setUser }) => {
                       </label>
                       <input
                         type="text"
+                        autoComplete="false"
                         {...register("firstName", {
                           required: "Nhập tên",
                         })}
@@ -136,6 +138,7 @@ export const UserForm = ({ currentUser, setUser }) => {
                       </label>
                       <input
                         type="email"
+                        autoComplete="false"
                         {...register("email", {
                           required: "Nhập email",
                         })}
@@ -165,8 +168,9 @@ export const UserForm = ({ currentUser, setUser }) => {
                       </label>
                       <input
                         type="password"
+                        autoComplete="false"
                         {...register("password", {
-                          required: "Nhập mật khẩu",
+                          required: "Nhập mật khẩu" | currentUser,
                         })}
                         className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
                       />
@@ -185,6 +189,7 @@ export const UserForm = ({ currentUser, setUser }) => {
                       </label>
                       <input
                         type="password"
+                        autoComplete="false"
                         {...register("reTypedPassword")}
                         className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
                       />

@@ -61,7 +61,7 @@ const Navbar = () => {
                 {item.name}
               </NavLink>
             ))}
-            <Popover className="relative">
+            {/* <Popover className="relative">
               {({ open }) => (
                 <>
                   <Popover.Button
@@ -112,7 +112,7 @@ const Navbar = () => {
                   </Transition>
                 </>
               )}
-            </Popover>
+            </Popover> */}
           </Popover.Group>
           <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
             <button
@@ -172,7 +172,7 @@ const Navbar = () => {
                 </nav>
               </div>
             </div>
-            <div className="py-6 px-5 space-y-6">
+            {/* <div className="py-6 px-5 space-y-6">
               <div className="grid grid-cols-2 gap-y-4 gap-x-8">
                 {more.map((item) => (
                   <NavLink
@@ -198,7 +198,7 @@ const Navbar = () => {
                   Đăng xuất
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
         </Popover.Panel>
       </Transition>

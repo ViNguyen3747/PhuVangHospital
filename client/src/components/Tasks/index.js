@@ -7,11 +7,26 @@ import { GET_TASKS } from "../../utils/graphQL/query";
 import { useQuery, useMutation } from "@apollo/client";
 import { DELETE_TASK } from "../../utils/graphQL/mutation";
 import formatDate from "../../utils/formatDate";
-const headers = [
-  { label: "Công Việc", key: "taskName" },
-  { label: "Nhân Viên", key: "employee" },
-  { label: "Ngày", key: "date" },
-];
+// const headers = [
+//   { label: "Nhân Viên", key: "employee" },
+//   { label: "1", key: "1" },
+//   { label: "2", key: "1" },
+//   { label: "3", key: "2" },
+//   { label: "4", key: "3" },
+//   { label: "5", key: "4" },
+//   { label: "6", key: "5" },
+//   { label: "7", key: "6" },
+//   { label: "8", key: "7" },
+//   { label: "9", key: "8" },
+//   { label: "10", key: "9" },
+//   { label: "11", key: "10" },
+//   { label: "12", key: "11" },
+//   { label: "13", key: "12" },
+//   { label: "14", key: "13" },
+//   { label: "15", key: "14" },
+//   { label: "16", key: "15" },
+//   { label: "17", key: "16" },
+// ];
 const Tasks = () => {
   const [deleteModal, setDelete] = useState(false);
   const [excelFile, setExcelFile] = useState(null);
@@ -19,12 +34,28 @@ const Tasks = () => {
   const [currentTask, setcurrentTask] = useState(null);
   const { data } = useQuery(GET_TASKS);
   const [deleteTask] = useMutation(DELETE_TASK);
+
+  const days = Array.from(Array(31), (value, index) => ({
+    label: (index + 1).toString(),
+    key: index.toString(),
+  }));
+  const headers = [{ label: "Nhân Viên", key: "employee" }, ...days];
   useEffect(() => {
     if (data) {
       const tasks = data.tasks.map(
         ({ id, __typename, ...taskInfos }) => taskInfos
       );
-      setExcelFile(tasks.map((t) => ({ ...t, date: formatDate(t.date) })));
+
+      setExcelFile(
+        tasks.map((t) => ({
+          ...t.task,
+          // .reduce((prev, curr, i) => {
+          //   prev[i + 1] = curr;
+          //   return prev;
+          // }, {}),
+          employee: t.employee,
+        }))
+      );
     }
   }, [data]);
   const update = (task) => {
@@ -44,14 +75,14 @@ const Tasks = () => {
   };
   return (
     <div className="place-items-center h-screen">
-      <div className="col-span-6 sm:col-span-3">
+      {/* <div className="col-span-6 sm:col-span-3">
         {" "}
         <input
           type="date"
           className="mt-1 relative block w-7/12 px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
           placeholder="Select a date"
         />
-      </div>
+      </div> */}
       {/* <div className="col-span-6 sm:col-span-4">
         <label className="block text-sm font-medium text-gray-700">Khoa</label>
         <select
@@ -63,97 +94,74 @@ const Tasks = () => {
           <option>sbdggnh</option>
         </select>
       </div> */}
+      <div className="py-3 align-middle min-w-full sm:px-10 lg:px-20">
+        <TaskForm currentTask={currentTask} setcurrentTask={setcurrentTask} />
+        <br />
+        {data && (
+          <>
+            {excelFile && (
+              <CSVLink
+                data={excelFile}
+                headers={headers}
+                filename="bangchamcong.csv"
+                className="whitespace-nowrap inline-flex px-1 py-1 m-4 rounded-md shadow-sm font-small text-white bg-gray-dark hover:bg-gray hover:text-gray-dark ease-in-out"
+                targe="_blank"
+              >
+                Export File
+              </CSVLink>
+            )}
+            <table className="ml-4  text-center">
+              <thead>
+                <tr>
+                  <th className=" px-6 py-3 tracking-wider">Nhân Viên</th>
+                  {[...Array(31)].map((e, i) => (
+                    <th className="even:bg-gray-light px-6 py-3 tracking-wider whitespace-nowrap">
+                      {i + 1}
+                    </th>
+                  ))}
 
-      <div className="flex flex-col">
-        <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          {excelFile && (
-            <CSVLink
-              data={excelFile}
-              headers={headers}
-              filename="bangchamcong.csv"
-              className="whitespace-nowrap inline-flex px-1 py-1 m-4 rounded-md shadow-sm font-small text-white bg-gray-dark hover:bg-gray hover:text-gray-dark ease-in-out"
-              targe="_blank"
-            >
-              Export File
-            </CSVLink>
-          )}
-          <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-            <div className="shadow overflow-hidden border-gray border-b-4 sm:rounded-lg">
-              <table className="min-w-full divide-y divide-turquoise">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      Nhân Viên
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      Ngày
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      Công Việc
-                    </th>
-
-                    <th scope="col" className="relative px-6 py-3">
-                      <span className="sr-only">Chỉnh sửa</span>
-                    </th>
-                    <th scope="col" className="relative px-6 py-3">
-                      <span className="sr-only">Xóa</span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-turquoise">
-                  {data &&
-                    data.tasks.map((task, index) => (
-                      <tr key={index}>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm text-gray-900">
-                            {task.employee}
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm text-gray-500">
-                            {formatDate(task.date)}
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm text-gray-500">
-                            {task.taskName}
-                          </div>
-                        </td>
-
-                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                          <div
-                            className="text-black hover:text-turquoise cursor-pointer"
-                            onClick={() => update(task.id)}
-                          >
-                            Chỉnh Sửa
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                          <div
-                            className="text-black hover:text-brown-light  cursor-pointer"
-                            onClick={() => deleteNoti(task.id)}
-                          >
-                            Xóa
-                          </div>
-                        </td>
-                      </tr>
+                  <th className=" px-6 py-3 tracking-wider whitespace-nowrap">
+                    <span className="sr-only">Chỉnh sửa</span>
+                  </th>
+                  <th className=" px-6 py-3 tracking-wider whitespace-nowrap">
+                    <span className="sr-only">Xóa</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="">
+                {data.tasks.map((task, index) => (
+                  <tr key={index}>
+                    <td className="border-y border-gray-dark px-6 py-3  whitespace-nowrap">
+                      {task.employee}
+                    </td>
+                    {task.task.map((t) => (
+                      <td className="even:bg-gray-light border-y border-gray-dark px-6 py-3  whitespace-nowrap">
+                        {t}
+                      </td>
                     ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+                    <td className="border-y border-gray-dark px-6 py-3  whitespace-nowrap">
+                      <span
+                        className="text-black hover:text-turquoise cursor-pointer"
+                        onClick={() => update(task.id)}
+                      >
+                        Chỉnh Sửa
+                      </span>
+                    </td>
+                    <td className="border-y border-gray-dark px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <span
+                        className="text-black hover:text-brown-light  cursor-pointer"
+                        onClick={() => deleteNoti(task.id)}
+                      >
+                        Xóa
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        )}
       </div>
-      <TaskForm currentTask={currentTask} setcurrentTask={setcurrentTask} />
       <Transition.Root show={deleteModal} as={Fragment}>
         <Dialog
           as="div"
