@@ -6,27 +6,7 @@ import TaskForm from "../Forms/TaskForm";
 import { GET_TASKS } from "../../utils/graphQL/query";
 import { useQuery, useMutation } from "@apollo/client";
 import { DELETE_TASK } from "../../utils/graphQL/mutation";
-import formatDate from "../../utils/formatDate";
-// const headers = [
-//   { label: "Nhân Viên", key: "employee" },
-//   { label: "1", key: "1" },
-//   { label: "2", key: "1" },
-//   { label: "3", key: "2" },
-//   { label: "4", key: "3" },
-//   { label: "5", key: "4" },
-//   { label: "6", key: "5" },
-//   { label: "7", key: "6" },
-//   { label: "8", key: "7" },
-//   { label: "9", key: "8" },
-//   { label: "10", key: "9" },
-//   { label: "11", key: "10" },
-//   { label: "12", key: "11" },
-//   { label: "13", key: "12" },
-//   { label: "14", key: "13" },
-//   { label: "15", key: "14" },
-//   { label: "16", key: "15" },
-//   { label: "17", key: "16" },
-// ];
+import Auth from "../../utils/auth";
 const Tasks = () => {
   const [deleteModal, setDelete] = useState(false);
   const [excelFile, setExcelFile] = useState(null);
@@ -49,10 +29,6 @@ const Tasks = () => {
       setExcelFile(
         tasks.map((t) => ({
           ...t.task,
-          // .reduce((prev, curr, i) => {
-          //   prev[i + 1] = curr;
-          //   return prev;
-          // }, {}),
           employee: t.employee,
         }))
       );
@@ -75,14 +51,6 @@ const Tasks = () => {
   };
   return (
     <div className="place-items-center h-screen">
-      {/* <div className="col-span-6 sm:col-span-3">
-        {" "}
-        <input
-          type="date"
-          className="mt-1 relative block w-7/12 px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
-          placeholder="Select a date"
-        />
-      </div> */}
       {/* <div className="col-span-6 sm:col-span-4">
         <label className="block text-sm font-medium text-gray-700">Khoa</label>
         <select
@@ -95,7 +63,9 @@ const Tasks = () => {
         </select>
       </div> */}
       <div className="py-3 align-middle min-w-full sm:px-10 lg:px-20">
-        <TaskForm currentTask={currentTask} setcurrentTask={setcurrentTask} />
+        {Auth.isAdmin() && (
+          <TaskForm currentTask={currentTask} setcurrentTask={setcurrentTask} />
+        )}
         <br />
         {data && (
           <>

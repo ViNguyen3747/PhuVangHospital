@@ -9,7 +9,9 @@ class AuthService {
     const token = this.getToken();
     return !!token && !this.isTokenExpired(token);
   }
-
+  isAdmin() {
+    return localStorage.getItem("admin") === "true";
+  }
   isTokenExpired(token) {
     try {
       const decoded = decode(token);
@@ -25,13 +27,16 @@ class AuthService {
     return localStorage.getItem("id_token");
   }
 
-  login(idToken, name) {
+  login(idToken, name, admin) {
     localStorage.setItem("id_token", idToken);
     localStorage.setItem("name", name);
+    localStorage.setItem("admin", admin);
   }
 
   logout() {
     localStorage.removeItem("id_token");
+    localStorage.removeItem("name");
+    localStorage.removeItem("admin");
     window.location.assign("/");
   }
 }

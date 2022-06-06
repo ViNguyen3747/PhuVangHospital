@@ -8,6 +8,7 @@ export const SIGN_IN = gql`
         email
         firstName
         lastName
+        admin
       }
     }
   }

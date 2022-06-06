@@ -35,7 +35,11 @@ const Signin = () => {
         variables: { ...userData },
       });
       if (data) {
-        auth.login(data.signin.token, data.signin.user.firstName);
+        auth.login(
+          data.signin.token,
+          data.signin.user.firstName,
+          data.signin.user.admin
+        );
         window.location.assign("/bangchamcong");
       }
     } catch (error) {

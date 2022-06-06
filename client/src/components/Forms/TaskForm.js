@@ -38,9 +38,8 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
   }, [data, getValues, reset, setValue, clearErrors]);
 
   const handleFormSubmit = async (taskData) => {
-    console.log(taskData);
     try {
-      if (Auth.loggedIn()) {
+      if (Auth.isAdmin()) {
         if (currentTask) {
           const { data } = await updateTask({
             variables: {
