@@ -36,14 +36,14 @@ const resolvers = {
           email,
         });
         if (!user) {
-          throw new AuthenticationError("Email not found");
+          throw new AuthenticationError("Email không tồn tại trong hệ thống");
         }
 
         const isMatch = await compare(password, user.password);
 
         user = await serializeUser(user);
         if (!isMatch) {
-          throw new AuthenticationError("Incorrect Password");
+          throw new AuthenticationError("Vui lòng nhập lại mật khẩu");
         } else {
           let token = await createActivationToken(user);
           return {
