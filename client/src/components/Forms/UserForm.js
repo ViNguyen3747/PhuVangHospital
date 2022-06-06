@@ -119,7 +119,7 @@ export const UserForm = ({ currentUser, setUser }) => {
                         type="text"
                         autoComplete="false"
                         {...register("firstName", {
-                          required: "Nhập tên",
+                          required: "Vui lòng nhập tên",
                         })}
                         className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
                       />
@@ -140,7 +140,7 @@ export const UserForm = ({ currentUser, setUser }) => {
                         type="email"
                         autoComplete="false"
                         {...register("email", {
-                          required: "Nhập email",
+                          required: "Vui lòng nhập email",
                         })}
                         className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
                       />
@@ -170,7 +170,7 @@ export const UserForm = ({ currentUser, setUser }) => {
                         type="password"
                         autoComplete="false"
                         {...register("password", {
-                          required: "Nhập mật khẩu" | currentUser,
+                          required: "Vui lòng nhập mật khẩu" | currentUser,
                         })}
                         className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
                       />

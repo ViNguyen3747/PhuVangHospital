@@ -51,8 +51,9 @@ const Signin = () => {
                   <div>
                     <input
                       type="email"
-                      {...register("email")}
-                      required
+                      {...register("email", {
+                        required: "Vui lòng nhập email",
+                      })}
                       className="relative block w-full px-3 py-2 mb-2 border-l-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
                       placeholder="Email"
                     />
@@ -60,8 +61,9 @@ const Signin = () => {
                   <div>
                     <input
                       type="password"
-                      {...register("password")}
-                      required
+                      {...register("password", {
+                        required: "Vui lòng nhập mật khẩu",
+                      })}
                       className="relative block w-full px-3 py-2 border-l-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
                       placeholder="Password"
                     />

@@ -100,7 +100,7 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                       <input
                         type="text"
                         {...register("employee", {
-                          required: "Nhập tên nhân viên",
+                          required: "Vui lòng nhập tên nhân viên",
                         })}
                         className="mt-1 relative block  px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
                       />
