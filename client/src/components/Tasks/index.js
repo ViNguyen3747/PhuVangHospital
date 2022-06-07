@@ -247,9 +247,7 @@ const Tasks = () => {
                 return (
                   <div className="row-tb">
                     {task_dt.task.map((check, index) => {
-                      return (
-                        <p className=" even:bg-gray-light cell">{check}</p>
-                      );
+                      return <p className="cell">{check}</p>;
                     })}
                   </div>
                 );
