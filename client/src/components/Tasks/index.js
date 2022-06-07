@@ -230,24 +230,6 @@ const Tasks = () => {
         )}
       </div>
       <div id="my-tb">
-        {/* <table>
-          <thead>
-            <tr>
-              <th className="name-col">Nhân Viên</th>
-              <th>Ngày</th>
-              {Auth.isAdmin() && (
-                <>
-                  {" "}
-                  <th className=" whitespace-nowrap">
-                    <span className="sr-only">Chỉnh sửa</span>
-                  </th>
-                  <th className=" whitespace-nowrap">
-                    <span className="sr-only">Xóa</span>
-                  </th>
-                </>
-              )}
-            </tr>
-          </thead></table>  */}
         <div className="name-col">
           <p className="width-set-r">Nhân Viên</p>
           {data.tasks.map((usr_data, index) => {
