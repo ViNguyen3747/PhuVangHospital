@@ -225,29 +225,39 @@ const Tasks = () => {
         )}
       </div>
       {data && (
-        <div id="my-tb" className="pb-7">
-          <div className="name-col">
-            <p className="width-set-r  ">Nhân Viên</p>
+        <div className="flex ml-20 pb-7">
+          <div>
+            <p className="h-10 p-2 border-b border-r border-gray whitespace-nowrap">
+              Nhân Viên
+            </p>
             {data.tasks.map((usr_data, index) => {
-              return <p className="width-set">{usr_data.employee}</p>;
+              return (
+                <p className="h-10 p-2 border-b border-r border-gray whitespace-nowrap">
+                  {usr_data.employee}
+                </p>
+              );
             })}
           </div>
           <div className="data-col customize-scrollbar">
             <table>
-              <div className="row-tb">
+              <div className="flex">
                 {[...Array(31)].map((e, i) => {
                   return (
-                    <div className="row-tb">
-                      <p className=" odd:bg-gray-light cell">{i + 1}</p>
+                    <div className="h-10 p-2 w-10 border-b border-r border-gray whitespace-nowrap">
+                      <span>{i + 1}</span>
                     </div>
                   );
                 })}
               </div>
               {data.tasks.map((task_dt, index) => {
                 return (
-                  <div className="row-tb">
+                  <div className="flex text-center">
                     {task_dt.task.map((check, index) => {
-                      return <p className="cell">{check}</p>;
+                      return (
+                        <p className="h-10 p-2 w-10 border-b border-r border-gray whitespace-nowrap">
+                          {check}
+                        </p>
+                      );
                     })}
                   </div>
                 );
@@ -258,24 +268,18 @@ const Tasks = () => {
             <p className="width-set-l"></p>
             {data.tasks.map((usr_data, index) => {
               return (
-                <div className="width-set">
-                  <button>
-                    {" "}
-                    <span
-                      className="text-black hover:text-turquoise cursor-pointer"
-                      onClick={() => update(usr_data.id)}
-                    >
-                      Chỉnh Sửa
-                    </span>
+                <div className="text-center">
+                  <button
+                    onClick={() => update(usr_data.id)}
+                    className="text-black hover:text-turquoise cursor-pointer h-10 whitespace-nowrap"
+                  >
+                    Chỉnh Sửa
                   </button>
-                  <button className="ml-11">
-                    {" "}
-                    <span
-                      className="text-black hover:text-brown-light  cursor-pointer"
-                      onClick={() => deleteNoti(usr_data.id)}
-                    >
-                      Xóa
-                    </span>
+                  <button
+                    onClick={() => deleteNoti(usr_data.id)}
+                    className="text-black hover:text-brown-light cursor-pointer h-10 px-5 whitespace-nowrap"
+                  >
+                    Xóa
                   </button>
                 </div>
               );
