@@ -265,7 +265,7 @@ const Tasks = () => {
                     {" "}
                     <span
                       className="text-black hover:text-turquoise cursor-pointer"
-                      onClick={() => update(data.task.id)}
+                      onClick={() => update(usr_data.id)}
                     >
                       Chỉnh Sửa
                     </span>
@@ -274,7 +274,7 @@ const Tasks = () => {
                     {" "}
                     <span
                       className="text-black hover:text-brown-light  cursor-pointer"
-                      onClick={() => deleteNoti(data.task.id)}
+                      onClick={() => deleteNoti(usr_data.id)}
                     >
                       Xóa
                     </span>
