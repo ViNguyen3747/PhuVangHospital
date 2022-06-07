@@ -7,6 +7,7 @@ import { GET_TASKS } from "../../utils/graphQL/query";
 import { useQuery, useMutation } from "@apollo/client";
 import { DELETE_TASK } from "../../utils/graphQL/mutation";
 import Auth from "../../utils/auth";
+import FormTable from "../Forms/FormTable";
 const Tasks = () => {
   const [deleteModal, setDelete] = useState(false);
   const [excelFile, setExcelFile] = useState(null);
@@ -183,7 +184,7 @@ const Tasks = () => {
                   )}
                 </tr>
               </thead>
-              <tbody className="">
+              <tbody>
                 {data.tasks.map((task, index) => (
                   <tr key={index}>
                     <td className="border-y border-gray-dark px-6 py-3  whitespace-nowrap">
@@ -218,6 +219,10 @@ const Tasks = () => {
                 ))}
               </tbody>
             </table>
+            {/* <FormTable
+              currentTask={currentTask}
+              setcurrentTask={setcurrentTask}
+            /> */}
           </>
         )}
       </div>

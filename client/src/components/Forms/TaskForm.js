@@ -166,8 +166,8 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
           </div>
         </div>
       </div>
-      <div>Bốp design</div>
-      <div className="md:container pb-10 border-b-2 border-gray">
+      {/* <div>Bốp design</div> */}
+      {/* <div className="md:container pb-10 border-b-2 border-gray">
         <div className="mt-10 sm:mt-0">
           <div className="md:grid md:grid-cols-3 md:gap-6">
             <div className="mt-5 md:mt-0 md:col-span-2">
@@ -175,27 +175,6 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                 <div className="overflow-hidden sm:rounded-md">
                   <div className="px-4 py-5 bg-white sm:p-6">
                     <div className="grid grid-cols-6 gap-6">
-                      {/* <div className="col-span-6 sm:col-span-4">
-                        <label
-                          htmlFor="employee"
-                          className="block text-sm font-medium text-gray-700"
-                        >
-                          Nhân Viên
-                        </label>
-                        <input
-                          type="text"
-                          {...register("employee", {
-                            required: "Vui lòng nhập tên nhân viên",
-                          })}
-                          className="mt-1 relative block  px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
-                        />
-                        {errors?.employee && (
-                          <p className="text-brown-light text-sm font-medium italic">
-                            {errors.employee.message}
-                          </p>
-                        )}
-                      </div> */}
-
                       <div className="col-span-6 sm:col-span-4 overflow-x-auto">
                         <table className="divide-y divide-turquoise mb-3">
                           <thead>
@@ -250,7 +229,7 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };
