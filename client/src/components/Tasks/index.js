@@ -22,6 +22,7 @@ const Tasks = () => {
   const headers = [{ label: "Nhân Viên", key: "employee" }, ...days];
   useEffect(() => {
     if (data) {
+      console.log(data);
       const tasks = data.tasks.map(
         ({ id, __typename, ...taskInfos }) => taskInfos
       );
@@ -80,55 +81,56 @@ const Tasks = () => {
                 Export File
               </CSVLink>
             )}
-            <table className="ml-4  text-center">
-              <thead>
-                <tr>
-                  <th className=" px-6 py-3 tracking-wider">Nhân Viên</th>
-                  {[...Array(31)].map((e, i) => (
-                    <th className="even:bg-gray-light px-6 py-3 tracking-wider whitespace-nowrap">
-                      {i + 1}
-                    </th>
-                  ))}
+          
+              <table className="ml-4  text-center">
+                <thead>
+                  <tr>
+                    <th className=" px-6 py-3 tracking-wider">Nhân Viên</th>
+                      {[...Array(31)].map((e, i) => (
+                        <th className="even:bg-gray-light px-6 py-3 tracking-wider whitespace-nowrap">
+                          {i + 1}
+                        </th>
+                      ))}
 
-                  <th className=" px-6 py-3 tracking-wider whitespace-nowrap">
-                    <span className="sr-only">Chỉnh sửa</span>
-                  </th>
-                  <th className=" px-6 py-3 tracking-wider whitespace-nowrap">
-                    <span className="sr-only">Xóa</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="">
-                {data.tasks.map((task, index) => (
-                  <tr key={index}>
-                    <td className="border-y border-gray-dark px-6 py-3  whitespace-nowrap">
-                      {task.employee}
-                    </td>
-                    {task.task.map((t) => (
-                      <td className="even:bg-gray-light border-y border-gray-dark px-6 py-3  whitespace-nowrap">
-                        {t}
-                      </td>
-                    ))}
-                    <td className="border-y border-gray-dark px-6 py-3  whitespace-nowrap">
-                      <span
-                        className="text-black hover:text-turquoise cursor-pointer"
-                        onClick={() => update(task.id)}
-                      >
-                        Chỉnh Sửa
-                      </span>
-                    </td>
-                    <td className="border-y border-gray-dark px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <span
-                        className="text-black hover:text-brown-light  cursor-pointer"
-                        onClick={() => deleteNoti(task.id)}
-                      >
-                        Xóa
-                      </span>
-                    </td>
+                    <th className=" px-6 py-3 tracking-wider whitespace-nowrap">
+                      <span className="sr-only">Chỉnh sửa</span>
+                    </th>
+                    <th className=" px-6 py-3 tracking-wider whitespace-nowrap">
+                      <span className="sr-only">Xóa</span>
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="">
+                  {data.tasks.map((task, index) => (
+                    <tr key={index}>
+                      <td className="border-y border-gray-dark px-6 py-3  whitespace-nowrap">
+                        {task.employee}
+                      </td>
+                      {task.task.map((t) => (
+                        <td className="even:bg-gray-light border-y border-gray-dark px-6 py-3  whitespace-nowrap">
+                          {t}
+                        </td>
+                      ))}
+                      <td className="border-y border-gray-dark px-6 py-3  whitespace-nowrap">
+                        <span
+                          className="text-black hover:text-turquoise cursor-pointer"
+                          onClick={() => update(task.id)}
+                        >
+                          Chỉnh Sửa
+                        </span>
+                      </td>
+                      <td className="border-y border-gray-dark px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <span
+                          className="text-black hover:text-brown-light  cursor-pointer"
+                          onClick={() => deleteNoti(task.id)}
+                        >
+                          Xóa
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
           </>
         )}
       </div>
@@ -208,6 +210,36 @@ const Tasks = () => {
           </div>
         </Dialog>
       </Transition.Root>
+
+      <div id="my-tb">
+        <div className="name-col">
+          {data.tasks.map((usr_data, index) => {
+            return <p>{usr_data.employee}</p>;
+          })}
+        </div>
+        <div className="data-col">
+
+          {data.tasks.map((task_dt, index) => {
+            return <div className="row-tb">
+              {
+                task_dt.task.map((check, index) => {
+                  return <p className="cell">{check}</p>;
+                })
+              }
+            </div>
+          })}
+        </div>
+        <div className="btn-col">
+          {data.tasks.map((usr_data, index) => {
+            return (
+              <div>
+                <button>Update</button>
+                <button>Delete</button>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 };

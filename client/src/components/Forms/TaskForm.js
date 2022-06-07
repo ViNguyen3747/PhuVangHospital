@@ -91,10 +91,7 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                   <div className="px-4 py-5 bg-white sm:p-6">
                     <div className="grid grid-cols-6 gap-6">
                       <div className="col-span-6 sm:col-span-4">
-                        <label
-                          htmlFor="employee"
-                          className="block text-sm font-medium text-gray-700"
-                        >
+                        <label htmlFor="employee" className="block text-sm font-medium text-gray-700">
                           Nhân Viên
                         </label>
                         <input
@@ -166,6 +163,8 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
           </div>
         </div>
       </div>
+      
+      
       <div>Bốp design</div>
       <div className="md:container pb-10 border-b-2 border-gray">
         <div className="mt-10 sm:mt-0">
@@ -196,7 +195,7 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                         )}
                       </div> */}
 
-                      <div className="col-span-6 sm:col-span-4 overflow-x-auto">
+                      <div className="customize-scrollbar col-span-6 sm:col-span-4 overflow-x-auto">
                         <table className="divide-y divide-turquoise mb-3">
                           <thead>
                             <tr>

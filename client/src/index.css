@@ -1,3 +1,56 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+.width-table {
+  width: 90vw;
+  overflow-x: scroll;
+}
+.customize-scrollbar::-webkit-scrollbar {
+  width: 15px;
+}
+.customize-scrollbar::-webkit-scrollbar-track {
+  background-color: hsl(179, 55%, 81%);
+  border-radius: 18px;
+  margin-block: 0.5em;
+}
+.customize-scrollbar::-webkit-scrollbar-thumb {
+  background-color: hsl(179, 55%, 42%);
+  border-radius: 18px;
+  border: 3px solid hsl(179, 55%, 81%);
+  transition: background-color 500ms linear;
+}
+
+.customize-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(179, 55%, 25%);
+}
+
+.customize-scrollbar::-webkit-scrollbar-thumb:active {
+  background-color: hsl(179, 55%, 13%);
+}
+
+#my-tb {
+  display: flex;
+  margin-left: 10rem;
+}
+.name-col {
+  width: 200px;
+}
+.data-col {
+  width: 750px;
+  overflow-x: scroll;
+}
+.btn-col {
+  width: 200px;
+}
+.cell {
+  padding: 0px 25px;
+  border: 1px solid #d4d4d5;
+  width: 100px;
+}
+.row-tb {
+  display: flex;
+}

@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
-const taskSchema = new mongoose.Schema(
-  {
+const taskSchema = new mongoose.Schema({
     employee: { type: String, required: true },
     // date: { type: Date, default: new Date(), required: true },
     // date: { type: Number, required: true },
@@ -42,20 +41,18 @@ const taskSchema = new mongoose.Schema(
     //   _31: { type: String },
     // },
     createdAt: {
-      type: Date,
-      default: new Date(),
-      required: true,
+        type: Date,
+        default: new Date(),
+        required: true,
     },
     updatedAt: {
-      type: Date,
-      default: new Date(),
-      required: true,
+        type: Date,
+        default: new Date(),
+        required: true,
     },
-  },
-  {
+}, {
     timestamps: true,
-  }
-);
+});
 
 const Task = mongoose.model("Task", taskSchema);
 export default Task;
