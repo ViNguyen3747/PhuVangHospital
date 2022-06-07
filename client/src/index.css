@@ -12,6 +12,29 @@ html {
 .customize-scrollbar::-webkit-scrollbar {
   width: 15px;
 }
+.data-col::-webkit-scrollbar {
+  width: 15px;
+}
+.data-col::-webkit-scrollbar-track {
+  background-color: hsl(179, 55%, 81%);
+  border-radius: 18px;
+  margin-block: 0.5em;
+}
+.data-col::-webkit-scrollbar-thumb {
+  background-color: hsl(179, 55%, 42%);
+  border-radius: 18px;
+  border: 3px solid hsl(179, 55%, 81%);
+  transition: background-color 500ms linear;
+}
+
+.data-col::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(179, 55%, 25%);
+}
+
+.data-col::-webkit-scrollbar-thumb:active {
+  background-color: hsl(179, 55%, 13%);
+}
+
 .customize-scrollbar::-webkit-scrollbar-track {
   background-color: hsl(179, 55%, 81%);
   border-radius: 18px;
@@ -50,7 +73,24 @@ html {
   padding: 0px 25px;
   border: 1px solid #d4d4d5;
   width: 200px;
+  height: 2rem;
 }
 .row-tb {
   display: flex;
+  text-align: center;
+}
+.width-set {
+  height: 2rem;
+  border: 1px solid #d4d4d5;
+  text-align: center;
+}
+.width-set-l {
+  height: 2rem;
+  border-left: 1px solid #d4d4d5;
+  text-align: center;
+}
+.width-set-r {
+  height: 2rem;
+  border-right: 1px solid #d4d4d5;
+  text-align: center;
 }

@@ -249,12 +249,22 @@ const Tasks = () => {
             </tr>
           </thead></table>  */}
         <div className="name-col">
+          <p className="width-set-r">Nhân Viên</p>
           {data.tasks.map((usr_data, index) => {
-            return <p>{usr_data.employee}</p>;
+            return <p className="width-set">{usr_data.employee}</p>;
           })}
         </div>
         <div className="data-col">
           <table>
+            <div className="row-tb">
+              {[...Array(31)].map((e, i) => {
+                return (
+                  <div className="row-tb">
+                    <p className="cell">{i + 1}</p>
+                  </div>
+                );
+              })}
+            </div>
             {data.tasks.map((task_dt, index) => {
               return (
                 <div className="row-tb">
@@ -267,11 +277,28 @@ const Tasks = () => {
           </table>
         </div>
         <div className="btn-col">
+          <p className="width-set-l"></p>
           {data.tasks.map((usr_data, index) => {
             return (
-              <div>
-                <button>Update</button>
-                <button>Delete</button>
+              <div className="width-set">
+                <button>
+                  {" "}
+                  <span
+                    className="text-black hover:text-turquoise cursor-pointer"
+                    onClick={() => update(data.task.id)}
+                  >
+                    Chỉnh Sửa
+                  </span>
+                </button>
+                <button className="ml-11">
+                  {" "}
+                  <span
+                    className="text-black hover:text-brown-light  cursor-pointer"
+                    onClick={() => deleteNoti(data.task.id)}
+                  >
+                    Xóa
+                  </span>
+                </button>
               </div>
             );
           })}
