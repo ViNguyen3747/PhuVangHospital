@@ -49,7 +49,7 @@ html {
 .cell {
   padding: 0px 25px;
   border: 1px solid #d4d4d5;
-  width: 100px;
+  width: 200px;
 }
 .row-tb {
   display: flex;

@@ -38,6 +38,7 @@ const Tasks = () => {
   }, [data]);
   const update = (task) => {
     setcurrentTask(task);
+    console.log(data);
   };
 
   const deleteNoti = (id) => {
@@ -163,6 +164,7 @@ const Tasks = () => {
                 Export File
               </CSVLink>
             )}
+            //Table
             <table className="ml-4  text-center">
               <thead>
                 <tr>
@@ -228,22 +230,41 @@ const Tasks = () => {
         )}
       </div>
       <div id="my-tb">
+        {/* <table>
+          <thead>
+            <tr>
+              <th className="name-col">Nhân Viên</th>
+              <th>Ngày</th>
+              {Auth.isAdmin() && (
+                <>
+                  {" "}
+                  <th className=" whitespace-nowrap">
+                    <span className="sr-only">Chỉnh sửa</span>
+                  </th>
+                  <th className=" whitespace-nowrap">
+                    <span className="sr-only">Xóa</span>
+                  </th>
+                </>
+              )}
+            </tr>
+          </thead></table>  */}
         <div className="name-col">
           {data.tasks.map((usr_data, index) => {
             return <p>{usr_data.employee}</p>;
           })}
         </div>
         <div className="data-col">
-
-          {data.tasks.map((task_dt, index) => {
-            return <div className="row-tb">
-              {
-                task_dt.task.map((check, index) => {
-                  return <p className="cell">{check}</p>;
-                })
-              }
-            </div>
-          })}
+          <table>
+            {data.tasks.map((task_dt, index) => {
+              return (
+                <div className="row-tb">
+                  {task_dt.task.map((check, index) => {
+                    return <p className="cell">{check}</p>;
+                  })}
+                </div>
+              );
+            })}
+          </table>
         </div>
         <div className="btn-col">
           {data.tasks.map((usr_data, index) => {
