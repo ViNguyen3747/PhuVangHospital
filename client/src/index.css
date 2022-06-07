@@ -58,6 +58,7 @@ html {
 #my-tb {
   display: flex;
   margin-left: 10rem;
+  padding-bottom: 5rem;
 }
 .name-col {
   width: 200px;
@@ -91,6 +92,6 @@ html {
 }
 .width-set-r {
   height: 2rem;
-  border-right: 1px solid #d4d4d5;
+  border: 1px solid #d4d4d5;
   text-align: center;
 }

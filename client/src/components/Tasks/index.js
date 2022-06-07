@@ -7,7 +7,6 @@ import { GET_TASKS } from "../../utils/graphQL/query";
 import { useQuery, useMutation } from "@apollo/client";
 import { DELETE_TASK } from "../../utils/graphQL/mutation";
 import Auth from "../../utils/auth";
-import FormTable from "../Forms/FormTable";
 const Tasks = () => {
   const [deleteModal, setDelete] = useState(false);
   const [excelFile, setExcelFile] = useState(null);
@@ -164,8 +163,8 @@ const Tasks = () => {
                 Export File
               </CSVLink>
             )}
-            //Table
-            <table className="ml-4  text-center">
+
+            {/* <table className="ml-4  text-center">
               <thead>
                 <tr>
                   <th className=" px-6 py-3 tracking-wider">Nhân Viên</th>
@@ -221,71 +220,69 @@ const Tasks = () => {
                   </tr>
                 ))}
               </tbody>
-            </table>
-            {/* <FormTable
-              currentTask={currentTask}
-              setcurrentTask={setcurrentTask}
-            /> */}
+            </table> */}
           </>
         )}
       </div>
-      <div id="my-tb">
-        <div className="name-col">
-          <p className="width-set-r">Nhân Viên</p>
-          {data.tasks.map((usr_data, index) => {
-            return <p className="width-set">{usr_data.employee}</p>;
-          })}
-        </div>
-        <div className="data-col">
-          <table>
-            <div className="row-tb">
-              {[...Array(31)].map((e, i) => {
+      {data && (
+        <div id="my-tb">
+          <div className="name-col">
+            <p className="width-set-r">Nhân Viên</p>
+            {data.tasks.map((usr_data, index) => {
+              return <p className="width-set">{usr_data.employee}</p>;
+            })}
+          </div>
+          <div className="data-col">
+            <table>
+              <div className="row-tb">
+                {[...Array(31)].map((e, i) => {
+                  return (
+                    <div className="row-tb">
+                      <p className="cell">{i + 1}</p>
+                    </div>
+                  );
+                })}
+              </div>
+              {data.tasks.map((task_dt, index) => {
                 return (
                   <div className="row-tb">
-                    <p className="cell">{i + 1}</p>
+                    {task_dt.task.map((check, index) => {
+                      return <p className="cell">{check}</p>;
+                    })}
                   </div>
                 );
               })}
-            </div>
-            {data.tasks.map((task_dt, index) => {
+            </table>
+          </div>
+          <div className="btn-col">
+            <p className="width-set-l"></p>
+            {data.tasks.map((task) => {
               return (
-                <div className="row-tb">
-                  {task_dt.task.map((check, index) => {
-                    return <p className="cell">{check}</p>;
-                  })}
+                <div className="width-set">
+                  <button>
+                    {" "}
+                    <span
+                      className="text-black hover:text-turquoise cursor-pointer"
+                      onClick={() => update(task.id)}
+                    >
+                      Chỉnh Sửa
+                    </span>
+                  </button>
+                  <button className="ml-11">
+                    {" "}
+                    <span
+                      className="text-black hover:text-brown-light  cursor-pointer"
+                      onClick={() => deleteNoti(task.id)}
+                    >
+                      Xóa
+                    </span>
+                  </button>
                 </div>
               );
             })}
-          </table>
+          </div>
         </div>
-        <div className="btn-col">
-          <p className="width-set-l"></p>
-          {data.tasks.map((usr_data, index) => {
-            return (
-              <div className="width-set">
-                <button>
-                  {" "}
-                  <span
-                    className="text-black hover:text-turquoise cursor-pointer"
-                    onClick={() => update(data.task.id)}
-                  >
-                    Chỉnh Sửa
-                  </span>
-                </button>
-                <button className="ml-11">
-                  {" "}
-                  <span
-                    className="text-black hover:text-brown-light  cursor-pointer"
-                    onClick={() => deleteNoti(data.task.id)}
-                  >
-                    Xóa
-                  </span>
-                </button>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+      )}
     </div>
   );
 };
