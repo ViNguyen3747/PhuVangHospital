@@ -10,11 +10,12 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import Navbar from "./components/Navbar";
-import Employees from "./components/Employees";
 import Tasks from "./components/Tasks";
 import Users from "./components/User";
 import Signin from "./components/Authentication";
+import NotFoundPage from "./components/NotFoundPage";
 import auth from "./utils/auth";
+
 const link = new HttpLink({
   uri: "http://localhost:5000/graphql",
 });
@@ -44,9 +45,11 @@ function App() {
           <div className="static m-auto">
             <Routes>
               <Route path="/" exact element={<Signin />} />
-              <Route path="/bangchamcong" element={<Tasks />} />
-              <Route path="/nhanvien" element={<Employees />} />
-              <Route path="/taikhoan" element={<Users />} />
+              {auth.loggedIn() && (
+                <Route path="/bangchamcong" element={<Tasks />} />
+              )}
+              {auth.isAdmin() && <Route path="/taikhoan" element={<Users />} />}
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </div>
         </div>

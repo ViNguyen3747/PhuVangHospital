@@ -83,7 +83,7 @@ export const UserForm = ({ currentUser, setUser }) => {
       <div className="mt-10 sm:mt-0">
         <div className="md:grid md:grid-cols-3 md:gap-6">
           <div className="mt-5 md:mt-0 md:col-span-2">
-            <form onSubmit={handleSubmit(handleFormSubmit)}>
+            <form onSubmit={handleSubmit(handleFormSubmit)} autoComplete="off">
               <div className="overflow-hidden sm:rounded-md">
                 <div className="px-4 py-5 bg-white sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
@@ -99,8 +99,7 @@ export const UserForm = ({ currentUser, setUser }) => {
                         {...register("lastName", {
                           required: "Nhập Họ",
                         })}
-                        autoComplete="false"
-                        className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
+                        className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise text-black focus:outline-none sm:text-sm"
                       />
                       {errors?.lastName && (
                         <p className="text-brown-light text-sm font-medium italic">
@@ -117,11 +116,10 @@ export const UserForm = ({ currentUser, setUser }) => {
                       </label>
                       <input
                         type="text"
-                        autoComplete="false"
                         {...register("firstName", {
                           required: "Vui lòng nhập tên",
                         })}
-                        className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
+                        className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise  text-black focus:outline-none sm:text-sm"
                       />
                       {errors?.firstName && (
                         <p className="text-brown-light text-sm font-medium italic">
@@ -138,11 +136,10 @@ export const UserForm = ({ currentUser, setUser }) => {
                       </label>
                       <input
                         type="email"
-                        autoComplete="false"
                         {...register("email", {
                           required: "Vui lòng nhập email",
                         })}
-                        className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
+                        className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise text-black focus:outline-none sm:text-sm"
                       />
                       {errors?.email && (
                         <p className="text-brown-light text-sm font-medium italic">
@@ -168,11 +165,10 @@ export const UserForm = ({ currentUser, setUser }) => {
                       </label>
                       <input
                         type="password"
-                        autoComplete="false"
                         {...register("password", {
                           required: "Vui lòng nhập mật khẩu" | currentUser,
                         })}
-                        className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
+                        className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise text-black focus:outline-none sm:text-sm"
                       />
                       {errors?.password && (
                         <p className="text-brown-light text-sm font-medium italic">
@@ -191,7 +187,7 @@ export const UserForm = ({ currentUser, setUser }) => {
                         type="password"
                         autoComplete="false"
                         {...register("reTypedPassword")}
-                        className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
+                        className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise  text-black focus:outline-none sm:text-sm"
                       />
                       {errors?.reTypedPassword && (
                         <p className="text-brown-light text-sm font-medium italic">
