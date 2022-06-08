@@ -111,11 +111,11 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                       </div>
 
                       <div className="customize-scrollbar col-span-6 sm:col-span-4 overflow-x-auto w-96 ">
-                        <table className="divide-y divide-turquoise mb-2 border-x">
+                        <table className="divide-y divide-turquoise mb-2 border-x border-gray">
                           <thead>
                             <tr>
                               {[...Array(31)].map((e, i) => (
-                                <th className=" text-lg text-center  font-medium border-r">
+                                <th className=" text-lg text-center  font-medium border-r border-gray">
                                   {i + 1}
                                 </th>
                               ))}
@@ -128,12 +128,12 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                               render={({ field: { onChange } }) => (
                                 <>
                                   {getValues("task").map((e, i) => (
-                                    <td className=" h-10 whitespace-nowrap border-l border-b border-t-2">
+                                    <td className=" h-10 whitespace-nowrap border-l border-b border-t-2 border-gray">
                                       <input
                                         type="text"
                                         value={getValues("task")[i]}
                                         onChange={(event) => taskList(event, i)}
-                                        className="text-black h-10 bg-transparent focus:outline-none sm:text-sm input-font"
+                                        className="text-black w-28 h-10 bg-transparent focus:outline-none sm:text-sm input-font"
                                       />
                                     </td>
                                   ))}

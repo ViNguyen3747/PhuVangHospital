@@ -172,7 +172,7 @@ const Tasks = () => {
               <div className="flex">
                 {[...Array(31)].map((e, i) => {
                   return (
-                    <div className="h-10 p-2 w-24 border-b border-r border-gray whitespace-nowrap">
+                    <div className="h-10 p-2 w-40 border-b border-r border-gray whitespace-nowrap">
                       <span>{i + 1}</span>
                     </div>
                   );
@@ -183,7 +183,7 @@ const Tasks = () => {
                   <div className="flex text-center">
                     {task_dt.task.map((check, index) => {
                       return (
-                        <p className="h-10 p-2 w-24 border-b border-r border-gray whitespace-nowrap">
+                        <p className="h-10 p-2 w-40 border-b border-r border-gray whitespace-nowrap">
                           {check}
                         </p>
                       );
