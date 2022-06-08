@@ -12,11 +12,7 @@ const resolvers = {
     authUser: (_, __, { user }) => user,
     users: async (_, __, { user }) => {
       let users;
-
-      // if (user.admin) {
       users = await User.find();
-      // }
-
       return users;
     },
     user: async (_, { id }, { user }) => {

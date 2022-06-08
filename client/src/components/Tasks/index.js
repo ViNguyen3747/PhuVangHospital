@@ -22,7 +22,6 @@ const Tasks = () => {
   const headers = [{ label: "Nhân Viên", key: "employee" }, ...days];
   useEffect(() => {
     if (data) {
-      console.log(data);
       const tasks = data.tasks.map(
         ({ id, __typename, ...taskInfos }) => taskInfos
       );
@@ -37,7 +36,6 @@ const Tasks = () => {
   }, [data]);
   const update = (task) => {
     setcurrentTask(task);
-    console.log(data);
   };
 
   const deleteNoti = (id) => {
@@ -53,17 +51,6 @@ const Tasks = () => {
   };
   return (
     <div className="place-items-center h-screen">
-      {/* <div className="col-span-6 sm:col-span-4">
-        <label className="block text-sm font-medium text-gray-700">Khoa</label>
-        <select
-          required
-          className="mt-1 relative block w-7/12 px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
-        >
-          <option>sdgvfsrbg</option>
-          <option>sdfbgd </option>
-          <option>sbdggnh</option>
-        </select>
-      </div> */}
       <div className="py-3 align-middle min-w-full sm:px-10 lg:px-20">
         {Auth.isAdmin() && (
           <>
@@ -163,92 +150,42 @@ const Tasks = () => {
                 Export File
               </CSVLink>
             )}
-
-            {/* <table className="ml-4  text-center">
-              <thead>
-                <tr>
-                  <th className=" px-6 py-3 tracking-wider">Nhân Viên</th>
-                  {[...Array(31)].map((e, i) => (
-                    <th className="even:bg-gray-light px-6 py-3 tracking-wider whitespace-nowrap">
-                      {i + 1}
-                    </th>
-                  ))}
-                  {Auth.isAdmin() && (
-                    <>
-                      {" "}
-                      <th className=" px-6 py-3 tracking-wider whitespace-nowrap">
-                        <span className="sr-only">Chỉnh sửa</span>
-                      </th>
-                      <th className=" px-6 py-3 tracking-wider whitespace-nowrap">
-                        <span className="sr-only">Xóa</span>
-                      </th>
-                    </>
-                  )}
-                </tr>
-              </thead>
-              <tbody>
-                {data.tasks.map((task, index) => (
-                  <tr key={index}>
-                    <td className="border-y border-gray-dark px-6 py-3  whitespace-nowrap">
-                      {task.employee}
-                    </td>
-                    {task.task.map((t) => (
-                      <td className="even:bg-gray-light border-y border-gray-dark px-6 py-3  whitespace-nowrap">
-                        {t}
-                      </td>
-                    ))}
-                    {Auth.isAdmin() && (
-                      <>
-                        <td className="border-y border-gray-dark px-6 py-3  whitespace-nowrap">
-                          <span
-                            className="text-black hover:text-turquoise cursor-pointer"
-                            onClick={() => update(task.id)}
-                          >
-                            Chỉnh Sửa
-                          </span>
-                        </td>
-                        <td className="border-y border-gray-dark px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                          <span
-                            className="text-black hover:text-brown-light  cursor-pointer"
-                            onClick={() => deleteNoti(task.id)}
-                          >
-                            Xóa
-                          </span>
-                        </td>
-                      </>
-                    )}
-                  </tr>
-                ))}
-              </tbody>
-            </table> */}
           </>
         )}
       </div>
       {data && (
-        <div id="my-tb" className="pb-7">
-          <div className="name-col">
-            <p className="width-set-r  ">Nhân Viên</p>
+        <div className="flex ml-20 pb-7 text-center">
+          <div>
+            <p className="h-10 p-2 border-b border-r border-turquoise whitespace-nowrap">
+              Nhân Viên
+            </p>
             {data.tasks.map((usr_data, index) => {
-              return <p className="width-set">{usr_data.employee}</p>;
+              return (
+                <p className="h-10 p-2 border-b border-r border-turquoise whitespace-nowrap">
+                  {usr_data.employee}
+                </p>
+              );
             })}
           </div>
           <div className="data-col customize-scrollbar">
             <table>
-              <div className="row-tb">
+              <div className="flex">
                 {[...Array(31)].map((e, i) => {
                   return (
-                    <div className="row-tb">
-                      <p className=" odd:bg-gray-light cell">{i + 1}</p>
+                    <div className="h-10 p-2 customewidth border-b border-r border-gray whitespace-nowrap">
+                      <span>{i + 1}</span>
                     </div>
                   );
                 })}
               </div>
               {data.tasks.map((task_dt, index) => {
                 return (
-                  <div className="row-tb">
+                  <div className="flex text-center">
                     {task_dt.task.map((check, index) => {
                       return (
-                        <p className=" even:bg-gray-light cell">{check}</p>
+                        <p className="h-10 p-2 customewidth border-b border-r border-gray whitespace-nowrap">
+                          {check}
+                        </p>
                       );
                     })}
                   </div>
@@ -256,33 +193,29 @@ const Tasks = () => {
               })}
             </table>
           </div>
-          <div className="btn-col">
-            <p className="width-set-l"></p>
-            {data.tasks.map((usr_data, index) => {
-              return (
-                <div className="width-set">
-                  <button>
-                    {" "}
-                    <span
-                      className="text-black hover:text-turquoise cursor-pointer"
+          {Auth.isAdmin() && (
+            <div className="btn-col">
+              <p className="width-set-l"></p>
+              {data.tasks.map((usr_data, index) => {
+                return (
+                  <div className="width-set-l">
+                    <button
                       onClick={() => update(usr_data.id)}
+                      className="text-black hover:text-turquoise cursor-pointer h-10 whitespace-nowrap"
                     >
                       Chỉnh Sửa
-                    </span>
-                  </button>
-                  <button className="ml-11">
-                    {" "}
-                    <span
-                      className="text-black hover:text-brown-light  cursor-pointer"
+                    </button>
+                    <button
                       onClick={() => deleteNoti(usr_data.id)}
+                      className="text-black hover:text-brown-light cursor-pointer h-10 px-5 whitespace-nowrap"
                     >
                       Xóa
-                    </span>
-                  </button>
-                </div>
-              );
-            })}
-          </div>
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       )}
     </div>

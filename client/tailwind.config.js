@@ -4,6 +4,11 @@ module.exports = {
     extend: {
       backgroundColor: ["active"],
     },
+    borderWidth: {
+      DEFAULT: "1px",
+      2: "2px",
+      10: "100px",
+    },
     colors: {
       transparent: "transparent",
       current: "currentColor",

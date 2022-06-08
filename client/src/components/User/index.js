@@ -5,14 +5,12 @@ import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationIcon } from "@heroicons/react/outline";
 import { UserForm } from "../Forms/UserForm";
 import { DELETE_USER } from "../../utils/graphQL/mutation";
-import auth from "../../utils/auth";
 const Users = () => {
   const [currentUser, setUser] = useState(null);
   const [deleteModal, setDelete] = useState(false);
   const [deleteUser] = useMutation(DELETE_USER);
   const deleteButtonRef = useRef(null);
   const { data } = useQuery(GET_USERS);
-  console.log(data);
   const update = (userID) => {
     setUser(userID);
   };
@@ -125,7 +123,6 @@ const Users = () => {
               <Dialog.Overlay className="fixed inset-0 bg-gray bg-opacity-75 transition-opacity" />
             </Transition.Child>
 
-            {/* This element is to trick the browser into centering the modal contents. */}
             <span
               className="hidden sm:inline-block sm:align-middle sm:h-screen"
               aria-hidden="true"

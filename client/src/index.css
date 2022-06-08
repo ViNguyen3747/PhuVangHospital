@@ -9,14 +9,14 @@ html {
   width: 15px;
 }
 ::-webkit-scrollbar-track {
-  background-color: hsl(266, 76%, 88%);
+  background-color: white;
   border-radius: 18px;
   margin-block: 0.5em;
 }
 ::-webkit-scrollbar-thumb {
   background-color: hsl(179, 55%, 42%);
   border-radius: 18px;
-  border: 3px solid hsl(179, 55%, 81%);
+  border: 3px solid white;
   transition: background-color 500ms linear;
 }
 
@@ -32,11 +32,8 @@ html {
   display: flex;
   margin-left: 5rem;
 }
-.name-col {
-  width: 200px;
-}
 .data-col {
-  width: calc((100% - 200px) / 6.4);
+  width: 65vw;
   overflow-x: scroll;
 }
 .btn-col {
@@ -53,17 +50,20 @@ html {
   text-align: center;
 }
 .width-set {
-  height: 2rem;
-  border: 1px solid #d4d4d5;
   text-align: center;
+  white-space: nowrap;
 }
 .width-set-l {
-  height: 2rem;
-  border-left: 1px solid #d4d4d5;
+  height: 40px;
+  border-left: 1px solid #05aea6;
   text-align: center;
 }
 .width-set-r {
   height: 2rem;
   border-right: 1px solid #d4d4d5;
   text-align: center;
+}
+
+.customewidth {
+  width: 100px;
 }

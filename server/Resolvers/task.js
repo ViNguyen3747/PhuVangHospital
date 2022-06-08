@@ -42,13 +42,11 @@ const resolvers = {
     updateTask: async (_, { id, input }, { user }) => {
       try {
         let task;
-        // if (user.admin) {
         task = await Task.findByIdAndUpdate(
           { _id: id },
           { ...input },
           { new: true }
         );
-        // }
         if (!task) throw new error("Unathorized Access");
 
         return task;

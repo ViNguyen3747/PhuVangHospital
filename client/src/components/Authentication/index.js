@@ -54,7 +54,7 @@ const Signin = () => {
             Welcome to Chấm Công Application
           </h1>
           <p className="leading-relaxed mt-4">
-            Vận hành bởi Trung tâm ý tế huyện Phú Vang
+            Vận hành bởi Trung Tâm Y Tế Huyện Phú Vang
           </p>
         </div>
         <div className="lg:w-3/6 md:w-1/2 bg-gray-lightest rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
