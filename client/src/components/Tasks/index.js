@@ -264,27 +264,29 @@ const Tasks = () => {
               })}
             </table>
           </div>
-          <div className="btn-col">
-            <p className="width-set-l"></p>
-            {data.tasks.map((usr_data, index) => {
-              return (
-                <div className="width-set-l">
-                  <button
-                    onClick={() => update(usr_data.id)}
-                    className="text-black hover:text-turquoise cursor-pointer h-10 whitespace-nowrap"
-                  >
-                    Chỉnh Sửa
-                  </button>
-                  <button
-                    onClick={() => deleteNoti(usr_data.id)}
-                    className="text-black hover:text-brown-light cursor-pointer h-10 px-5 whitespace-nowrap"
-                  >
-                    Xóa
-                  </button>
-                </div>
-              );
-            })}
-          </div>
+          {Auth.isAdmin() && (
+            <div className="btn-col">
+              <p className="width-set-l"></p>
+              {data.tasks.map((usr_data, index) => {
+                return (
+                  <div className="width-set-l">
+                    <button
+                      onClick={() => update(usr_data.id)}
+                      className="text-black hover:text-turquoise cursor-pointer h-10 whitespace-nowrap"
+                    >
+                      Chỉnh Sửa
+                    </button>
+                    <button
+                      onClick={() => deleteNoti(usr_data.id)}
+                      className="text-black hover:text-brown-light cursor-pointer h-10 px-5 whitespace-nowrap"
+                    >
+                      Xóa
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       )}
     </div>
