@@ -90,7 +90,7 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                   <div className="px-4 py-5 bg-white sm:p-6">
                     <label
                       htmlFor="employee"
-                      className="block font-bold text-gray-darkest"
+                      className="block text-sm font-medium"
                     >
                       Nhân Viên
                     </label>
@@ -108,16 +108,16 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                     )}
                     <label
                       htmlFor="task"
-                      className="block mt-5 mb-3 font-bold text-gray-darkest"
+                      className="block mt-4 text-sm font-medium"
                     >
                       Công Việc
                     </label>
-                    <div className="customize-scrollbar col-span-6 sm:col-span-4 overflow-x-auto w-96 ">
+                    <div className="customize-scrollbar mt-6 col-span-6 sm:col-span-4 overflow-x-auto w-96 ">
                       <table className="divide-y divide-turquois ">
                         <thead>
                           <tr>
                             {[...Array(31)].map((e, i) => (
-                              <th className=" text-center border-l font-medium border-r border-gray">
+                              <th className=" text-center border-x font-medium border-gray">
                                 {i + 1}
                               </th>
                             ))}
@@ -130,12 +130,12 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                             render={({ field: { onChange } }) => (
                               <>
                                 {getValues("task").map((e, i) => (
-                                  <td className=" h-10 whitespace-nowrap border-l border-b border-t-2 border-gray">
+                                  <td className=" h-10 whitespace-nowrap border-x border-t-2 border-gray">
                                     <input
                                       type="text"
                                       value={getValues("task")[i]}
                                       onChange={(event) => taskList(event, i)}
-                                      className="text-black w-28 h-10 bg-transparent focus:outline-none sm:text-sm input-font"
+                                      className="text-black p-1 w-28 h-10 bg-transparent focus:outline-none text-base"
                                     />
                                   </td>
                                 ))}
@@ -146,7 +146,7 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                       </table>
                     </div>
                   </div>
-                  <div className="px-4 py-3 bg-gray-50 text-left sm:px-6">
+                  <div className="px-4 py-3  text-left sm:px-6">
                     <button className="min-w-min py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-turquoise to-blue duration-500 ease-out">
                       Nhập
                     </button>
@@ -154,7 +154,7 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                 </div>
               </form>
 
-              <div className="px-4 py-3 bg-gray-50 text-left sm:px-6">
+              <div className="px-4 py-3 text-left sm:px-6">
                 <button
                   className="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-gray to-gray-darkest duration-500 ease-out"
                   onClick={clear}

@@ -76,7 +76,6 @@ export const UserForm = ({ currentUser, setUser }) => {
     setUser(null);
     clearErrors();
     reset();
-    scroll.scrollToTop();
   };
   return (
     <div className="md:container md:mx-auto mt-10 border-t-2 border-gray">
@@ -110,7 +109,7 @@ export const UserForm = ({ currentUser, setUser }) => {
                     <div className="col-span-6 sm:col-span-4">
                       <label
                         htmlFor="firstName"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium"
                       >
                         Tên
                       </label>
@@ -197,14 +196,14 @@ export const UserForm = ({ currentUser, setUser }) => {
                     </div>
                   </div>
                 </div>
-                <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                <div className="px-4 py-3 text-right sm:px-6">
                   <button className="group relative w-full flex justify-center  py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-turquoise to-blue duration-500 ease-out">
                     Nhập
                   </button>
                 </div>
               </div>
             </form>
-            <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+            <div className="px-4 py-3 text-right sm:px-6">
               <button
                 className="group relative w-full flex justify-center  py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-gray to-gray-darkest duration-500 ease-out"
                 onClick={() => clear()}
