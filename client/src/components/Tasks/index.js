@@ -225,14 +225,14 @@ const Tasks = () => {
         )}
       </div>
       {data && (
-        <div className="flex ml-20 pb-7">
+        <div className="flex ml-20 pb-7 text-center">
           <div>
-            <p className="h-10 p-2 border-b border-r border-gray whitespace-nowrap">
+            <p className="h-10 p-2 border-b border-r border-turquoise whitespace-nowrap">
               Nhân Viên
             </p>
             {data.tasks.map((usr_data, index) => {
               return (
-                <p className="h-10 p-2 border-b border-r border-gray whitespace-nowrap">
+                <p className="h-10 p-2 border-b border-r border-turquoise whitespace-nowrap">
                   {usr_data.employee}
                 </p>
               );
@@ -243,7 +243,7 @@ const Tasks = () => {
               <div className="flex">
                 {[...Array(31)].map((e, i) => {
                   return (
-                    <div className="h-10 p-2 w-10 border-b border-r border-gray whitespace-nowrap">
+                    <div className="h-10 p-2 customewidth border-b border-r border-gray whitespace-nowrap">
                       <span>{i + 1}</span>
                     </div>
                   );
@@ -254,7 +254,7 @@ const Tasks = () => {
                   <div className="flex text-center">
                     {task_dt.task.map((check, index) => {
                       return (
-                        <p className="h-10 p-2 w-10 border-b border-r border-gray whitespace-nowrap">
+                        <p className="h-10 p-2 customewidth border-b border-r border-gray whitespace-nowrap">
                           {check}
                         </p>
                       );
@@ -268,7 +268,7 @@ const Tasks = () => {
             <p className="width-set-l"></p>
             {data.tasks.map((usr_data, index) => {
               return (
-                <div className="text-center">
+                <div className="width-set-l">
                   <button
                     onClick={() => update(usr_data.id)}
                     className="text-black hover:text-turquoise cursor-pointer h-10 whitespace-nowrap"

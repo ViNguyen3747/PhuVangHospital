@@ -57,11 +57,15 @@ html {
 }
 .width-set-l {
   height: 40px;
-  border-left: 1px solid #d4d4d5;
+  border-left: 1px solid #05aea6;
   text-align: center;
 }
 .width-set-r {
   height: 2rem;
   border-right: 1px solid #d4d4d5;
   text-align: center;
+}
+
+.customewidth {
+  width: 100px;
 }
