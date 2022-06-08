@@ -97,15 +97,14 @@ const resolvers = {
     deleteUser: async (_, { id }, { user }) => {
       try {
         let currentUser;
-        if (user.admin) {
-          currentUser = User.findByIdAndDelete({ _id: id });
-        }
+        currentUser = await User.findByIdAndDelete({ _id: id });
+
         if (!currentUser) {
           throw new ApolloError("Unathorized Access");
         }
         return {
           success: true,
-          message: "User Deleted Successfully.",
+          message: "Delete User Successfully",
         };
       } catch (error) {
         throw new ApolloError(error.message);

@@ -20,10 +20,11 @@ const Users = () => {
   };
   const handleDelete = async () => {
     const { data } = await deleteUser({
-      variables: { deleteTaskId: currentUser },
+      variables: { deleteUserId: currentUser },
     });
+    console.log(data);
     setDelete(false);
-    if (data) window.location.assign("/taikhoan");
+    // if (data) window.location.assign("/taikhoan");
   };
   return (
     <div className="place-items-center h-screen">
