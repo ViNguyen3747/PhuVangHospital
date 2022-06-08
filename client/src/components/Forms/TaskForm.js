@@ -88,8 +88,8 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
               <form onSubmit={handleSubmit(handleFormSubmit)}>
                 <div className="overflow-hidden sm:rounded-md">
                   <div className="px-4 py-5 bg-white sm:p-6">
-                    <div className="grid grid-cols-6 gap-6">
-                      <div className="col-span-6 sm:col-span-4">
+                    <div className="">
+                      <div className="">
                         <label
                           htmlFor="employee"
                           className="block text-lg font-medium text-gray-700"
@@ -110,8 +110,8 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                         )}
                       </div>
 
-                      <div className="customize-scrollbar col-span-6 sm:col-span-4 overflow-x-auto w-96 ">
-                        <table className="divide-y divide-turquoise mb-2 border-x border-gray">
+                      <div className="customize-scrollbar border border-gray box-border col-span-6 sm:col-span-4 overflow-x-auto w-96 ">
+                        <table className="divide-y divide-turquois ">
                           <thead>
                             <tr>
                               {[...Array(31)].map((e, i) => (
