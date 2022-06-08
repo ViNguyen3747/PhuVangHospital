@@ -16,7 +16,6 @@ const userSchema = new mongoose.Schema(
       },
       required: true,
     },
-    // department: { type: String, required: true },
     password: { type: String, required: true, minlength: 7 },
     admin: { type: Boolean, required: true },
     createdAt: {
