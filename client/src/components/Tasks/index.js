@@ -154,7 +154,7 @@ const Tasks = () => {
         )}
       </div>
       {data && (
-        <div className="flex ml-16 pb-7 text-center">
+        <div className="flex ml-3 pb-7 text-center">
           <div>
             <p className="h-10 p-2 border-b border-r border-turquoise whitespace-nowrap">
               Nhân Viên
