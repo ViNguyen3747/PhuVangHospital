@@ -110,8 +110,8 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                         )}
                       </div>
 
-                      <div className="customize-scrollbar col-span-6 sm:col-span-4 overflow-x-auto ">
-                        <table className="divide-y divide-turquoise mb-3 border-x">
+                      <div className="customize-scrollbar col-span-6 sm:col-span-4 overflow-x-auto w-96 ">
+                        <table className="divide-y divide-turquoise mb-2 border-x">
                           <thead>
                             <tr>
                               {[...Array(31)].map((e, i) => (

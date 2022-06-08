@@ -154,7 +154,7 @@ const Tasks = () => {
         )}
       </div>
       {data && (
-        <div className="flex ml-20 pb-7 text-center">
+        <div className="flex ml-16 pb-7 text-center">
           <div>
             <p className="h-10 p-2 border-b border-r border-turquoise whitespace-nowrap">
               Nhân Viên
@@ -167,12 +167,12 @@ const Tasks = () => {
               );
             })}
           </div>
-          <div className="data-col customize-scrollbar">
+          <div className="overflow-x-auto w-4/12 ">
             <table>
               <div className="flex">
                 {[...Array(31)].map((e, i) => {
                   return (
-                    <div className="h-10 p-2 customewidth border-b border-r border-gray whitespace-nowrap">
+                    <div className="h-10 p-2 w-24 border-b border-r border-gray whitespace-nowrap">
                       <span>{i + 1}</span>
                     </div>
                   );
@@ -183,7 +183,7 @@ const Tasks = () => {
                   <div className="flex text-center">
                     {task_dt.task.map((check, index) => {
                       return (
-                        <p className="h-10 p-2 customewidth border-b border-r border-gray whitespace-nowrap">
+                        <p className="h-10 p-2 w-24 border-b border-r border-gray whitespace-nowrap">
                           {check}
                         </p>
                       );
@@ -194,11 +194,11 @@ const Tasks = () => {
             </table>
           </div>
           {Auth.isAdmin() && (
-            <div className="btn-col">
-              <p className="width-set-l"></p>
+            <div className="w-40 ">
+              <p className="h-10 border-b border-l border-gray"></p>
               {data.tasks.map((usr_data, index) => {
                 return (
-                  <div className="width-set-l">
+                  <div className="h-10 text-center border-b border-l border-gray">
                     <button
                       onClick={() => update(usr_data.id)}
                       className="text-black hover:text-turquoise cursor-pointer h-10 whitespace-nowrap"
