@@ -51,7 +51,7 @@ const Tasks = () => {
   };
   return (
     <div className="place-items-center h-screen">
-      <div className="py-3 align-middle min-w-full sm:px-10 lg:px-20">
+      <div className=" min-w-full sm:px-10 lg:px-16">
         {Auth.isAdmin() && (
           <>
             <TaskForm
@@ -113,7 +113,7 @@ const Tasks = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                      <div className="bg-gray-50 px-4  sm:px-6 sm:flex sm:flex-row-reverse">
                         <button
                           className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow text-base font-medium text-white focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
                           onClick={() => handleDelete()}
@@ -154,7 +154,7 @@ const Tasks = () => {
         )}
       </div>
       {data && (
-        <div className="flex ml-3 pb-7 text-center">
+        <div className="flex ml-3 pb-7 text-center  sm:px-10 lg:px-16">
           <div>
             <p className="h-10 p-2 border-b border-r border-turquoise whitespace-nowrap">
               Nhân Viên

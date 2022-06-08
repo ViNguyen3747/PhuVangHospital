@@ -42,7 +42,7 @@ function App() {
       <Router className="App">
         {auth.loggedIn() && <Navbar />}
         <div className="flex h-screen z-0">
-          <div className="static m-auto">
+          <div className="absolute m-auto">
             <Routes>
               <Route path="/" exact element={<Signin />} />
               {auth.loggedIn() && (

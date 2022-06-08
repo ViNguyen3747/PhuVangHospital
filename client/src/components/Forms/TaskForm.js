@@ -92,7 +92,7 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                       <div className="col-span-6 sm:col-span-4">
                         <label
                           htmlFor="employee"
-                          className="block text-sm font-medium text-gray-700"
+                          className="block text-lg font-medium text-gray-700"
                         >
                           Nhân Viên
                         </label>
@@ -115,7 +115,7 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                           <thead>
                             <tr>
                               {[...Array(31)].map((e, i) => (
-                                <th className=" text-center text-xs font-medium border-r">
+                                <th className=" text-lg text-center  font-medium border-r">
                                   {i + 1}
                                 </th>
                               ))}
@@ -128,12 +128,12 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                               render={({ field: { onChange } }) => (
                                 <>
                                   {getValues("task").map((e, i) => (
-                                    <td className=" whitespace-nowrap border-l border-b border-t-2">
+                                    <td className=" h-10 whitespace-nowrap border-l border-b border-t-2">
                                       <input
                                         type="text"
                                         value={getValues("task")[i]}
                                         onChange={(event) => taskList(event, i)}
-                                        className="text-black bg-transparent focus:outline-none sm:text-sm "
+                                        className="text-black h-10 bg-transparent focus:outline-none sm:text-sm input-font"
                                       />
                                     </td>
                                   ))}
