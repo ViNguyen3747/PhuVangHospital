@@ -167,7 +167,7 @@ const Tasks = () => {
               );
             })}
           </div>
-          <div className="overflow-x-auto w-4/12 ">
+          <div className="overflow-x-auto width-set ">
             <table>
               <div className="flex">
                 {[...Array(31)].map((e, i) => {

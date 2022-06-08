@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-}
 ::-webkit-scrollbar {
   width: 15px;
 }
@@ -26,4 +23,7 @@ html {
 
 ::-webkit-scrollbar-thumb:active {
   background-color: hsl(179, 55%, 13%);
+}
+.width-set{
+  width: 65vw;
 }
