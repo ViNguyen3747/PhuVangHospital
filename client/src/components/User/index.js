@@ -24,10 +24,10 @@ const Users = () => {
     });
     console.log(data);
     setDelete(false);
-    // if (data) window.location.assign("/taikhoan");
+    if (data) window.location.assign("/taikhoan");
   };
   return (
-    <div className="place-items-center h-screen">
+    <div className="place-items-center h-screen static m-auto">
       <div className="flex flex-col">
         <div className="-my-2 sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">

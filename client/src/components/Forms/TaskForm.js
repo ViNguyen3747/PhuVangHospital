@@ -88,61 +88,62 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
               <form onSubmit={handleSubmit(handleFormSubmit)}>
                 <div className="overflow-hidden sm:rounded-md">
                   <div className="px-4 py-5 bg-white sm:p-6">
-                    <div className="">
-                      <div className="">
-                        <label
-                          htmlFor="employee"
-                          className="block  text-gray-700"
-                        >
-                          Nhân Viên
-                        </label>
-                        <input
-                          type="text"
-                          {...register("employee", {
-                            required: "Vui lòng nhập tên nhân viên",
-                          })}
-                          className="mt-1 relative block  px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
-                        />
-                        {errors?.employee && (
-                          <p className="text-brown-light text-sm font-medium italic">
-                            {errors.employee.message}
-                          </p>
-                        )}
-                      </div>
-
-                      <div className="customize-scrollbar   col-span-6 sm:col-span-4 overflow-x-auto w-96 ">
-                        <table className="divide-y divide-turquois ">
-                          <thead>
-                            <tr>
-                              {[...Array(31)].map((e, i) => (
-                                <th className=" text-center border-l font-medium border-r border-gray">
-                                  {i + 1}
-                                </th>
-                              ))}
-                            </tr>
-                          </thead>
-                          <tbody className="">
-                            <Controller
-                              control={control}
-                              name="task"
-                              render={({ field: { onChange } }) => (
-                                <>
-                                  {getValues("task").map((e, i) => (
-                                    <td className=" h-10 whitespace-nowrap border-l border-b border-t-2 border-gray">
-                                      <input
-                                        type="text"
-                                        value={getValues("task")[i]}
-                                        onChange={(event) => taskList(event, i)}
-                                        className="text-black w-28 h-10 bg-transparent focus:outline-none sm:text-sm input-font"
-                                      />
-                                    </td>
-                                  ))}
-                                </>
-                              )}
-                            />
-                          </tbody>
-                        </table>
-                      </div>
+                    <label
+                      htmlFor="employee"
+                      className="block font-bold text-gray-darkest"
+                    >
+                      Nhân Viên
+                    </label>
+                    <input
+                      type="text"
+                      {...register("employee", {
+                        required: "Vui lòng nhập tên nhân viên",
+                      })}
+                      className="mt-1 relative block  px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
+                    />
+                    {errors?.employee && (
+                      <p className="text-brown-light text-sm font-medium italic">
+                        {errors.employee.message}
+                      </p>
+                    )}
+                    <label
+                      htmlFor="task"
+                      className="block mt-5 mb-3 font-bold text-gray-darkest"
+                    >
+                      Công Việc
+                    </label>
+                    <div className="customize-scrollbar col-span-6 sm:col-span-4 overflow-x-auto w-96 ">
+                      <table className="divide-y divide-turquois ">
+                        <thead>
+                          <tr>
+                            {[...Array(31)].map((e, i) => (
+                              <th className=" text-center border-l font-medium border-r border-gray">
+                                {i + 1}
+                              </th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody className="">
+                          <Controller
+                            control={control}
+                            name="task"
+                            render={({ field: { onChange } }) => (
+                              <>
+                                {getValues("task").map((e, i) => (
+                                  <td className=" h-10 whitespace-nowrap border-l border-b border-t-2 border-gray">
+                                    <input
+                                      type="text"
+                                      value={getValues("task")[i]}
+                                      onChange={(event) => taskList(event, i)}
+                                      className="text-black w-28 h-10 bg-transparent focus:outline-none sm:text-sm input-font"
+                                    />
+                                  </td>
+                                ))}
+                              </>
+                            )}
+                          />
+                        </tbody>
+                      </table>
                     </div>
                   </div>
                   <div className="px-4 py-3 bg-gray-50 text-left sm:px-6">

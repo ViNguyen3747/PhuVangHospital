@@ -42,16 +42,14 @@ function App() {
       <Router className="App">
         {auth.loggedIn() && <Navbar />}
         <div className="flex h-screen z-0">
-          <div className="absolute m-auto">
-            <Routes>
-              <Route path="/" exact element={<Signin />} />
-              {auth.loggedIn() && (
-                <Route path="/bangchamcong" element={<Tasks />} />
-              )}
-              {auth.isAdmin() && <Route path="/taikhoan" element={<Users />} />}
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </div>
+          <Routes>
+            <Route path="/" exact element={<Signin />} />
+            {auth.loggedIn() && (
+              <Route path="/bangchamcong" element={<Tasks />} />
+            )}
+            {auth.isAdmin() && <Route path="/taikhoan" element={<Users />} />}
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
         </div>
       </Router>
     </ApolloProvider>

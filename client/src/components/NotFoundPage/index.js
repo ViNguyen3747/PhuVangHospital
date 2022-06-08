@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import Astronaut from "./astronaut.png";
 const index = () => {
   return (
-    <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
+    <div class="container m-auto flex px-5 py-24 items-center justify-center flex-col">
       <img
         class="lg:w-3/6 md:w-2/6 w-4/6 mb-10 object-cover object-center rounded"
         alt="Astronaut is lost"
