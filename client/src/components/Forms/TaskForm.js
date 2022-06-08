@@ -92,7 +92,7 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                       <div className="">
                         <label
                           htmlFor="employee"
-                          className="block text-lg font-medium text-gray-700"
+                          className="block  text-gray-700"
                         >
                           Nhân Viên
                         </label>
@@ -110,12 +110,12 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                         )}
                       </div>
 
-                      <div className="customize-scrollbar border border-gray box-border col-span-6 sm:col-span-4 overflow-x-auto w-96 ">
+                      <div className="customize-scrollbar   col-span-6 sm:col-span-4 overflow-x-auto w-96 ">
                         <table className="divide-y divide-turquois ">
                           <thead>
                             <tr>
                               {[...Array(31)].map((e, i) => (
-                                <th className=" text-lg text-center  font-medium border-r border-gray">
+                                <th className=" text-center border-l font-medium border-r border-gray">
                                   {i + 1}
                                 </th>
                               ))}
