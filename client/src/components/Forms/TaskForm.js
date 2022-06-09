@@ -99,7 +99,7 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                       {...register("employee", {
                         required: "Vui lòng nhập tên nhân viên",
                       })}
-                      className="mt-1 relative block  px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
+                      className="mt-1 relative block px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
                     />
                     {errors?.employee && (
                       <p className="text-brown-light text-sm font-medium italic">
@@ -112,8 +112,8 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                     >
                       Công Việc
                     </label>
-                    <div className="customize-scrollbar mt-6 col-span-6 sm:col-span-4 overflow-x-auto w-96 ">
-                      <table className="divide-y divide-turquois ">
+                    <div className="mt-6  overflow-x-auto width-set">
+                      <table className="divide-y width-full divide-turquois">
                         <thead>
                           <tr>
                             {[...Array(31)].map((e, i) => (
@@ -123,7 +123,7 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                             ))}
                           </tr>
                         </thead>
-                        <tbody className="">
+                        <tbody>
                           <Controller
                             control={control}
                             name="task"
