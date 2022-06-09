@@ -72,7 +72,6 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
     setcurrentTask(null);
     clearErrors();
     reset();
-    scroll.scrollToTop();
   };
   const taskList = (event, index) => {
     const list = getValues("task");

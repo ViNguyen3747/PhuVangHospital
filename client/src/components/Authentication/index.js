@@ -14,6 +14,7 @@ const Signin = () => {
   const {
     handleSubmit,
     register,
+    clearErrors,
     formState: { errors },
   } = useForm({
     defaultValues: initialState,
@@ -40,6 +41,7 @@ const Signin = () => {
           data.signin.user.firstName,
           data.signin.user.admin
         );
+        clearErrors();
         window.location.assign("/bangchamcong");
       }
     } catch (error) {

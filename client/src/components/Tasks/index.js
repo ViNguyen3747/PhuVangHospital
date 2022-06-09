@@ -78,7 +78,6 @@ const Tasks = () => {
                     <Dialog.Overlay className="fixed inset-0 bg-gray bg-opacity-75 transition-opacity" />
                   </Transition.Child>
 
-                  {/* This element is to trick the browser into centering the modal contents. */}
                   <span
                     className="hidden sm:inline-block sm:align-middle sm:h-screen"
                     aria-hidden="true"
@@ -137,7 +136,7 @@ const Tasks = () => {
           </>
         )}
         <br />
-        {data && (
+        {data && Auth.isAdmin() && (
           <>
             {excelFile && (
               <CSVLink
@@ -194,7 +193,7 @@ const Tasks = () => {
             </table>
           </div>
           {Auth.isAdmin() && (
-            <div className="w-40 ">
+            <div className="w-40">
               <p className="h-10 border-b border-l border-gray"></p>
               {data.tasks.map((usr_data, index) => {
                 return (

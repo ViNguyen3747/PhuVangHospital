@@ -22,7 +22,6 @@ const Users = () => {
     const { data } = await deleteUser({
       variables: { deleteUserId: currentUser },
     });
-    console.log(data);
     setDelete(false);
     if (data) window.location.assign("/taikhoan");
   };
