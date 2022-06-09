@@ -112,8 +112,8 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                     >
                       Công Việc
                     </label>
-                    <div className="mt-6  overflow-x-auto width-set">
-                      <table className="divide-y width-full divide-turquois">
+                    <div className="mt-6  overflow-x-auto width-set-media">
+                      <table className="divide-y w-full divide-turquois">
                         <thead>
                           <tr>
                             {[...Array(31)].map((e, i) => (
