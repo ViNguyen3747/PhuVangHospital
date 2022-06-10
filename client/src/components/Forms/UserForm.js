@@ -69,6 +69,7 @@ export const UserForm = ({ currentUser, setUser }) => {
         }
       } catch (e) {
         console.log(e);
+        console.log(React.version);
       }
     }
   };

@@ -112,7 +112,7 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                     >
                       Công Việc
                     </label>
-                    <div className="mt-6  overflow-x-auto width-set-media">
+                    <div className="mt-6  overflow-x-auto overflow-y-scroll width-set-media ">
                       <table className="divide-y w-full divide-turquois">
                         <thead>
                           <tr>
