@@ -113,7 +113,7 @@ const Tasks = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="px-4  sm:px-6 sm:flex sm:flex-row-reverse">
+                      <div className="px-4 pb-3  sm:px-6 sm:flex sm:flex-row-reverse">
                         <button
                           className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow text-base font-medium text-white focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
                           onClick={() => handleDelete()}
