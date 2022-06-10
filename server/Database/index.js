@@ -9,9 +9,7 @@ export const connection = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log("Database Connected Successfully");
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };
