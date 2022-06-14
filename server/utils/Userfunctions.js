@@ -12,5 +12,5 @@ const createActivationToken = async (jwtPayload) => {
 };
 
 const serializeUser = (user) =>
-  pick(user, ["id", "email", "lastName", "firstName", "password", "admin"]);
+  pick(user, ["id", "userName", "lastName", "firstName", "password", "admin"]);
 export { createActivationToken, serializeUser };

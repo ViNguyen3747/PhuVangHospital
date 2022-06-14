@@ -6,7 +6,7 @@ const resolvers = {
     tasks: async (_, { date }) => {
       try {
         let tasks;
-        tasks = await await Task.find();
+        tasks = await Task.find();
 
         return date ? tasks.filter((t) => (t) => t.date == date) : tasks;
       } catch (error) {
@@ -28,6 +28,7 @@ const resolvers = {
         // if (user.admin) {
         task = await new Task({
           ...input,
+          updatedBy: userName,
           createdAt: new Date().toISOString(),
         }).save();
         // }
@@ -44,7 +45,7 @@ const resolvers = {
         let task;
         task = await Task.findByIdAndUpdate(
           { _id: id },
-          { ...input },
+          { ...input, updatedBy: userName },
           { new: true }
         );
         if (!task) throw new error("Unathorized Access");

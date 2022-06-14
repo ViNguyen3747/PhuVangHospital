@@ -25,13 +25,15 @@ const resolvers = {
   },
 
   Mutation: {
-    signin: async (_, { email, password }) => {
+    signin: async (_, { userName, password }) => {
       try {
         let user = await User.findOne({
-          email,
+          userName,
         });
         if (!user) {
-          throw new AuthenticationError("Email không tồn tại trong hệ thống");
+          throw new AuthenticationError(
+            "userName không tồn tại trong hệ thống"
+          );
         }
 
         user = await serializeUser(user);
@@ -53,13 +55,13 @@ const resolvers = {
       try {
         let result;
         if (user.admin) {
-          let { email } = newUser;
+          let { userName } = newUser;
 
           let user = await User.findOne({
-            email,
+            userName,
           });
           if (user) {
-            throw new ApolloError("Email is already registred", "400");
+            throw new ApolloError("userName is already registred", "400");
           }
           user = new User(newUser);
 
