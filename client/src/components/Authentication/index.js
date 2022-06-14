@@ -23,7 +23,7 @@ const Signin = () => {
   const [signin] = useMutation(SIGN_IN, {
     onError: (err) => {
       if (
-        err.message === "Email không tồn tại trong hệ thống" ||
+        err.message === "userName không tồn tại trong hệ thống" ||
         err.message === "Vui lòng nhập lại mật khẩu"
       )
         setEror(err);
@@ -38,7 +38,7 @@ const Signin = () => {
       if (data) {
         auth.login(
           data.signin.token,
-          data.signin.user.firstName,
+          data.signin.user.userName,
           data.signin.user.admin
         );
         clearErrors();
@@ -74,28 +74,28 @@ const Signin = () => {
             <form onSubmit={handleSubmit(handleFormSubmit)}>
               <div className="relative mb-4">
                 <label
-                  for="email"
+                  htmlFor="userName"
                   className="leading-7 text-sm text-gray-darkest"
                 >
-                  Email
+                  UserName
                 </label>
 
                 <input
                   type="email"
                   {...register("email", {
-                    required: "Vui lòng nhập email",
+                    required: "Vui lòng nhập userName",
                   })}
                   className="w-full px-3 py-2 mb-2 border-l-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
                 />
-                {errors?.email && (
+                {errors?.userName && (
                   <p className="text-brown-light text-sm font-medium italic">
-                    {errors.email.message}
+                    {errors.userName.message}
                   </p>
                 )}
               </div>
               <div className="relative mb-4">
                 <label
-                  for="password"
+                  htmlFor="password"
                   className="leading-7 text-sm text-gray-darkest"
                 >
                   Mật Khẩu

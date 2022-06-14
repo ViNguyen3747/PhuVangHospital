@@ -3,7 +3,7 @@ import { gql } from "@apollo/client";
 export const AUTH_USER = gql`
   query authUser {
     authUser {
-      email
+      userName
       firstName
       lastName
     }
@@ -16,6 +16,7 @@ export const GET_TASKS = gql`
       id
       employee
       task
+      updatedBy
     }
   }
 `;
@@ -25,30 +26,7 @@ export const GET_TASK = gql`
     task(id: $taskId) {
       employee
       task
-    }
-  }
-`;
-
-export const GET_EMPLOYEES = gql`
-  query Employees {
-    employees {
-      id
-      name
-      email
-      phone
-      address
-    }
-  }
-`;
-
-export const GET_EMPLOYEE = gql`
-  query Employee($employeeId: ID!) {
-    employee(id: $employeeId) {
-      id
-      name
-      email
-      phone
-      address
+      updatedBy
     }
   }
 `;
@@ -59,7 +37,7 @@ export const GET_USERS = gql`
       id
       firstName
       lastName
-      email
+      userName
       admin
       password
     }
@@ -72,7 +50,7 @@ export const GET_USER = gql`
       id
       firstName
       lastName
-      email
+      userName
       admin
     }
   }

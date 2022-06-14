@@ -25,13 +25,11 @@ const resolvers = {
     addTask: async (_, { input }, { user }) => {
       try {
         let task;
-        // if (user.admin) {
         task = await new Task({
           ...input,
           updatedBy: userName,
           createdAt: new Date().toISOString(),
         }).save();
-        // }
 
         if (!task) throw new error("Unathorized Access");
 

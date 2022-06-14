@@ -40,24 +40,6 @@ export const DELETE_TASK = gql`
   }
 `;
 
-export const ADD_EMPLOYEE = gql`
-  mutation AddEmployee($input: addEmployeeInput) {
-    addEmployee(input: $input) {
-      id
-      updatedAt
-    }
-  }
-`;
-
-export const DELETE_EMPLOYEE = gql`
-  mutation DeleteEmployee($deleteEmployeeId: ID!) {
-    deleteEmployee(id: $deleteEmployeeId) {
-      message
-      success
-    }
-  }
-`;
-
 export const ADD_USER = gql`
   mutation AddUser($newUser: addUserInput!) {
     addUser(newUser: $newUser) {

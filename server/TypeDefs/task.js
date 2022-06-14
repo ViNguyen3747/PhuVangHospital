@@ -15,13 +15,11 @@ const typeDefs = gql`
   input addTaskInput {
     employee: String!
     task: [[String!]]!
-    updatedBy: String!
   }
 
   input updateTaskInput {
     employee: String
     task: [[String]]
-    updatedBy: String
   }
 
   type Task {

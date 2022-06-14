@@ -7,7 +7,7 @@ import { useQuery, useMutation } from "@apollo/client";
 const initialState = {
   firstName: "",
   lastName: "",
-  email: "",
+  userName: "",
   admin: false,
   password: "",
   reTypedPassword: "",
@@ -69,7 +69,6 @@ export const UserForm = ({ currentUser, setUser }) => {
         }
       } catch (e) {
         console.log(e);
-        console.log(React.version);
       }
     }
   };
@@ -129,21 +128,21 @@ export const UserForm = ({ currentUser, setUser }) => {
                     </div>
                     <div className="col-span-6 sm:col-span-4">
                       <label
-                        htmlFor="email"
+                        htmlFor="userName"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Email
+                        userName
                       </label>
                       <input
-                        type="email"
-                        {...register("email", {
-                          required: "Vui lòng nhập email",
+                        type="text"
+                        {...register("userName", {
+                          required: "Vui lòng nhập userName",
                         })}
                         className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise text-black focus:outline-none sm:text-sm"
                       />
-                      {errors?.email && (
+                      {errors?.userName && (
                         <p className="text-brown-light text-sm font-medium italic">
-                          {errors.email.message}
+                          {errors.userName.message}
                         </p>
                       )}
                     </div>
