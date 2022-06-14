@@ -161,7 +161,7 @@ export const UserForm = ({ currentUser, setUser }) => {
                         htmlFor="password"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Mật Khẩu {currentUser && `Mới`}
+                        Mật Khẩu {currentUser && `Mới`} (Trên 7 ký tự)
                       </label>
                       <input
                         type="password"

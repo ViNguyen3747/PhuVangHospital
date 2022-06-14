@@ -17,7 +17,7 @@ import NotFoundPage from "./components/NotFoundPage";
 import auth from "./utils/auth";
 
 const link = new HttpLink({
-  uri: "https://app-chamcong.herokuapp.com/graphql",
+  uri: "http://localhost:5000/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
