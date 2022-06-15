@@ -5,7 +5,7 @@ import { useMutation } from "@apollo/client";
 import auth from "../../utils/auth";
 import { SIGN_IN } from "../../utils/graphQL/mutation";
 const initialState = {
-  email: "",
+  userName: "",
   password: "",
 };
 
@@ -77,12 +77,12 @@ const Signin = () => {
                   htmlFor="userName"
                   className="leading-7 text-sm text-gray-darkest"
                 >
-                  UserName
+                  Username
                 </label>
 
                 <input
-                  type="email"
-                  {...register("email", {
+                  type="text"
+                  {...register("userName", {
                     required: "Vui lòng nhập userName",
                   })}
                   className="w-full px-3 py-2 mb-2 border-l-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"

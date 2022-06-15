@@ -7,7 +7,7 @@ import { ADD_TASK, UPDATE_TASK } from "../../utils/graphQL/mutation";
 import { GET_TASK } from "../../utils/graphQL/query";
 const initialState = {
   employee: "",
-  task: Array(31).fill(" "),
+  task: Array(31).fill(Array(3).fill(" ")),
 };
 const TaskForm = ({ currentTask, setcurrentTask }) => {
   const {
@@ -73,9 +73,9 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
     clearErrors();
     reset();
   };
-  const taskList = (event, index) => {
+  const taskList = (event, i, j) => {
     const list = getValues("task");
-    list[index] = event.target.value;
+    list[i][j] = event.target.value;
     setValue("task", list);
   };
   return (
@@ -116,7 +116,7 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                         <thead>
                           <tr>
                             {[...Array(31)].map((e, i) => (
-                              <th className=" text-center border-x font-medium border-gray">
+                              <th className=" text-center border-x-2 font-medium border-gray">
                                 {i + 1}
                               </th>
                             ))}
@@ -128,14 +128,24 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                             name="task"
                             render={({ field: { onChange } }) => (
                               <>
-                                {getValues("task").map((e, i) => (
-                                  <td className=" h-10 whitespace-nowrap border-x border-t-2 border-gray">
-                                    <input
-                                      type="text"
-                                      value={getValues("task")[i]}
-                                      onChange={(event) => taskList(event, i)}
-                                      className="text-black p-1 w-28 h-10 bg-transparent focus:outline-none text-base"
-                                    />
+                                {getValues("task").map((value, i) => (
+                                  <td className=" h-10 whitespace-nowrap border-x-2 border-t-2 border-gray">
+                                    {value.map((v, j) => (
+                                      <input
+                                        type="text"
+                                        value={getValues("task")[i][j]}
+                                        onChange={(event) =>
+                                          taskList(event, i, j)
+                                        }
+                                        className={`text-black pl-3 w-28 h-10 ${
+                                          j === 2
+                                            ? " bg-gray-light"
+                                            : j === 0
+                                            ? "bg-turquoise-lightest"
+                                            : ""
+                                        }  focus:outline-none text-base`}
+                                      />
+                                    ))}
                                   </td>
                                 ))}
                               </>

@@ -54,20 +54,21 @@ const resolvers = {
     addUser: async (_parent, { newUser }, { user }) => {
       try {
         let result;
-        if (user.admin) {
-          let { userName } = newUser;
+        let { userName } = newUser;
 
-          let user = await User.findOne({
-            userName,
-          });
-          if (user) {
-            throw new ApolloError("userName is already registred", "400");
-          }
-          user = new User(newUser);
-
-          result = await user.save();
-          result = await serializeUser(result);
+        let user = await User.findOne({
+          userName,
+        });
+        if (user) {
+          throw new ApolloError("userName is already registred", "400");
         }
+        user = await new User({
+          ...newUser,
+          createdAt: new Date().toISOString(),
+        }).save();
+
+        result = await serializeUser(user);
+
         if (result) {
           let activation_token = await createActivationToken(result);
           return {

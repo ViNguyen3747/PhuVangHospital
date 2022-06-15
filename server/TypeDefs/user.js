@@ -11,7 +11,7 @@ const typeDefs = gql`
     addUser(newUser: addUserInput!): Auth! @isAuth
     updateUser(id: ID!, updatedUser: updateUserInput): User! @isAuth
     deleteUser(id: ID!): Message! @isAuth
-    signin(email: String!, password: String!): Auth!
+    signin(userName: String!, password: String!): Auth!
   }
   input addUserInput {
     firstName: String!

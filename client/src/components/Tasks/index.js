@@ -22,6 +22,7 @@ const Tasks = () => {
   const headers = [{ label: "Nhân Viên", key: "employee" }, ...days];
   useEffect(() => {
     if (data) {
+      console.log(data);
       const tasks = data.tasks.map(
         ({ id, __typename, ...taskInfos }) => taskInfos
       );
@@ -171,7 +172,7 @@ const Tasks = () => {
               <div className="flex">
                 {[...Array(31)].map((e, i) => {
                   return (
-                    <div className="h-10 p-2 w-40 border-b border-r border-gray whitespace-nowrap">
+                    <div className="h-10 p-2 w-96 border-b border-r border-gray whitespace-nowrap">
                       <span>{i + 1}</span>
                     </div>
                   );
@@ -180,12 +181,20 @@ const Tasks = () => {
               {data.tasks.map((task_dt, index) => {
                 return (
                   <div className="flex text-center">
-                    {task_dt.task.map((check, index) => {
-                      return (
-                        <p className="h-13 p-2 w-40 border-b border-r border-gray whitespace-nowrap overflow-x-scroll">
-                          {check}
+                    {task_dt.task.map((task) => {
+                      return task.map((t, j) => (
+                        <p
+                          className={`${
+                            j === 2
+                              ? " bg-gray-light"
+                              : j === 0
+                              ? "bg-turquoise-lightest"
+                              : ""
+                          } h-13 p-2 w-32 border-b border-r border-gray overflow-x-scroll whitespace-nowrap`}
+                        >
+                          {t}
                         </p>
-                      );
+                      ));
                     })}
                   </div>
                 );
