@@ -27,6 +27,7 @@ export const GET_TASK = gql`
       employee
       task
       updatedBy
+      updatedAt
     }
   }
 `;

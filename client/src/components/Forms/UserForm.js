@@ -131,7 +131,7 @@ export const UserForm = ({ currentUser, setUser }) => {
                         htmlFor="userName"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        userName
+                        UserName
                       </label>
                       <input
                         type="text"

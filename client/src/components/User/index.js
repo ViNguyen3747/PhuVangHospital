@@ -45,7 +45,7 @@ const Users = () => {
                       scope="col"
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
-                      Email
+                      userName
                     </th>
                     <th
                       scope="col"
@@ -71,7 +71,9 @@ const Users = () => {
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm text-gray-500">{e.email}</div>
+                          <div className="text-sm text-gray-500">
+                            {e.userName}
+                          </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="text-sm text-gray-500">

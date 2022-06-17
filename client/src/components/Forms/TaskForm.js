@@ -31,7 +31,9 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
     if (data) {
       clearErrors();
       scroll.scrollToTop();
-      let { createdAt, id, __typename, ...taskInfo } = data.task;
+      let { createdAt, id, __typename, updatedAt, updatedBy, ...taskInfo } =
+        data.task;
+      console.log(taskInfo);
       Object.entries(taskInfo).map(([key, value]) => setValue(key, value));
     }
   }, [data, getValues, reset, setValue, clearErrors]);
