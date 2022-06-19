@@ -1,10 +1,11 @@
 import { useMutation, useQuery } from "@apollo/client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { animateScroll as scroll } from "react-scroll";
 import Auth from "../../utils/auth";
 import { ADD_TASK, UPDATE_TASK } from "../../utils/graphQL/mutation";
 import { GET_TASK } from "../../utils/graphQL/query";
+import formatDate from "../../utils/formatDate";
 const initialState = {
   employee: "",
   task: Array(31).fill(Array(3).fill(" ")),
@@ -24,6 +25,10 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
   });
   const [addTask] = useMutation(ADD_TASK);
   const [updateTask] = useMutation(UPDATE_TASK);
+  const [lastUpdate, setLastUpdate] = useState({
+    updatedBy: null,
+    updatedAt: null,
+  });
   const { data } = useQuery(GET_TASK, { variables: { taskId: currentTask } });
 
   useEffect(() => {
@@ -31,7 +36,10 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
     if (data) {
       clearErrors();
       scroll.scrollToTop();
-      let { createdAt, id, __typename, ...taskInfo } = data.task;
+      let { createdAt, id, __typename, updatedAt, updatedBy, ...taskInfo } =
+        data.task;
+      setLastUpdate({ updatedBy, updatedAt: formatDate(updatedAt) });
+      console.log(taskInfo);
       Object.entries(taskInfo).map(([key, value]) => setValue(key, value));
     }
   }, [data, getValues, reset, setValue, clearErrors]);
@@ -71,6 +79,10 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
   const clear = () => {
     setcurrentTask(null);
     clearErrors();
+    setLastUpdate({
+      updatedBy: null,
+      updatedAt: null,
+    });
     reset();
   };
   const taskList = (event, i, j) => {
@@ -155,6 +167,12 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                       </table>
                     </div>
                   </div>
+                  {lastUpdate.updatedBy && (
+                    <p className="px-4 py-5 bg-white sm:p-6">
+                      Last updated by {lastUpdate.updatedBy} at{" "}
+                      {lastUpdate.updatedAt}
+                    </p>
+                  )}
                   <div className="px-4 py-3  text-left sm:px-6">
                     <button className="min-w-min py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-turquoise to-blue duration-500 ease-out">
                       Nhập

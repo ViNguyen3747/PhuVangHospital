@@ -18,6 +18,7 @@ const typeDefs = gql`
     lastName: String!
     userName: String!
     admin: Boolean!
+    department: String!
     password: String!
   }
 
@@ -26,6 +27,7 @@ const typeDefs = gql`
     lastName: String
     userName: String
     admin: Boolean
+    department: String
     password: String
   }
 
@@ -40,6 +42,7 @@ const typeDefs = gql`
     lastName: String!
     userName: String!
     admin: Boolean!
+    department: String!
     password: String!
     createdAt: Date!
     updatedAt: Date!

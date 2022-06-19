@@ -27,7 +27,7 @@ const resolvers = {
         let task;
         task = await new Task({
           ...input,
-          updatedBy: user.userName,
+          updatedBy: `${user.lastName} ${user.firstName}`,
           createdAt: new Date().toISOString(),
         }).save();
 
@@ -43,7 +43,7 @@ const resolvers = {
         let task;
         task = await Task.findByIdAndUpdate(
           { _id: id },
-          { ...input, updatedBy: user.userName },
+          { ...input, updatedBy: `${user.lastName} ${user.firstName}` },
           { new: true }
         );
         if (!task) throw new error("Unathorized Access");

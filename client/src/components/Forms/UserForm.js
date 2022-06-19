@@ -10,6 +10,7 @@ const initialState = {
   userName: "",
   admin: false,
   password: "",
+  department: "",
   reTypedPassword: "",
 };
 export const UserForm = ({ currentUser, setUser }) => {
@@ -126,12 +127,30 @@ export const UserForm = ({ currentUser, setUser }) => {
                         </p>
                       )}
                     </div>
+                    <label
+                      htmlFor="department"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Họ
+                    </label>
+                    <input
+                      type="text"
+                      {...register("department", {
+                        required: "Nhập Khoa",
+                      })}
+                      className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise text-black focus:outline-none sm:text-sm"
+                    />
+                    {errors?.department && (
+                      <p className="text-brown-light text-sm font-medium italic">
+                        {errors.department.message}
+                      </p>
+                    )}
                     <div className="col-span-6 sm:col-span-4">
                       <label
                         htmlFor="userName"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        userName
+                        UserName
                       </label>
                       <input
                         type="text"

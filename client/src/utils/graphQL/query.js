@@ -17,6 +17,7 @@ export const GET_TASKS = gql`
       employee
       task
       updatedBy
+      updatedAt
     }
   }
 `;
@@ -27,6 +28,7 @@ export const GET_TASK = gql`
       employee
       task
       updatedBy
+      updatedAt
     }
   }
 `;
@@ -39,6 +41,7 @@ export const GET_USERS = gql`
       lastName
       userName
       admin
+      department
       password
     }
   }
@@ -51,6 +54,7 @@ export const GET_USER = gql`
       firstName
       lastName
       userName
+      department
       admin
     }
   }
