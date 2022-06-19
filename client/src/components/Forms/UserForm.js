@@ -79,10 +79,10 @@ export const UserForm = ({ currentUser, setUser }) => {
     reset();
   };
   return (
-    <div className="md:container md:mx-auto mt-10 border-t-2 border-gray">
+    <div className="lg:min-w-[80%] mx-auto md:container md:mx-auto mt-10 border-t-2 border-gray">
       <div className="mt-10 sm:mt-0">
-        <div className="md:grid md:grid-cols-3 md:gap-6">
-          <div className="mt-5 md:mt-0 md:col-span-2">
+        <div className="md:grid md:grid-cols-3 md:gap-6 grid-start-2 lg:grid-cols-2">
+          <div className="lg:col-span-2 mt-5 md:mt-0 md:col-span-2">
             <form onSubmit={handleSubmit(handleFormSubmit)} autoComplete="off">
               <div className="overflow-hidden sm:rounded-md">
                 <div className="px-4 py-5 bg-white sm:p-6">
