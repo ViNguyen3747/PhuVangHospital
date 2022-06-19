@@ -1,12 +1,12 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationIcon } from "@heroicons/react/outline";
-import { CSVLink } from "react-csv";
 import TaskForm from "../Forms/TaskForm";
 import { GET_TASKS } from "../../utils/graphQL/query";
 import { useQuery, useMutation } from "@apollo/client";
 import { DELETE_TASK } from "../../utils/graphQL/mutation";
 import Auth from "../../utils/auth";
+import * as XLSX from "xlsx";
 const Tasks = () => {
   const [deleteModal, setDelete] = useState(false);
   const [excelFile, setExcelFile] = useState(null);
@@ -15,11 +15,6 @@ const Tasks = () => {
   const { data } = useQuery(GET_TASKS);
   const [deleteTask] = useMutation(DELETE_TASK);
 
-  const days = Array.from(Array(31), (value, index) => ({
-    label: (index + 1).toString(),
-    key: index.toString(),
-  }));
-  const headers = [{ label: "Nhân Viên", key: "employee" }, ...days];
   useEffect(() => {
     if (data) {
       console.log(data);
@@ -50,9 +45,39 @@ const Tasks = () => {
     setDelete(false);
     if (data) window.location.assign("/bangchamcong");
   };
+  const xport = () => {
+    const table = document.getElementById("bangchamcong");
+    const workBook = XLSX.utils.table_to_book(table);
+    const fileName = "BangChamCong.xlsx";
+    XLSX.writeFile(workBook, fileName);
+  };
   return (
     <div className="place-items-center h-screen">
       <div className=" min-w-full sm:px-10 lg:px-16">
+        {data && (
+          <table id="bangchamcong" className="hidden" aria-hidden="true">
+            <thead>
+              <tr>
+                <th colSpan="1">Nhân Viên</th>
+                {[...Array(31)].map((e, i) => (
+                  <th colSpan="3">{i + 1}</th>
+                ))}
+                <th colSpan="1" />
+                <th colSpan="1" />
+              </tr>
+              {data.tasks.map((info) => (
+                <tr>
+                  <td colSpan="1">{info.employee}</td>
+                  {info.task.map((task) =>
+                    task.map((t) => <td colSpan="1">{t}</td>)
+                  )}
+                </tr>
+              ))}
+            </thead>
+            <tbody></tbody>
+          </table>
+        )}
+
         {Auth.isAdmin() && (
           <>
             <TaskForm
@@ -140,15 +165,12 @@ const Tasks = () => {
         {data && Auth.isAdmin() && (
           <>
             {excelFile && (
-              <CSVLink
-                data={excelFile}
-                headers={headers}
-                filename="bangchamcong.csv"
+              <button
                 className="whitespace-nowrap inline-flex px-1 py-1 m-4 rounded-md shadow-sm font-small text-white bg-gray-dark hover:bg-gray hover:text-gray-dark ease-in-out"
-                targe="_blank"
+                onClick={xport}
               >
                 Export File
-              </CSVLink>
+              </button>
             )}
           </>
         )}
