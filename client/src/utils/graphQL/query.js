@@ -41,6 +41,7 @@ export const GET_USERS = gql`
       lastName
       userName
       admin
+      department
       password
     }
   }
@@ -53,6 +54,7 @@ export const GET_USER = gql`
       firstName
       lastName
       userName
+      department
       admin
     }
   }

@@ -51,6 +51,12 @@ const Users = () => {
                       scope="col"
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
+                      Khoa
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
                       Role
                     </th>
                     <th scope="col" className="relative px-6 py-3">
@@ -73,6 +79,11 @@ const Users = () => {
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="text-sm text-gray-500">
                             {e.userName}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-gray-900">
+                            {e.department}
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">

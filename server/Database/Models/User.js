@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema(
     lastName: { type: String, required: true },
     userName: { type: String, required: true },
     password: { type: String, required: true, minlength: 7 },
+    department: { type: String, required: true },
     admin: { type: Boolean, required: true },
     createdAt: {
       type: Date,
