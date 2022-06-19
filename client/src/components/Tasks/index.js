@@ -172,7 +172,7 @@ const Tasks = () => {
               <div className="flex">
                 {[...Array(31)].map((e, i) => {
                   return (
-                    <div className="h-10 p-2 w-96 border-b border-r border-gray whitespace-nowrap">
+                    <div className="h-10 p-2 w-96 border-b border-r border-gray-dark border-gray whitespace-nowrap">
                       <span>{i + 1}</span>
                     </div>
                   );
@@ -180,13 +180,13 @@ const Tasks = () => {
               </div>
               {data.tasks.map((task_dt, index) => {
                 return (
-                  <div className="flex text-center">
+                  <div className="flex text-center ">
                     {task_dt.task.map((task) => {
                       return task.map((t, j) => (
                         <p
                           className={`${
                             j === 2
-                              ? " bg-gray-light"
+                              ? " bg-gray-light border-r border-r-gray-dark"
                               : j === 0
                               ? "bg-turquoise-lightest"
                               : ""
