@@ -120,7 +120,7 @@ const Tasks = () => {
                       <div className="sm:flex sm:items-start">
                         <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-yellow sm:mx-0 sm:h-10 sm:w-10">
                           <ExclamationIcon
-                            className="h-6 w-6 text-red-600"
+                            className="h-6 w-6   "
                             aria-hidden="true"
                           />
                         </div>
@@ -143,7 +143,7 @@ const Tasks = () => {
                       </button>
                       <button
                         type="button"
-                        className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                        className="mt-3 w-full inline-flex justify-center rounded-md border    shadow-sm px-4 py-2 bg-white text-base font-medium   focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                         onClick={() => setDelete(false)}
                         ref={deleteButtonRef}
                       >
@@ -173,12 +173,12 @@ const Tasks = () => {
       {data && (
         <div className="flex ml-3 pb-7 text-center  sm:px-10 lg:px-16">
           <div>
-            <p className="h-10 p-2 border-b border-r border-turquoise whitespace-nowrap">
+            <p className="h-10 p-2 border-b-2 border-r-2 border-gray whitespace-nowrap">
               Nhân Viên
             </p>
             {data.tasks.map((usr_data, index) => {
               return (
-                <p className="h-13 p-2 border-b border-r border-turquoise whitespace-nowrap overflow-x-scroll">
+                <p className="  p-2 border-b-2 border-r-2 border-gray whitespace-nowrap overflow-x-scroll">
                   {usr_data.employee}
                 </p>
               );
@@ -189,7 +189,7 @@ const Tasks = () => {
               <div className="flex">
                 {[...Array(31)].map((e, i) => {
                   return (
-                    <div className="h-10 p-2 w-96 border-b border-r border-gray-dark border-gray whitespace-nowrap">
+                    <div className="h-10 p-2 w-96 border-b-2 border-r-2 border-gray whitespace-nowrap">
                       <span>{i + 1}</span>
                     </div>
                   );
@@ -202,12 +202,12 @@ const Tasks = () => {
                       return task.map((t, j) => (
                         <p
                           className={`${
-                            j === 2
-                              ? " bg-gray-light border-r border-r-gray-dark"
-                              : j === 0
-                              ? "bg-turquoise-lightest"
-                              : ""
-                          } h-13 p-2 w-32 border-b border-r border-gray overflow-x-scroll whitespace-nowrap`}
+                            j === 1
+                              ? "bg-table-first border-r-2 border-white "
+                              : j === 2
+                                ? "bg-table-second border-white"
+                                : "border-gray"
+                            }   p-2 w-32 border-b-2  overflow-x-scroll whitespace-nowrap`}
                         >
                           {t}
                         </p>
@@ -219,20 +219,20 @@ const Tasks = () => {
             </table>
           </div>
           {Auth.isAdmin() && (
-            <div className="w-40">
-              <p className="h-10 border-b border-l border-gray"></p>
+            <div className="whitespace-nowrap" >
+              <p className="h-10 border-b-2 border-gray "></p>
               {data.tasks.map((usr_data, index) => {
                 return (
-                  <div className="h-13 text-center border-b border-l border-gray overflow-x-scroll">
-                    <button
+                  <div className="p-2 border-b-2 border-r-2 border-gray whitespace-nowrap overflow-x-scroll">
+                    < button
                       onClick={() => update(usr_data.id)}
-                      className="text-black hover:text-turquoise cursor-pointer h-10 whitespace-nowrap"
+                      className="text-black hover:text-turquoise cursor-pointer"
                     >
                       Chỉnh Sửa
                     </button>
                     <button
                       onClick={() => deleteNoti(usr_data.id)}
-                      className="text-black hover:text-brown-light cursor-pointer h-10 px-5 whitespace-nowrap"
+                      className="text-black hover:text-brown-light cursor-pointer px-5 "
                     >
                       Xóa
                     </button>
@@ -242,8 +242,9 @@ const Tasks = () => {
             </div>
           )}
         </div>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 };
 

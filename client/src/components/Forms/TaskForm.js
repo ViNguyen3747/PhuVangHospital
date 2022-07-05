@@ -46,30 +46,29 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
 
   const handleFormSubmit = async (taskData) => {
     try {
-      if (Auth.isAdmin()) {
-        if (currentTask) {
-          const { data } = await updateTask({
-            variables: {
-              updateTaskId: currentTask,
-              input: {
-                ...taskData,
-              },
+      if (currentTask) {
+        const { data } = await updateTask({
+          variables: {
+            updateTaskId: currentTask,
+            input: {
+              ...taskData,
             },
-          });
-          if (data) {
-            window.location.assign(`/bangchamcong`);
-          }
-        } else {
-          const { data } = await addTask({
-            variables: {
-              input: {
-                ...taskData,
-              },
+          },
+        });
+        if (data) {
+          window.location.assign(`/bangchamcong`);
+        }
+      } else {
+        const { data } = await addTask({
+          variables: {
+            input: {
+              ...taskData,
             },
-          });
-          if (data) {
-            window.location.assign(`/bangchamcong`);
-          }
+          },
+        });
+        if (data) {
+          window.location.assign(`/bangchamcong`);
+
         }
       }
     } catch (error) {
@@ -112,7 +111,7 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                       })}
                       className="mt-1 relative block px-3 py-2 mb-2 border-b-2 border-turquoise placeholder-gray text-black focus:outline-none sm:text-sm"
                     />
-                    {errors?.employee && (
+                    {errors ?.employee && (
                       <p className="text-brown-light text-sm font-medium italic">
                         {errors.employee.message}
                       </p>
@@ -150,12 +149,12 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                                           taskList(event, i, j)
                                         }
                                         className={`text-black pl-3 w-28 h-10 ${
-                                          j === 2
-                                            ? " bg-gray-light"
-                                            : j === 0
-                                            ? "bg-turquoise-lightest"
-                                            : ""
-                                        }  focus:outline-none text-base`}
+                                          j === 1
+                                            ? " bg-table-first"
+                                            : j === 2
+                                              ? "bg-table-second"
+                                              : ""
+                                          }  focus:outline-none text-base`}
                                       />
                                     ))}
                                   </td>
@@ -174,7 +173,7 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
                     </p>
                   )}
                   <div className="px-4 py-3  text-left sm:px-6">
-                    <button className="min-w-min py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-turquoise to-blue duration-500 ease-out">
+                    <button className="w-1/3 py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-turquoise to-blue duration-500 ease-out">
                       Nhập
                     </button>
                   </div>
@@ -183,7 +182,7 @@ const TaskForm = ({ currentTask, setcurrentTask }) => {
 
               <div className="px-4 py-3 text-left sm:px-6">
                 <button
-                  className="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-gray to-gray-darkest duration-500 ease-out"
+                  className=" w-1/3 py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-gray to-gray-darkest duration-500 ease-out"
                   onClick={clear}
                 >
                   Clear

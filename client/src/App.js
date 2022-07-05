@@ -17,7 +17,7 @@ import NotFoundPage from "./components/NotFoundPage";
 import auth from "./utils/auth";
 
 const link = new HttpLink({
-  uri: "http://localhost:5000/graphql",
+  uri: "https://benh-vien-phu-vang.as.r.appspot.com/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -41,16 +41,14 @@ function App() {
     <ApolloProvider client={client}>
       <Router className="App">
         {auth.loggedIn() && <Navbar />}
-        <div className="flex h-screen z-0">
-          <Routes>
-            <Route path="/" exact element={<Signin />} />
-            {auth.loggedIn() && (
-              <Route path="/bangchamcong" element={<Tasks />} />
-            )}
-            {auth.isAdmin() && <Route path="/taikhoan" element={<Users />} />}
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path="/" exact element={<Signin />} />
+          {auth.loggedIn() && (
+            <Route path="/bangchamcong" element={<Tasks />} />
+          )}
+          {auth.isAdmin() && <Route path="/taikhoan" element={<Users />} />}
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
       </Router>
     </ApolloProvider>
   );

@@ -26,8 +26,8 @@ const Users = () => {
     if (data) window.location.assign("/taikhoan");
   };
   return (
-    <div className="place-items-center h-screen relative m-auto">
-      <div className="flex flex-col">
+    <div className="place-items-center h-screen">
+      <div className=" min-w-full sm:px-10 lg:px-16">
         <div className="-my-2 sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div className="shadow overflow-hidden border-gray border-b-4 sm:rounded-lg">
@@ -36,26 +36,26 @@ const Users = () => {
                   <tr>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      className="px-6 py-3 text-left text-xs font-medium   uppercase "
                     >
                       Họ và Tên
                     </th>
 
                     <th
                       scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      className="px-6 py-3 text-left text-xs font-medium   uppercase"
                     >
                       userName
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      className="px-6 py-3 text-left text-xs font-medium   uppercase "
                     >
                       Khoa
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      className="px-6 py-3 text-left text-xs font-medium   uppercase "
                     >
                       Role
                     </th>
@@ -72,22 +72,22 @@ const Users = () => {
                     data.users.map((e, index) => (
                       <tr key={index}>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm text-gray-900">
+                          <div className="text-sm  ">
                             {e.lastName} {e.firstName}
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm text-gray-500">
+                          <div className="text-sm  ">
                             {e.userName}
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm text-gray-900">
+                          <div className="text-sm  ">
                             {e.department}
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm text-gray-500">
+                          <div className="text-sm  ">
                             {e.admin && "Admin"}
                           </div>
                         </td>
@@ -156,7 +156,7 @@ const Users = () => {
                   <div className="sm:flex sm:items-start">
                     <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-yellow sm:mx-0 sm:h-10 sm:w-10">
                       <ExclamationIcon
-                        className="h-6 w-6 text-red-600"
+                        className="h-6 w-6   "
                         aria-hidden="true"
                       />
                     </div>
@@ -179,7 +179,7 @@ const Users = () => {
                   </button>
                   <button
                     type="button"
-                    className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                    className="mt-3 w-full inline-flex justify-center rounded-md border    shadow-sm px-4 py-2 bg-white text-base font-medium   focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                     onClick={() => setDelete(false)}
                     ref={deleteButtonRef}
                   >

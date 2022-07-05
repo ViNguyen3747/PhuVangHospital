@@ -45,17 +45,33 @@ export const UserForm = ({ currentUser, setUser }) => {
     } else {
       try {
         if (currentUser) {
-          const { data } = await updateUser({
-            variables: {
-              updateUserId: currentUser,
-              updatedUser: {
-                ...userInfo,
+          if (userInfo.password === "") {
+            const { password, ...info } = userInfo;
+            const { data } = await updateUser({
+              variables: {
+                updateUserId: currentUser,
+                updatedUser: {
+                  ...info,
+                },
               },
-            },
-          });
-          if (data) {
-            window.location.assign(`/taikhoan`);
+            });
+            if (data) {
+              window.location.assign(`/taikhoan`);
+            }
+          } else {
+            const { data } = await updateUser({
+              variables: {
+                updateUserId: currentUser,
+                updatedUser: {
+                  ...userInfo,
+                },
+              },
+            });
+            if (data) {
+              window.location.assign(`/taikhoan`);
+            }
           }
+
         } else {
           const { data } = await addUser({
             variables: {
@@ -79,158 +95,149 @@ export const UserForm = ({ currentUser, setUser }) => {
     reset();
   };
   return (
-    <div className="lg:min-w-[80%] mx-auto md:container md:mx-auto mt-10 border-t-2 border-gray">
+    <div className="md:container mt-10 border-t-2 border-gray mx-10">
       <div className="mt-10 sm:mt-0">
-        <div className="md:grid md:grid-cols-3 md:gap-6 grid-start-2 lg:grid-cols-2">
-          <div className="lg:col-span-2 mt-5 md:mt-0 md:col-span-2">
-            <form onSubmit={handleSubmit(handleFormSubmit)} autoComplete="off">
-              <div className="overflow-hidden sm:rounded-md">
-                <div className="px-4 py-5 bg-white sm:p-6">
-                  <div className="grid grid-cols-6 gap-6">
-                    <div className="col-span-6 sm:col-span-4">
-                      <label
-                        htmlFor="lastName"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Họ
-                      </label>
-                      <input
-                        type="text"
-                        {...register("lastName", {
-                          required: "Nhập Họ",
-                        })}
-                        className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise text-black focus:outline-none sm:text-sm"
-                      />
-                      {errors?.lastName && (
-                        <p className="text-brown-light text-sm font-medium italic">
-                          {errors.lastName.message}
-                        </p>
-                      )}
-                    </div>
-                    <div className="col-span-6 sm:col-span-4">
-                      <label
-                        htmlFor="firstName"
-                        className="block text-sm font-medium"
-                      >
-                        Tên
-                      </label>
-                      <input
-                        type="text"
-                        {...register("firstName", {
-                          required: "Vui lòng nhập tên",
-                        })}
-                        className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise  text-black focus:outline-none sm:text-sm"
-                      />
-                      {errors?.firstName && (
-                        <p className="text-brown-light text-sm font-medium italic">
-                          {errors.firstName.message}
-                        </p>
-                      )}
-                    </div>
-                    <label
-                      htmlFor="department"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Họ
-                    </label>
-                    <input
-                      type="text"
-                      {...register("department", {
-                        required: "Nhập Khoa",
-                      })}
-                      className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise text-black focus:outline-none sm:text-sm"
-                    />
-                    {errors?.department && (
-                      <p className="text-brown-light text-sm font-medium italic">
-                        {errors.department.message}
-                      </p>
-                    )}
-                    <div className="col-span-6 sm:col-span-4">
-                      <label
-                        htmlFor="userName"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        UserName
-                      </label>
-                      <input
-                        type="text"
-                        {...register("userName", {
-                          required: "Vui lòng nhập userName",
-                        })}
-                        className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise text-black focus:outline-none sm:text-sm"
-                      />
-                      {errors?.userName && (
-                        <p className="text-brown-light text-sm font-medium italic">
-                          {errors.userName.message}
-                        </p>
-                      )}
-                    </div>
-                    <div className="col-span-6 sm:col-span-4">
-                      <input type="checkbox" {...register("admin")} />
-                      <label
-                        htmlFor="admin"
-                        className=" text-sm font-medium text-gray-800 px-4"
-                      >
-                        Admin
-                      </label>
-                    </div>
-                    <div className="col-span-6 sm:col-span-4">
-                      <label
-                        htmlFor="password"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Mật Khẩu {currentUser && `Mới`} (Trên 7 ký tự)
-                      </label>
-                      <input
-                        type="password"
-                        {...register("password", {
-                          required: "Vui lòng nhập mật khẩu" | currentUser,
-                        })}
-                        className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise text-black focus:outline-none sm:text-sm"
-                      />
-                      {errors?.password && (
-                        <p className="text-brown-light text-sm font-medium italic">
-                          {errors.password.message}
-                        </p>
-                      )}
-                    </div>
-                    <div className="col-span-6 sm:col-span-4">
-                      <label
-                        htmlFor="reTypedPassword"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Xác Nhận Mật Khẩu
-                      </label>
-                      <input
-                        type="password"
-                        autoComplete="false"
-                        {...register("reTypedPassword")}
-                        className="mt-1 relative block w-full px-3 py-2 mb-2 border-b-2 border-turquoise  text-black focus:outline-none sm:text-sm"
-                      />
-                      {errors?.reTypedPassword && (
-                        <p className="text-brown-light text-sm font-medium italic">
-                          {errors.reTypedPassword.message}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                </div>
-                <div className="px-4 py-3 text-right sm:px-6">
-                  <button className="group relative w-full flex justify-center  py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-turquoise to-blue duration-500 ease-out">
-                    Nhập
-                  </button>
-                </div>
-              </div>
-            </form>
-            <div className="px-4 py-3 text-right sm:px-6">
-              <button
-                className="group relative w-full flex justify-center  py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-gray to-gray-darkest duration-500 ease-out"
-                onClick={() => clear()}
+        <form onSubmit={handleSubmit(handleFormSubmit)} autoComplete="off">
+          <div className="overflow-hidden sm:rounded-md">
+            <div className=" m-auto bg-white sm:p-6">
+
+              <label
+                htmlFor="lastName"
+                className="block text-sm font-medium"
               >
-                Clear
-              </button>
+                Họ
+                      </label>
+              <input
+                type="text"
+                {...register("lastName", {
+                  required: "Nhập Họ",
+                })}
+                className="mt-1 px-3 py-2 mb-2 w-1/3 border-b-2 border-turquoise text-black focus:outline-none sm:text-sm"
+              />
+              {errors ?.lastName && (
+                <p className="text-brown-light text-sm font-medium italic">
+                  {errors.lastName.message}
+                </p>
+              )}
+              <label
+                htmlFor="firstName"
+                className="block text-sm font-medium"
+              >
+                Tên
+                      </label>
+              <input
+                type="text"
+                {...register("firstName", {
+                  required: "Vui lòng nhập tên",
+                })}
+                className="mt-1 px-3 py-2 mb-2 w-1/3 border-b-2 border-turquoise text-black focus:outline-none sm:text-sm"
+              />
+              {errors ?.firstName && (
+                <p className="text-brown-light text-sm font-medium italic">
+                  {errors.firstName.message}
+                </p>
+              )}
+              <label
+                htmlFor="department"
+                className="block text-sm font-medium  "
+              >
+                Khoa
+                    </label>
+              <input
+                type="text"
+                {...register("department", {
+                  required: "Nhập Khoa",
+                })}
+                className="mt-1 px-3 py-2 mb-2 w-1/3 border-b-2 border-turquoise text-black focus:outline-none sm:text-sm"
+              />
+              {errors ?.department && (
+                <p className="text-brown-light text-sm font-medium italic">
+                  {errors.department.message}
+                </p>
+              )}
+              <div className="col-span-6 sm:col-span-4">
+                <label
+                  htmlFor="userName"
+                  className="block text-sm font-medium  "
+                >
+                  UserName
+                      </label>
+                <input
+                  type="text"
+                  {...register("userName", {
+                    required: "Vui lòng nhập userName",
+                  })}
+                  className="mt-1 px-3 py-2 mb-2 w-1/3 border-b-2 border-turquoise text-black focus:outline-none sm:text-sm"
+                />
+                {errors ?.userName && (
+                  <p className="text-brown-light text-sm font-medium italic">
+                    {errors.userName.message}
+                  </p>
+                )}
+              </div>
+              <div className="col-span-6 sm:col-span-4">
+                <input type="checkbox" {...register("admin")} />
+                <label
+                  htmlFor="admin"
+                  className=" text-sm font-medium   px-4"
+                >
+                  Admin
+                      </label>
+              </div>
+              <div className="col-span-6 sm:col-span-4">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium  "
+                >
+                  Mật Khẩu {currentUser && `Mới`} (Trên 7 ký tự)
+                      </label>
+                <input
+                  type="password"
+                  {...register("password", {
+                    required: "Vui lòng nhập mật khẩu" | currentUser,
+                  })}
+                  className="mt-1 px-3 py-2 mb-2 w-1/3 border-b-2 border-turquoise text-black focus:outline-none sm:text-sm"
+                />
+                {errors ?.password && (
+                  <p className="text-brown-light text-sm font-medium italic">
+                    {errors.password.message}
+                  </p>
+                )}
+              </div>
+              <div className="col-span-6 sm:col-span-4">
+                <label
+                  htmlFor="reTypedPassword"
+                  className="block text-sm font-medium  "
+                >
+                  Xác Nhận Mật Khẩu
+                      </label>
+                <input
+                  type="password"
+                  autoComplete="false"
+                  {...register("reTypedPassword")}
+                  className="mt-1 px-3 py-2 mb-2 w-1/3 border-b-2 border-turquoise text-black focus:outline-none sm:text-sm"
+                />
+                {errors ?.reTypedPassword && (
+                  <p className="text-brown-light text-sm font-medium italic">
+                    {errors.reTypedPassword.message}
+                  </p>
+                )}
+              </div>
             </div>
           </div>
+          <div className="px-4 py-3 text-right sm:px-6">
+            <button className="group relative w-1/3  flex justify-center  py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-turquoise to-blue duration-500 ease-out">
+              Nhập
+                  </button>
+          </div>
+        </form>
+        <div className="px-4 py-3 text-right sm:px-6">
+          <button
+            className="group relative w-1/3 flex justify-center  py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-gray to-gray-darkest duration-500 ease-out"
+            onClick={() => clear()}
+          >
+            Clear
+              </button>
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@ const index = () => {
         src={Astronaut}
       />
       <div class="text-center lg:w-2/3 w-full">
-        <h1 class="title-font sm:text-4xl text-2xl mb-4 font-medium text-gray-900">
+        <h1 class="title-font sm:text-4xl text-2xl mb-4 font-medium  ">
           This Page is Lost in Space
         </h1>
         <div class="flex justify-center">

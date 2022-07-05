@@ -46,6 +46,10 @@ module.exports = {
                 DEFAULT: "rgb(209 213 219)",
                 blue: "#7cabd6",
             },
+            table: {
+                first: "#a3cef1",
+                second: "#6096ba"
+            }
         },
     },
     variants: {
