@@ -36,7 +36,7 @@ const startServer = async () => {
   try {
     await apolloServer.start();
     apolloServer.applyMiddleware({ app, cors: true, path: "/graphql" });
-    const PORT = process.env.PORT || 80;
+    const PORT = process.env.PORT || 8080;
     app.use("/", (req, res, next) => {
       res.send({ message: "Hello" });
     });
